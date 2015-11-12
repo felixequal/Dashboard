@@ -1,0 +1,27 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="mgmt.master.cs" Inherits="mgmt" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+    <asp:ContentPlaceHolder id="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+    <div style=""width: 200px; float:left;">
+        <ul>
+            <li>
+                <a href="~/mgmt/Default.aspx" runat="server">Home</a>
+            </li>
+            <li><a href="~/mgmt/stuff.aspx" runat="server">manage Data</a></li>
+
+        </ul>
+        <div style="width: 750px; float: left;">
+        <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server"></asp:ContentPlaceHolder>
+        </div>
+    </div>
+    </form>
+</body>
+</html>

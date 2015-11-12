@@ -1,0 +1,213 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="cdjamModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2006/04/edm/ssdl">
+        <EntityType Name="data">
+          <Key>
+            <PropertyRef Name="DataID" />
+          </Key>
+          <Property Name="DataID" Type="int" Nullable="false" />
+          <Property Name="data" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="domains">
+          <Key>
+            <PropertyRef Name="DomainID" />
+          </Key>
+          <Property Name="DomainID" Type="int" Nullable="false" />
+          <Property Name="Domain Name" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="foodWaste">
+          <Key>
+            <PropertyRef Name="datapointID" />
+          </Key>
+          <Property Name="datapointID" Type="int" Nullable="false" />
+          <Property Name="date" Type="date" Nullable="false" />
+          <Property Name="weight" Type="float" Nullable="false" />
+          <Property Name="percentGrains" Type="float" Nullable="false" />
+          <Property Name="percentFruit" Type="float" Nullable="false" />
+          <Property Name="percentVeg" Type="float" Nullable="false" />
+          <Property Name="percentDairy" Type="float" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Projects">
+          <Key>
+            <PropertyRef Name="ProjectID" />
+          </Key>
+          <Property Name="ProjectID" Type="int" Nullable="false" />
+          <Property Name="DomainID" Type="int" Nullable="false" />
+          <Property Name="Project Name" Type="varchar" MaxLength="50" />
+          <Property Name="description" Type="varchar(max)" />
+          <Property Name="Principal Investigator" Type="varchar" MaxLength="50" />
+          <Property Name="Date Created" Type="date" />
+          <Property Name="number of users" Type="int" />
+        </EntityType>
+        <Association Name="FK_Projects_domains">
+          <End Role="domains" Type="Self.domains" Multiplicity="1" />
+          <End Role="Projects" Type="Self.Projects" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="domains">
+              <PropertyRef Name="DomainID" />
+            </Principal>
+            <Dependent Role="Projects">
+              <PropertyRef Name="ProjectID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="cdjamModelStoreContainer">
+          <EntitySet Name="data" EntityType="Self.data" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="domains" EntityType="Self.domains" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="foodWaste" EntityType="Self.foodWaste" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Projects" EntityType="Self.Projects" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Projects_domains" Association="Self.FK_Projects_domains">
+            <End Role="domains" EntitySet="domains" />
+            <End Role="Projects" EntitySet="Projects" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="cdjamModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2006/04/edm">
+        <EntityType Name="datum">
+          <Key>
+            <PropertyRef Name="DataID" />
+          </Key>
+          <Property Name="DataID" Type="Int32" Nullable="false" />
+          <Property Name="data" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="domain">
+          <Key>
+            <PropertyRef Name="DomainID" />
+          </Key>
+          <Property Name="DomainID" Type="Int32" Nullable="false" />
+          <Property Name="Domain_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Project" Relationship="Self.FK_Projects_domains" FromRole="domains" ToRole="Projects" />
+        </EntityType>
+        <EntityType Name="foodWaste">
+          <Key>
+            <PropertyRef Name="datapointID" />
+          </Key>
+          <Property Name="datapointID" Type="Int32" Nullable="false" />
+          <Property Name="date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="weight" Type="Double" Nullable="false" />
+          <Property Name="percentGrains" Type="Double" Nullable="false" />
+          <Property Name="percentFruit" Type="Double" Nullable="false" />
+          <Property Name="percentVeg" Type="Double" Nullable="false" />
+          <Property Name="percentDairy" Type="Double" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Project">
+          <Key>
+            <PropertyRef Name="ProjectID" />
+          </Key>
+          <Property Name="ProjectID" Type="Int32" Nullable="false" />
+          <Property Name="DomainID" Type="Int32" Nullable="false" />
+          <Property Name="Project_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Principal_Investigator" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Date_Created" Type="DateTime" Precision="0" />
+          <Property Name="number_of_users" Type="Int32" />
+          <NavigationProperty Name="domain" Relationship="Self.FK_Projects_domains" FromRole="Projects" ToRole="domains" />
+        </EntityType>
+        <Association Name="FK_Projects_domains">
+          <End Role="domains" Type="Self.domain" Multiplicity="1" />
+          <End Role="Projects" Type="Self.Project" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="domains">
+              <PropertyRef Name="DomainID" />
+            </Principal>
+            <Dependent Role="Projects">
+              <PropertyRef Name="ProjectID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="cdjamEntities2">
+          <EntitySet Name="data" EntityType="Self.datum" />
+          <EntitySet Name="domains" EntityType="Self.domain" />
+          <EntitySet Name="foodWastes" EntityType="Self.foodWaste" />
+          <EntitySet Name="Projects" EntityType="Self.Project" />
+          <AssociationSet Name="FK_Projects_domains" Association="Self.FK_Projects_domains">
+            <End Role="domains" EntitySet="domains" />
+            <End Role="Projects" EntitySet="Projects" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="urn:schemas-microsoft-com:windows:storage:mapping:CS">
+        <EntityContainerMapping StorageEntityContainer="cdjamModelStoreContainer" CdmEntityContainer="cdjamEntities2">
+          <EntitySetMapping Name="data">
+            <EntityTypeMapping TypeName="cdjamModel.datum">
+              <MappingFragment StoreEntitySet="data">
+                <ScalarProperty Name="DataID" ColumnName="DataID" />
+                <ScalarProperty Name="data" ColumnName="data" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="domains">
+            <EntityTypeMapping TypeName="cdjamModel.domain">
+              <MappingFragment StoreEntitySet="domains">
+                <ScalarProperty Name="DomainID" ColumnName="DomainID" />
+                <ScalarProperty Name="Domain_Name" ColumnName="Domain Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="foodWastes">
+            <EntityTypeMapping TypeName="cdjamModel.foodWaste">
+              <MappingFragment StoreEntitySet="foodWaste">
+                <ScalarProperty Name="datapointID" ColumnName="datapointID" />
+                <ScalarProperty Name="date" ColumnName="date" />
+                <ScalarProperty Name="weight" ColumnName="weight" />
+                <ScalarProperty Name="percentGrains" ColumnName="percentGrains" />
+                <ScalarProperty Name="percentFruit" ColumnName="percentFruit" />
+                <ScalarProperty Name="percentVeg" ColumnName="percentVeg" />
+                <ScalarProperty Name="percentDairy" ColumnName="percentDairy" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Projects">
+            <EntityTypeMapping TypeName="cdjamModel.Project">
+              <MappingFragment StoreEntitySet="Projects">
+                <ScalarProperty Name="ProjectID" ColumnName="ProjectID" />
+                <ScalarProperty Name="DomainID" ColumnName="DomainID" />
+                <ScalarProperty Name="Project_Name" ColumnName="Project Name" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="Principal_Investigator" ColumnName="Principal Investigator" />
+                <ScalarProperty Name="Date_Created" ColumnName="Date Created" />
+                <ScalarProperty Name="number_of_users" ColumnName="number of users" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="FK_Projects_domains" TypeName="cdjamModel.FK_Projects_domains" StoreEntitySet="Projects">
+            <EndProperty Name="domains">
+              <ScalarProperty Name="DomainID" ColumnName="ProjectID" />
+            </EndProperty>
+            <EndProperty Name="Projects">
+              <ScalarProperty Name="ProjectID" ColumnName="ProjectID" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2007/06/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="false" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
