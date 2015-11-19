@@ -13,7 +13,7 @@
             padding: 0.5em;
         }
     </style>
-  <title>Delay Load User Control Example</title>
+  <title>PieChart Example</title>
 </head>
 <body>
   <form id="form1" runat="server">

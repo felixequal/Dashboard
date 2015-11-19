@@ -6,5 +6,10 @@
     <asp:GridView ID="GridView1" runat="server">
     </asp:GridView>
     <asp:PlaceHolder ID="PlaceHolder1" runat="server"></asp:PlaceHolder>
+    <asp:DropDownList ID="DropDownList1" runat="server" OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged">
+        <asp:ListItem>Avg</asp:ListItem>
+        <asp:ListItem>Max</asp:ListItem>
+        <asp:ListItem>Total</asp:ListItem>
+    </asp:DropDownList>
 </asp:Content>
 

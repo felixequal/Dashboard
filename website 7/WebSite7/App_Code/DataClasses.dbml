@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="cdjam" Class="DataClassesDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=lorica;Initial Catalog=cdjam;Persist Security Info=True;User ID=sa" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="cdjamConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.data" Member="datas">
+    <Type Name="data">
+      <Column Name="DataID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="data" Member="data1" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.foodWaste" Member="foodWastes">
+    <Type Name="foodWaste">
+      <Column Name="datapointID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="date" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="weight" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="percentGrains" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="percentFruit" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="percentVeg" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="percentDairy" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Projects" Member="Projects">
+    <Type Name="Project">
+      <Column Name="ProjectID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="DomainID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="[Project Name]" Member="Project_Name" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="description" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="[Principal Investigator]" Member="Principal_Investigator" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="[Date Created]" Member="Date_Created" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="[number of users]" Member="number_of_users" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="domain_Project" Member="domain" ThisKey="ProjectID" OtherKey="DomainID" Type="domain" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.domains" Member="domains">
+    <Type Name="domain">
+      <Column Name="DomainID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="[Domain Name]" Member="Domain_Name" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Association Name="domain_Project" Member="Project" ThisKey="DomainID" OtherKey="ProjectID" Type="Project" Cardinality="One" />
+    </Type>
+  </Table>
+</Database>

@@ -1,8 +1,15 @@
 ﻿using System.IO;
+using System.Linq;
 using System.Web;
 using System.Web.Script.Services;
 using System.Web.Services;
 using System.Web.UI;
+using System.Data;
+using System;
+using System.Collections.Generic;
+
+
+using System.Text;
 
 [WebService(Namespace = "http://microsoft.com/webservices/")]
 [WebServiceBinding(ConformsTo = WsiProfiles.BasicProfile1_1)]
@@ -16,7 +23,6 @@ public class graphStuff
     public string[] color;
     public string[] highlight;
     public string[] label;
-    //public string testdata;
     protected internal graphStuff()
     {
         value = new int[] { 5, 6, 7, 8, 9, 20, 50 };
@@ -27,28 +33,72 @@ public class graphStuff
         //testdata = "blah";
     }
 
-   /* public int[] getGraphData()
+    //Put data from table into the object being sent to the piechart
+    public void setGraphData(double[] fromTable)
     {
-       // return graphData;
+       for (int x = 0; x< value.Length;x++)
+            {
+            value[x] = (int)fromTable[x];
+           // Console.WriteLine(value[x]);
+        };
     }
-    */
+    
 }
 
 [ScriptService]
 public class Service : WebService
 {
-
+    DataController d;
+    DataClassesDataContext db;
+    //foodWaste I;
+    foodWaste f;
+    foodWaste[] fa;
+   // IQueryable<foodWaste> I;
     graphStuff g;
     public int[] theGraphArray;
+    public double[] value;
     public Service()
     {
+        d = new DataController();
         g = new graphStuff();
-       // theGraphArray = g.getGraphData();
+        f = new foodWaste();
+        f.datapointID = 6;
+        f.date = System.DateTime.Now;
+        f.weight = 4;
+        f.percentDairy = 10;
+        f.percentFruit = 12;
+        f.percentGrains = 13;
+        f.percentVeg = 15;
+        db = new DataClassesDataContext();
+        //get data from foodwastes table. Send this to the value field in graphdata
+        value = (from a in db.foodWastes
+                   select a.weight).ToArray();
+        fa = (from x in db.foodWastes
+             select x).ToArray();
+       g.setGraphData(value);
+     //  I = d.returnData();
+        // theGraphArray = g.getGraphData();
     }
 
     [WebMethod]
     [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
-    public graphStuff returnGraphStuff() { return g; }
+    public graphStuff returnGraphStuff()
+    {
+        //g.setGraphData(value);
+        return g;
+    }
+
+    [WebMethod]
+    [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+    public foodWaste[] returnWaste() { return fa; }
+
+    [WebMethod]
+    [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+    public foodWaste returnWasteObject() { return f; }
+
+    [WebMethod]
+    [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+    public double[] returnWeights() { return value; }
 
     [WebMethod]
     [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
