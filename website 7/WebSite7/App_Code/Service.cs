@@ -34,10 +34,13 @@ public class graphStuff
     //Put data from table into the object being sent to the piechart
     public void setGraphData(double[] fromTable)
     {
-       for (int x = 0; x< value.Length;x++)
+        if(fromTable.Length != 0)
+        { 
+       for (int x = 0; x<value.Length; x++)
        {
             value[x] = (int)fromTable[x];
        };
+        }
     }
     
 }
