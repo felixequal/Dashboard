@@ -23,7 +23,11 @@
       <div id="RSSContent"style="border:dashed; overflow:auto; height:100px;"></div>
 
       <canvas id="canvas2"></canvas>
-      <div id="buttontest" style="height:100px; border:dashed; overflow:auto;"></div>
+      <div id="buttontest" style="height:100px; border:dashed; overflow:auto;">
+          <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="/mgmt/Default.aspx">HyperLink</asp:HyperLink>
+          <asp:HyperLink ID="HyperLink2" runat="server">HyperLink</asp:HyperLink>
+          <asp:HyperLink ID="HyperLink3" runat="server">HyperLink</asp:HyperLink>
+       </div>
  
 
  

@@ -13,7 +13,7 @@
     <div style=""width: 200px; float:left;">
         <ul>
             <li>
-                <a href="~/mgmt/Default.aspx" runat="server">Home</a>
+                <a href="Default.aspx" runat="server">Home</a>
             </li>
             <li><a href="~/mgmt/stuff.aspx" runat="server">manage Data</a></li>
 
