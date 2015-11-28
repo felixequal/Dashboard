@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Databasetabs_chartjs", "Databasetabs_chartjs\Databasetabs_chartjs.csproj", "{A4DA4012-A04E-493A-83BC-FD7E0128A3CC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A4DA4012-A04E-493A-83BC-FD7E0128A3CC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A4DA4012-A04E-493A-83BC-FD7E0128A3CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A4DA4012-A04E-493A-83BC-FD7E0128A3CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A4DA4012-A04E-493A-83BC-FD7E0128A3CC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

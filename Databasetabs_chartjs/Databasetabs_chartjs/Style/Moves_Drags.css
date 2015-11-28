@@ -1,0 +1,9 @@
+﻿
+canvas
+{
+    width: 100% !important;
+    height: 100% !important;
+    border:dotted
+}
+#draggable { width: 150px; height: 150px; padding: 0.5em; }
+
