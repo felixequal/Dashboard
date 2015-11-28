@@ -8,7 +8,6 @@ using System.Data;
 using System;
 using System.Collections.Generic;
 
-
 using System.Text;
 
 [WebService(Namespace = "http://microsoft.com/webservices/")]
@@ -16,7 +15,7 @@ using System.Text;
 // To allow this Web Service to be called from script, using ASP.NET AJAX, uncomment the following line. 
 //[System.Web.Script.Services.ScriptService]
 
-public class graphStuff
+/* public class graphStuff
 {
     public int[] value;
     public string[] color;
@@ -43,7 +42,7 @@ public class graphStuff
         }
     }
     
-}
+}*/
 
 [ScriptService]
 public class Service : WebService

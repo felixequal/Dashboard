@@ -19,7 +19,10 @@ public partial class mgmt_foodwaste : System.Web.UI.Page
                            select foodWaste;
             GridView1.DataSource = allwaste;
             GridView1.DataBind();
+
             }
+
+            
     }
 
   

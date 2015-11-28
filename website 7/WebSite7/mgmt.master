@@ -15,7 +15,7 @@
             <li>
                 <a href="Default.aspx" runat="server">Home</a>
             </li>
-            <li><a href="~/mgmt/stuff.aspx" runat="server">manage Data</a></li>
+            <li><a href="~/mgmt/foodwaste.aspx" runat="server">manage Data</a></li>
 
         </ul>
         <div style="width: 750px; float: left;">

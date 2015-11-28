@@ -21,7 +21,7 @@ using System.Reflection;
 
 
 
-[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="cdjam")]
+[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="dashboardDB")]
 public partial class DataClassesDataContext : System.Data.Linq.DataContext
 {
 	
@@ -29,18 +29,36 @@ public partial class DataClassesDataContext : System.Data.Linq.DataContext
 	
   #region Extensibility Method Definitions
   partial void OnCreated();
-  partial void Insertdata(data instance);
-  partial void Updatedata(data instance);
-  partial void Deletedata(data instance);
-  partial void InsertfoodWaste(foodWaste instance);
-  partial void UpdatefoodWaste(foodWaste instance);
-  partial void DeletefoodWaste(foodWaste instance);
+  partial void InsertDomain(Domain instance);
+  partial void UpdateDomain(Domain instance);
+  partial void DeleteDomain(Domain instance);
   partial void InsertProject(Project instance);
   partial void UpdateProject(Project instance);
   partial void DeleteProject(Project instance);
-  partial void Insertdomain(domain instance);
-  partial void Updatedomain(domain instance);
-  partial void Deletedomain(domain instance);
+  partial void InsertFish(Fish instance);
+  partial void UpdateFish(Fish instance);
+  partial void DeleteFish(Fish instance);
+  partial void InsertFish_Datapoint(Fish_Datapoint instance);
+  partial void UpdateFish_Datapoint(Fish_Datapoint instance);
+  partial void DeleteFish_Datapoint(Fish_Datapoint instance);
+  partial void Insertfishimage(fishimage instance);
+  partial void Updatefishimage(fishimage instance);
+  partial void Deletefishimage(fishimage instance);
+  partial void InsertFishtank_DataPoint(Fishtank_DataPoint instance);
+  partial void UpdateFishtank_DataPoint(Fishtank_DataPoint instance);
+  partial void DeleteFishtank_DataPoint(Fishtank_DataPoint instance);
+  partial void InsertFishtank_Station(Fishtank_Station instance);
+  partial void UpdateFishtank_Station(Fishtank_Station instance);
+  partial void DeleteFishtank_Station(Fishtank_Station instance);
+  partial void InsertfoodWaste(foodWaste instance);
+  partial void UpdatefoodWaste(foodWaste instance);
+  partial void DeletefoodWaste(foodWaste instance);
+  partial void InsertPlant(Plant instance);
+  partial void UpdatePlant(Plant instance);
+  partial void DeletePlant(Plant instance);
+  partial void InsertPlants_Harvested(Plants_Harvested instance);
+  partial void UpdatePlants_Harvested(Plants_Harvested instance);
+  partial void DeletePlants_Harvested(Plants_Harvested instance);
   #endregion
 	
 	public DataClassesDataContext() : 
@@ -73,19 +91,11 @@ public partial class DataClassesDataContext : System.Data.Linq.DataContext
 		OnCreated();
 	}
 	
-	public System.Data.Linq.Table<data> datas
+	public System.Data.Linq.Table<Domain> Domains
 	{
 		get
 		{
-			return this.GetTable<data>();
-		}
-	}
-	
-	public System.Data.Linq.Table<foodWaste> foodWastes
-	{
-		get
-		{
-			return this.GetTable<foodWaste>();
+			return this.GetTable<Domain>();
 		}
 	}
 	
@@ -97,76 +107,885 @@ public partial class DataClassesDataContext : System.Data.Linq.DataContext
 		}
 	}
 	
-	public System.Data.Linq.Table<domain> domains
+	public System.Data.Linq.Table<Fish> Fishes
 	{
 		get
 		{
-			return this.GetTable<domain>();
+			return this.GetTable<Fish>();
+		}
+	}
+	
+	public System.Data.Linq.Table<Fish_Datapoint> Fish_Datapoints
+	{
+		get
+		{
+			return this.GetTable<Fish_Datapoint>();
+		}
+	}
+	
+	public System.Data.Linq.Table<fishimage> fishimages
+	{
+		get
+		{
+			return this.GetTable<fishimage>();
+		}
+	}
+	
+	public System.Data.Linq.Table<Fishtank_DataPoint> Fishtank_DataPoints
+	{
+		get
+		{
+			return this.GetTable<Fishtank_DataPoint>();
+		}
+	}
+	
+	public System.Data.Linq.Table<Fishtank_Station> Fishtank_Stations
+	{
+		get
+		{
+			return this.GetTable<Fishtank_Station>();
+		}
+	}
+	
+	public System.Data.Linq.Table<foodWaste> foodWastes
+	{
+		get
+		{
+			return this.GetTable<foodWaste>();
+		}
+	}
+	
+	public System.Data.Linq.Table<Plant> Plants
+	{
+		get
+		{
+			return this.GetTable<Plant>();
+		}
+	}
+	
+	public System.Data.Linq.Table<Plants_Harvested> Plants_Harvesteds
+	{
+		get
+		{
+			return this.GetTable<Plants_Harvested>();
 		}
 	}
 }
 
-[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.data")]
-public partial class data : INotifyPropertyChanging, INotifyPropertyChanged
+[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Domain")]
+public partial class Domain : INotifyPropertyChanging, INotifyPropertyChanged
 {
 	
 	private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 	
-	private int _DataID;
+	private int _DomainID;
 	
-	private int _data1;
+	private string _Domain_Name;
+	
+	private string _Domain_Description;
+	
+	private EntitySet<Project> _Projects;
 	
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
-    partial void OnDataIDChanging(int value);
-    partial void OnDataIDChanged();
-    partial void Ondata1Changing(int value);
-    partial void Ondata1Changed();
+    partial void OnDomainIDChanging(int value);
+    partial void OnDomainIDChanged();
+    partial void OnDomain_NameChanging(string value);
+    partial void OnDomain_NameChanged();
+    partial void OnDomain_DescriptionChanging(string value);
+    partial void OnDomain_DescriptionChanged();
     #endregion
 	
-	public data()
+	public Domain()
 	{
+		this._Projects = new EntitySet<Project>(new Action<Project>(this.attach_Projects), new Action<Project>(this.detach_Projects));
 		OnCreated();
 	}
 	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DataID", DbType="Int NOT NULL", IsPrimaryKey=true)]
-	public int DataID
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DomainID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+	public int DomainID
 	{
 		get
 		{
-			return this._DataID;
+			return this._DomainID;
 		}
 		set
 		{
-			if ((this._DataID != value))
+			if ((this._DomainID != value))
 			{
-				this.OnDataIDChanging(value);
+				this.OnDomainIDChanging(value);
 				this.SendPropertyChanging();
-				this._DataID = value;
-				this.SendPropertyChanged("DataID");
-				this.OnDataIDChanged();
+				this._DomainID = value;
+				this.SendPropertyChanged("DomainID");
+				this.OnDomainIDChanged();
 			}
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Name="data", Storage="_data1", DbType="Int NOT NULL")]
-	public int data1
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Domain_Name", DbType="VarChar(50)")]
+	public string Domain_Name
 	{
 		get
 		{
-			return this._data1;
+			return this._Domain_Name;
 		}
 		set
 		{
-			if ((this._data1 != value))
+			if ((this._Domain_Name != value))
 			{
-				this.Ondata1Changing(value);
+				this.OnDomain_NameChanging(value);
 				this.SendPropertyChanging();
-				this._data1 = value;
-				this.SendPropertyChanged("data1");
-				this.Ondata1Changed();
+				this._Domain_Name = value;
+				this.SendPropertyChanged("Domain_Name");
+				this.OnDomain_NameChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Domain_Description", DbType="VarChar(MAX)")]
+	public string Domain_Description
+	{
+		get
+		{
+			return this._Domain_Description;
+		}
+		set
+		{
+			if ((this._Domain_Description != value))
+			{
+				this.OnDomain_DescriptionChanging(value);
+				this.SendPropertyChanging();
+				this._Domain_Description = value;
+				this.SendPropertyChanged("Domain_Description");
+				this.OnDomain_DescriptionChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Domain_Project", Storage="_Projects", ThisKey="DomainID", OtherKey="DomainID")]
+	public EntitySet<Project> Projects
+	{
+		get
+		{
+			return this._Projects;
+		}
+		set
+		{
+			this._Projects.Assign(value);
+		}
+	}
+	
+	public event PropertyChangingEventHandler PropertyChanging;
+	
+	public event PropertyChangedEventHandler PropertyChanged;
+	
+	protected virtual void SendPropertyChanging()
+	{
+		if ((this.PropertyChanging != null))
+		{
+			this.PropertyChanging(this, emptyChangingEventArgs);
+		}
+	}
+	
+	protected virtual void SendPropertyChanged(String propertyName)
+	{
+		if ((this.PropertyChanged != null))
+		{
+			this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+		}
+	}
+	
+	private void attach_Projects(Project entity)
+	{
+		this.SendPropertyChanging();
+		entity.Domain = this;
+	}
+	
+	private void detach_Projects(Project entity)
+	{
+		this.SendPropertyChanging();
+		entity.Domain = null;
+	}
+}
+
+[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Project")]
+public partial class Project : INotifyPropertyChanging, INotifyPropertyChanged
+{
+	
+	private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+	
+	private int _ProjectID;
+	
+	private int _DomainID;
+	
+	private string _Project_Name;
+	
+	private string _Project_description;
+	
+	private string _Principal_Investigator;
+	
+	private System.Nullable<System.DateTime> _DATE_Created;
+	
+	private System.Nullable<int> _number_of_users;
+	
+	private EntitySet<Fishtank_Station> _Fishtank_Stations;
+	
+	private EntityRef<Domain> _Domain;
+	
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnProjectIDChanging(int value);
+    partial void OnProjectIDChanged();
+    partial void OnDomainIDChanging(int value);
+    partial void OnDomainIDChanged();
+    partial void OnProject_NameChanging(string value);
+    partial void OnProject_NameChanged();
+    partial void OnProject_descriptionChanging(string value);
+    partial void OnProject_descriptionChanged();
+    partial void OnPrincipal_InvestigatorChanging(string value);
+    partial void OnPrincipal_InvestigatorChanged();
+    partial void OnDATE_CreatedChanging(System.Nullable<System.DateTime> value);
+    partial void OnDATE_CreatedChanged();
+    partial void Onnumber_of_usersChanging(System.Nullable<int> value);
+    partial void Onnumber_of_usersChanged();
+    #endregion
+	
+	public Project()
+	{
+		this._Fishtank_Stations = new EntitySet<Fishtank_Station>(new Action<Fishtank_Station>(this.attach_Fishtank_Stations), new Action<Fishtank_Station>(this.detach_Fishtank_Stations));
+		this._Domain = default(EntityRef<Domain>);
+		OnCreated();
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ProjectID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+	public int ProjectID
+	{
+		get
+		{
+			return this._ProjectID;
+		}
+		set
+		{
+			if ((this._ProjectID != value))
+			{
+				this.OnProjectIDChanging(value);
+				this.SendPropertyChanging();
+				this._ProjectID = value;
+				this.SendPropertyChanged("ProjectID");
+				this.OnProjectIDChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DomainID", DbType="Int NOT NULL")]
+	public int DomainID
+	{
+		get
+		{
+			return this._DomainID;
+		}
+		set
+		{
+			if ((this._DomainID != value))
+			{
+				if (this._Domain.HasLoadedOrAssignedValue)
+				{
+					throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+				}
+				this.OnDomainIDChanging(value);
+				this.SendPropertyChanging();
+				this._DomainID = value;
+				this.SendPropertyChanged("DomainID");
+				this.OnDomainIDChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Project_Name", DbType="VarChar(50)")]
+	public string Project_Name
+	{
+		get
+		{
+			return this._Project_Name;
+		}
+		set
+		{
+			if ((this._Project_Name != value))
+			{
+				this.OnProject_NameChanging(value);
+				this.SendPropertyChanging();
+				this._Project_Name = value;
+				this.SendPropertyChanged("Project_Name");
+				this.OnProject_NameChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Project_description", DbType="VarChar(MAX)")]
+	public string Project_description
+	{
+		get
+		{
+			return this._Project_description;
+		}
+		set
+		{
+			if ((this._Project_description != value))
+			{
+				this.OnProject_descriptionChanging(value);
+				this.SendPropertyChanging();
+				this._Project_description = value;
+				this.SendPropertyChanged("Project_description");
+				this.OnProject_descriptionChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Principal_Investigator", DbType="VarChar(50)")]
+	public string Principal_Investigator
+	{
+		get
+		{
+			return this._Principal_Investigator;
+		}
+		set
+		{
+			if ((this._Principal_Investigator != value))
+			{
+				this.OnPrincipal_InvestigatorChanging(value);
+				this.SendPropertyChanging();
+				this._Principal_Investigator = value;
+				this.SendPropertyChanged("Principal_Investigator");
+				this.OnPrincipal_InvestigatorChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DATE_Created", DbType="Date")]
+	public System.Nullable<System.DateTime> DATE_Created
+	{
+		get
+		{
+			return this._DATE_Created;
+		}
+		set
+		{
+			if ((this._DATE_Created != value))
+			{
+				this.OnDATE_CreatedChanging(value);
+				this.SendPropertyChanging();
+				this._DATE_Created = value;
+				this.SendPropertyChanged("DATE_Created");
+				this.OnDATE_CreatedChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_number_of_users", DbType="Int")]
+	public System.Nullable<int> number_of_users
+	{
+		get
+		{
+			return this._number_of_users;
+		}
+		set
+		{
+			if ((this._number_of_users != value))
+			{
+				this.Onnumber_of_usersChanging(value);
+				this.SendPropertyChanging();
+				this._number_of_users = value;
+				this.SendPropertyChanged("number_of_users");
+				this.Onnumber_of_usersChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Project_Fishtank_Station", Storage="_Fishtank_Stations", ThisKey="ProjectID", OtherKey="ProjectID")]
+	public EntitySet<Fishtank_Station> Fishtank_Stations
+	{
+		get
+		{
+			return this._Fishtank_Stations;
+		}
+		set
+		{
+			this._Fishtank_Stations.Assign(value);
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Domain_Project", Storage="_Domain", ThisKey="DomainID", OtherKey="DomainID", IsForeignKey=true)]
+	public Domain Domain
+	{
+		get
+		{
+			return this._Domain.Entity;
+		}
+		set
+		{
+			Domain previousValue = this._Domain.Entity;
+			if (((previousValue != value) 
+						|| (this._Domain.HasLoadedOrAssignedValue == false)))
+			{
+				this.SendPropertyChanging();
+				if ((previousValue != null))
+				{
+					this._Domain.Entity = null;
+					previousValue.Projects.Remove(this);
+				}
+				this._Domain.Entity = value;
+				if ((value != null))
+				{
+					value.Projects.Add(this);
+					this._DomainID = value.DomainID;
+				}
+				else
+				{
+					this._DomainID = default(int);
+				}
+				this.SendPropertyChanged("Domain");
+			}
+		}
+	}
+	
+	public event PropertyChangingEventHandler PropertyChanging;
+	
+	public event PropertyChangedEventHandler PropertyChanged;
+	
+	protected virtual void SendPropertyChanging()
+	{
+		if ((this.PropertyChanging != null))
+		{
+			this.PropertyChanging(this, emptyChangingEventArgs);
+		}
+	}
+	
+	protected virtual void SendPropertyChanged(String propertyName)
+	{
+		if ((this.PropertyChanged != null))
+		{
+			this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+		}
+	}
+	
+	private void attach_Fishtank_Stations(Fishtank_Station entity)
+	{
+		this.SendPropertyChanging();
+		entity.Project = this;
+	}
+	
+	private void detach_Fishtank_Stations(Fishtank_Station entity)
+	{
+		this.SendPropertyChanging();
+		entity.Project = null;
+	}
+}
+
+[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Fish")]
+public partial class Fish : INotifyPropertyChanging, INotifyPropertyChanged
+{
+	
+	private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+	
+	private int _FishID;
+	
+	private int _TankID;
+	
+	private string _Fishype;
+	
+	private string _Fishname;
+	
+	private EntitySet<Fish_Datapoint> _Fish_Datapoints;
+	
+	private EntityRef<Fishtank_Station> _Fishtank_Station;
+	
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnFishIDChanging(int value);
+    partial void OnFishIDChanged();
+    partial void OnTankIDChanging(int value);
+    partial void OnTankIDChanged();
+    partial void OnFishypeChanging(string value);
+    partial void OnFishypeChanged();
+    partial void OnFishnameChanging(string value);
+    partial void OnFishnameChanged();
+    #endregion
+	
+	public Fish()
+	{
+		this._Fish_Datapoints = new EntitySet<Fish_Datapoint>(new Action<Fish_Datapoint>(this.attach_Fish_Datapoints), new Action<Fish_Datapoint>(this.detach_Fish_Datapoints));
+		this._Fishtank_Station = default(EntityRef<Fishtank_Station>);
+		OnCreated();
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FishID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+	public int FishID
+	{
+		get
+		{
+			return this._FishID;
+		}
+		set
+		{
+			if ((this._FishID != value))
+			{
+				this.OnFishIDChanging(value);
+				this.SendPropertyChanging();
+				this._FishID = value;
+				this.SendPropertyChanged("FishID");
+				this.OnFishIDChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TankID", DbType="Int NOT NULL")]
+	public int TankID
+	{
+		get
+		{
+			return this._TankID;
+		}
+		set
+		{
+			if ((this._TankID != value))
+			{
+				if (this._Fishtank_Station.HasLoadedOrAssignedValue)
+				{
+					throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+				}
+				this.OnTankIDChanging(value);
+				this.SendPropertyChanging();
+				this._TankID = value;
+				this.SendPropertyChanged("TankID");
+				this.OnTankIDChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Fishype", DbType="VarChar(MAX)")]
+	public string Fishype
+	{
+		get
+		{
+			return this._Fishype;
+		}
+		set
+		{
+			if ((this._Fishype != value))
+			{
+				this.OnFishypeChanging(value);
+				this.SendPropertyChanging();
+				this._Fishype = value;
+				this.SendPropertyChanged("Fishype");
+				this.OnFishypeChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Fishname", DbType="VarChar(MAX)")]
+	public string Fishname
+	{
+		get
+		{
+			return this._Fishname;
+		}
+		set
+		{
+			if ((this._Fishname != value))
+			{
+				this.OnFishnameChanging(value);
+				this.SendPropertyChanging();
+				this._Fishname = value;
+				this.SendPropertyChanged("Fishname");
+				this.OnFishnameChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Fish_Fish_Datapoint", Storage="_Fish_Datapoints", ThisKey="FishID", OtherKey="FishID")]
+	public EntitySet<Fish_Datapoint> Fish_Datapoints
+	{
+		get
+		{
+			return this._Fish_Datapoints;
+		}
+		set
+		{
+			this._Fish_Datapoints.Assign(value);
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Fishtank_Station_Fish", Storage="_Fishtank_Station", ThisKey="TankID", OtherKey="FishtankID", IsForeignKey=true)]
+	public Fishtank_Station Fishtank_Station
+	{
+		get
+		{
+			return this._Fishtank_Station.Entity;
+		}
+		set
+		{
+			Fishtank_Station previousValue = this._Fishtank_Station.Entity;
+			if (((previousValue != value) 
+						|| (this._Fishtank_Station.HasLoadedOrAssignedValue == false)))
+			{
+				this.SendPropertyChanging();
+				if ((previousValue != null))
+				{
+					this._Fishtank_Station.Entity = null;
+					previousValue.Fishes.Remove(this);
+				}
+				this._Fishtank_Station.Entity = value;
+				if ((value != null))
+				{
+					value.Fishes.Add(this);
+					this._TankID = value.FishtankID;
+				}
+				else
+				{
+					this._TankID = default(int);
+				}
+				this.SendPropertyChanged("Fishtank_Station");
+			}
+		}
+	}
+	
+	public event PropertyChangingEventHandler PropertyChanging;
+	
+	public event PropertyChangedEventHandler PropertyChanged;
+	
+	protected virtual void SendPropertyChanging()
+	{
+		if ((this.PropertyChanging != null))
+		{
+			this.PropertyChanging(this, emptyChangingEventArgs);
+		}
+	}
+	
+	protected virtual void SendPropertyChanged(String propertyName)
+	{
+		if ((this.PropertyChanged != null))
+		{
+			this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+		}
+	}
+	
+	private void attach_Fish_Datapoints(Fish_Datapoint entity)
+	{
+		this.SendPropertyChanging();
+		entity.Fish = this;
+	}
+	
+	private void detach_Fish_Datapoints(Fish_Datapoint entity)
+	{
+		this.SendPropertyChanging();
+		entity.Fish = null;
+	}
+}
+
+[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Fish_Datapoint")]
+public partial class Fish_Datapoint : INotifyPropertyChanging, INotifyPropertyChanged
+{
+	
+	private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+	
+	private int _Fish_DatapointID;
+	
+	private int _FishID;
+	
+	private System.Nullable<double> _FishWeight;
+	
+	private System.Nullable<double> _FishFoodWeight;
+	
+	private System.Nullable<double> _FishFat;
+	
+	private System.Nullable<System.DateTime> _Datapoint_Date;
+	
+	private EntityRef<Fish> _Fish;
+	
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnFish_DatapointIDChanging(int value);
+    partial void OnFish_DatapointIDChanged();
+    partial void OnFishIDChanging(int value);
+    partial void OnFishIDChanged();
+    partial void OnFishWeightChanging(System.Nullable<double> value);
+    partial void OnFishWeightChanged();
+    partial void OnFishFoodWeightChanging(System.Nullable<double> value);
+    partial void OnFishFoodWeightChanged();
+    partial void OnFishFatChanging(System.Nullable<double> value);
+    partial void OnFishFatChanged();
+    partial void OnDatapoint_DateChanging(System.Nullable<System.DateTime> value);
+    partial void OnDatapoint_DateChanged();
+    #endregion
+	
+	public Fish_Datapoint()
+	{
+		this._Fish = default(EntityRef<Fish>);
+		OnCreated();
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Fish_DatapointID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+	public int Fish_DatapointID
+	{
+		get
+		{
+			return this._Fish_DatapointID;
+		}
+		set
+		{
+			if ((this._Fish_DatapointID != value))
+			{
+				this.OnFish_DatapointIDChanging(value);
+				this.SendPropertyChanging();
+				this._Fish_DatapointID = value;
+				this.SendPropertyChanged("Fish_DatapointID");
+				this.OnFish_DatapointIDChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FishID", DbType="Int NOT NULL")]
+	public int FishID
+	{
+		get
+		{
+			return this._FishID;
+		}
+		set
+		{
+			if ((this._FishID != value))
+			{
+				if (this._Fish.HasLoadedOrAssignedValue)
+				{
+					throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+				}
+				this.OnFishIDChanging(value);
+				this.SendPropertyChanging();
+				this._FishID = value;
+				this.SendPropertyChanged("FishID");
+				this.OnFishIDChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FishWeight", DbType="Float")]
+	public System.Nullable<double> FishWeight
+	{
+		get
+		{
+			return this._FishWeight;
+		}
+		set
+		{
+			if ((this._FishWeight != value))
+			{
+				this.OnFishWeightChanging(value);
+				this.SendPropertyChanging();
+				this._FishWeight = value;
+				this.SendPropertyChanged("FishWeight");
+				this.OnFishWeightChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FishFoodWeight", DbType="Float")]
+	public System.Nullable<double> FishFoodWeight
+	{
+		get
+		{
+			return this._FishFoodWeight;
+		}
+		set
+		{
+			if ((this._FishFoodWeight != value))
+			{
+				this.OnFishFoodWeightChanging(value);
+				this.SendPropertyChanging();
+				this._FishFoodWeight = value;
+				this.SendPropertyChanged("FishFoodWeight");
+				this.OnFishFoodWeightChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FishFat", DbType="Float")]
+	public System.Nullable<double> FishFat
+	{
+		get
+		{
+			return this._FishFat;
+		}
+		set
+		{
+			if ((this._FishFat != value))
+			{
+				this.OnFishFatChanging(value);
+				this.SendPropertyChanging();
+				this._FishFat = value;
+				this.SendPropertyChanged("FishFat");
+				this.OnFishFatChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Datapoint_Date", DbType="Date")]
+	public System.Nullable<System.DateTime> Datapoint_Date
+	{
+		get
+		{
+			return this._Datapoint_Date;
+		}
+		set
+		{
+			if ((this._Datapoint_Date != value))
+			{
+				this.OnDatapoint_DateChanging(value);
+				this.SendPropertyChanging();
+				this._Datapoint_Date = value;
+				this.SendPropertyChanged("Datapoint_Date");
+				this.OnDatapoint_DateChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Fish_Fish_Datapoint", Storage="_Fish", ThisKey="FishID", OtherKey="FishID", IsForeignKey=true)]
+	public Fish Fish
+	{
+		get
+		{
+			return this._Fish.Entity;
+		}
+		set
+		{
+			Fish previousValue = this._Fish.Entity;
+			if (((previousValue != value) 
+						|| (this._Fish.HasLoadedOrAssignedValue == false)))
+			{
+				this.SendPropertyChanging();
+				if ((previousValue != null))
+				{
+					this._Fish.Entity = null;
+					previousValue.Fish_Datapoints.Remove(this);
+				}
+				this._Fish.Entity = value;
+				if ((value != null))
+				{
+					value.Fish_Datapoints.Add(this);
+					this._FishID = value.FishID;
+				}
+				else
+				{
+					this._FishID = default(int);
+				}
+				this.SendPropertyChanged("Fish");
 			}
 		}
 	}
@@ -192,13 +1011,915 @@ public partial class data : INotifyPropertyChanging, INotifyPropertyChanged
 	}
 }
 
+[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.fishimage")]
+public partial class fishimage : INotifyPropertyChanging, INotifyPropertyChanged
+{
+	
+	private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+	
+	private int _imageID;
+	
+	private string _Image_Name;
+	
+	private System.Data.Linq.Binary _Image_data;
+	
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnimageIDChanging(int value);
+    partial void OnimageIDChanged();
+    partial void OnImage_NameChanging(string value);
+    partial void OnImage_NameChanged();
+    partial void OnImage_dataChanging(System.Data.Linq.Binary value);
+    partial void OnImage_dataChanged();
+    #endregion
+	
+	public fishimage()
+	{
+		OnCreated();
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_imageID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+	public int imageID
+	{
+		get
+		{
+			return this._imageID;
+		}
+		set
+		{
+			if ((this._imageID != value))
+			{
+				this.OnimageIDChanging(value);
+				this.SendPropertyChanging();
+				this._imageID = value;
+				this.SendPropertyChanged("imageID");
+				this.OnimageIDChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Image_Name", DbType="VarChar(MAX)")]
+	public string Image_Name
+	{
+		get
+		{
+			return this._Image_Name;
+		}
+		set
+		{
+			if ((this._Image_Name != value))
+			{
+				this.OnImage_NameChanging(value);
+				this.SendPropertyChanging();
+				this._Image_Name = value;
+				this.SendPropertyChanged("Image_Name");
+				this.OnImage_NameChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Image_data", DbType="Image", UpdateCheck=UpdateCheck.Never)]
+	public System.Data.Linq.Binary Image_data
+	{
+		get
+		{
+			return this._Image_data;
+		}
+		set
+		{
+			if ((this._Image_data != value))
+			{
+				this.OnImage_dataChanging(value);
+				this.SendPropertyChanging();
+				this._Image_data = value;
+				this.SendPropertyChanged("Image_data");
+				this.OnImage_dataChanged();
+			}
+		}
+	}
+	
+	public event PropertyChangingEventHandler PropertyChanging;
+	
+	public event PropertyChangedEventHandler PropertyChanged;
+	
+	protected virtual void SendPropertyChanging()
+	{
+		if ((this.PropertyChanging != null))
+		{
+			this.PropertyChanging(this, emptyChangingEventArgs);
+		}
+	}
+	
+	protected virtual void SendPropertyChanged(String propertyName)
+	{
+		if ((this.PropertyChanged != null))
+		{
+			this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+		}
+	}
+}
+
+[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Fishtank_DataPoint")]
+public partial class Fishtank_DataPoint : INotifyPropertyChanging, INotifyPropertyChanged
+{
+	
+	private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+	
+	private int _DataID;
+	
+	private int _TankID;
+	
+	private System.Nullable<double> _Ammonia_Concentration;
+	
+	private System.Nullable<double> _O2_Concentration;
+	
+	private System.Nullable<double> _Temp;
+	
+	private System.Nullable<double> _EC;
+	
+	private System.Nullable<double> _DO;
+	
+	private System.Nullable<double> _pH;
+	
+	private System.Nullable<double> _NH3_NH4;
+	
+	private System.Nullable<double> _NO2;
+	
+	private System.Nullable<double> _NO3;
+	
+	private System.Nullable<double> _FE;
+	
+	private System.Nullable<double> _P;
+	
+	private System.Nullable<double> _K;
+	
+	private System.Nullable<double> _CO;
+	
+	private System.Nullable<double> _MG;
+	
+	private System.Nullable<System.DateTime> _DataDate;
+	
+	private EntityRef<Fishtank_Station> _Fishtank_Station;
+	
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnDataIDChanging(int value);
+    partial void OnDataIDChanged();
+    partial void OnTankIDChanging(int value);
+    partial void OnTankIDChanged();
+    partial void OnAmmonia_ConcentrationChanging(System.Nullable<double> value);
+    partial void OnAmmonia_ConcentrationChanged();
+    partial void OnO2_ConcentrationChanging(System.Nullable<double> value);
+    partial void OnO2_ConcentrationChanged();
+    partial void OnTempChanging(System.Nullable<double> value);
+    partial void OnTempChanged();
+    partial void OnECChanging(System.Nullable<double> value);
+    partial void OnECChanged();
+    partial void OnDOChanging(System.Nullable<double> value);
+    partial void OnDOChanged();
+    partial void OnpHChanging(System.Nullable<double> value);
+    partial void OnpHChanged();
+    partial void OnNH3_NH4Changing(System.Nullable<double> value);
+    partial void OnNH3_NH4Changed();
+    partial void OnNO2Changing(System.Nullable<double> value);
+    partial void OnNO2Changed();
+    partial void OnNO3Changing(System.Nullable<double> value);
+    partial void OnNO3Changed();
+    partial void OnFEChanging(System.Nullable<double> value);
+    partial void OnFEChanged();
+    partial void OnPChanging(System.Nullable<double> value);
+    partial void OnPChanged();
+    partial void OnKChanging(System.Nullable<double> value);
+    partial void OnKChanged();
+    partial void OnCOChanging(System.Nullable<double> value);
+    partial void OnCOChanged();
+    partial void OnMGChanging(System.Nullable<double> value);
+    partial void OnMGChanged();
+    partial void OnDataDateChanging(System.Nullable<System.DateTime> value);
+    partial void OnDataDateChanged();
+    #endregion
+	
+	public Fishtank_DataPoint()
+	{
+		this._Fishtank_Station = default(EntityRef<Fishtank_Station>);
+		OnCreated();
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DataID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+	public int DataID
+	{
+		get
+		{
+			return this._DataID;
+		}
+		set
+		{
+			if ((this._DataID != value))
+			{
+				this.OnDataIDChanging(value);
+				this.SendPropertyChanging();
+				this._DataID = value;
+				this.SendPropertyChanged("DataID");
+				this.OnDataIDChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TankID", DbType="Int NOT NULL")]
+	public int TankID
+	{
+		get
+		{
+			return this._TankID;
+		}
+		set
+		{
+			if ((this._TankID != value))
+			{
+				if (this._Fishtank_Station.HasLoadedOrAssignedValue)
+				{
+					throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+				}
+				this.OnTankIDChanging(value);
+				this.SendPropertyChanging();
+				this._TankID = value;
+				this.SendPropertyChanged("TankID");
+				this.OnTankIDChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Ammonia_Concentration", DbType="Float")]
+	public System.Nullable<double> Ammonia_Concentration
+	{
+		get
+		{
+			return this._Ammonia_Concentration;
+		}
+		set
+		{
+			if ((this._Ammonia_Concentration != value))
+			{
+				this.OnAmmonia_ConcentrationChanging(value);
+				this.SendPropertyChanging();
+				this._Ammonia_Concentration = value;
+				this.SendPropertyChanged("Ammonia_Concentration");
+				this.OnAmmonia_ConcentrationChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_O2_Concentration", DbType="Float")]
+	public System.Nullable<double> O2_Concentration
+	{
+		get
+		{
+			return this._O2_Concentration;
+		}
+		set
+		{
+			if ((this._O2_Concentration != value))
+			{
+				this.OnO2_ConcentrationChanging(value);
+				this.SendPropertyChanging();
+				this._O2_Concentration = value;
+				this.SendPropertyChanged("O2_Concentration");
+				this.OnO2_ConcentrationChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Temp", DbType="Float")]
+	public System.Nullable<double> Temp
+	{
+		get
+		{
+			return this._Temp;
+		}
+		set
+		{
+			if ((this._Temp != value))
+			{
+				this.OnTempChanging(value);
+				this.SendPropertyChanging();
+				this._Temp = value;
+				this.SendPropertyChanged("Temp");
+				this.OnTempChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EC", DbType="Float")]
+	public System.Nullable<double> EC
+	{
+		get
+		{
+			return this._EC;
+		}
+		set
+		{
+			if ((this._EC != value))
+			{
+				this.OnECChanging(value);
+				this.SendPropertyChanging();
+				this._EC = value;
+				this.SendPropertyChanged("EC");
+				this.OnECChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DO", DbType="Float")]
+	public System.Nullable<double> DO
+	{
+		get
+		{
+			return this._DO;
+		}
+		set
+		{
+			if ((this._DO != value))
+			{
+				this.OnDOChanging(value);
+				this.SendPropertyChanging();
+				this._DO = value;
+				this.SendPropertyChanged("DO");
+				this.OnDOChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_pH", DbType="Float")]
+	public System.Nullable<double> pH
+	{
+		get
+		{
+			return this._pH;
+		}
+		set
+		{
+			if ((this._pH != value))
+			{
+				this.OnpHChanging(value);
+				this.SendPropertyChanging();
+				this._pH = value;
+				this.SendPropertyChanged("pH");
+				this.OnpHChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NH3_NH4", DbType="Float")]
+	public System.Nullable<double> NH3_NH4
+	{
+		get
+		{
+			return this._NH3_NH4;
+		}
+		set
+		{
+			if ((this._NH3_NH4 != value))
+			{
+				this.OnNH3_NH4Changing(value);
+				this.SendPropertyChanging();
+				this._NH3_NH4 = value;
+				this.SendPropertyChanged("NH3_NH4");
+				this.OnNH3_NH4Changed();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NO2", DbType="Float")]
+	public System.Nullable<double> NO2
+	{
+		get
+		{
+			return this._NO2;
+		}
+		set
+		{
+			if ((this._NO2 != value))
+			{
+				this.OnNO2Changing(value);
+				this.SendPropertyChanging();
+				this._NO2 = value;
+				this.SendPropertyChanged("NO2");
+				this.OnNO2Changed();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NO3", DbType="Float")]
+	public System.Nullable<double> NO3
+	{
+		get
+		{
+			return this._NO3;
+		}
+		set
+		{
+			if ((this._NO3 != value))
+			{
+				this.OnNO3Changing(value);
+				this.SendPropertyChanging();
+				this._NO3 = value;
+				this.SendPropertyChanged("NO3");
+				this.OnNO3Changed();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FE", DbType="Float")]
+	public System.Nullable<double> FE
+	{
+		get
+		{
+			return this._FE;
+		}
+		set
+		{
+			if ((this._FE != value))
+			{
+				this.OnFEChanging(value);
+				this.SendPropertyChanging();
+				this._FE = value;
+				this.SendPropertyChanged("FE");
+				this.OnFEChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_P", DbType="Float")]
+	public System.Nullable<double> P
+	{
+		get
+		{
+			return this._P;
+		}
+		set
+		{
+			if ((this._P != value))
+			{
+				this.OnPChanging(value);
+				this.SendPropertyChanging();
+				this._P = value;
+				this.SendPropertyChanged("P");
+				this.OnPChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_K", DbType="Float")]
+	public System.Nullable<double> K
+	{
+		get
+		{
+			return this._K;
+		}
+		set
+		{
+			if ((this._K != value))
+			{
+				this.OnKChanging(value);
+				this.SendPropertyChanging();
+				this._K = value;
+				this.SendPropertyChanged("K");
+				this.OnKChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CO", DbType="Float")]
+	public System.Nullable<double> CO
+	{
+		get
+		{
+			return this._CO;
+		}
+		set
+		{
+			if ((this._CO != value))
+			{
+				this.OnCOChanging(value);
+				this.SendPropertyChanging();
+				this._CO = value;
+				this.SendPropertyChanged("CO");
+				this.OnCOChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MG", DbType="Float")]
+	public System.Nullable<double> MG
+	{
+		get
+		{
+			return this._MG;
+		}
+		set
+		{
+			if ((this._MG != value))
+			{
+				this.OnMGChanging(value);
+				this.SendPropertyChanging();
+				this._MG = value;
+				this.SendPropertyChanged("MG");
+				this.OnMGChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DataDate", DbType="Date")]
+	public System.Nullable<System.DateTime> DataDate
+	{
+		get
+		{
+			return this._DataDate;
+		}
+		set
+		{
+			if ((this._DataDate != value))
+			{
+				this.OnDataDateChanging(value);
+				this.SendPropertyChanging();
+				this._DataDate = value;
+				this.SendPropertyChanged("DataDate");
+				this.OnDataDateChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Fishtank_Station_Fishtank_DataPoint", Storage="_Fishtank_Station", ThisKey="TankID", OtherKey="FishtankID", IsForeignKey=true)]
+	public Fishtank_Station Fishtank_Station
+	{
+		get
+		{
+			return this._Fishtank_Station.Entity;
+		}
+		set
+		{
+			Fishtank_Station previousValue = this._Fishtank_Station.Entity;
+			if (((previousValue != value) 
+						|| (this._Fishtank_Station.HasLoadedOrAssignedValue == false)))
+			{
+				this.SendPropertyChanging();
+				if ((previousValue != null))
+				{
+					this._Fishtank_Station.Entity = null;
+					previousValue.Fishtank_DataPoints.Remove(this);
+				}
+				this._Fishtank_Station.Entity = value;
+				if ((value != null))
+				{
+					value.Fishtank_DataPoints.Add(this);
+					this._TankID = value.FishtankID;
+				}
+				else
+				{
+					this._TankID = default(int);
+				}
+				this.SendPropertyChanged("Fishtank_Station");
+			}
+		}
+	}
+	
+	public event PropertyChangingEventHandler PropertyChanging;
+	
+	public event PropertyChangedEventHandler PropertyChanged;
+	
+	protected virtual void SendPropertyChanging()
+	{
+		if ((this.PropertyChanging != null))
+		{
+			this.PropertyChanging(this, emptyChangingEventArgs);
+		}
+	}
+	
+	protected virtual void SendPropertyChanged(String propertyName)
+	{
+		if ((this.PropertyChanged != null))
+		{
+			this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+		}
+	}
+}
+
+[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Fishtank_Station")]
+public partial class Fishtank_Station : INotifyPropertyChanging, INotifyPropertyChanged
+{
+	
+	private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+	
+	private int _FishtankID;
+	
+	private int _ProjectID;
+	
+	private string _Tank_Location;
+	
+	private string _Tank_Name;
+	
+	private System.Nullable<double> _Tank_Size;
+	
+	private System.Nullable<System.DateTime> _Last_Maintenance_Date;
+	
+	private EntitySet<Fish> _Fishes;
+	
+	private EntitySet<Fishtank_DataPoint> _Fishtank_DataPoints;
+	
+	private EntitySet<Plants_Harvested> _Plants_Harvesteds;
+	
+	private EntityRef<Project> _Project;
+	
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnFishtankIDChanging(int value);
+    partial void OnFishtankIDChanged();
+    partial void OnProjectIDChanging(int value);
+    partial void OnProjectIDChanged();
+    partial void OnTank_LocationChanging(string value);
+    partial void OnTank_LocationChanged();
+    partial void OnTank_NameChanging(string value);
+    partial void OnTank_NameChanged();
+    partial void OnTank_SizeChanging(System.Nullable<double> value);
+    partial void OnTank_SizeChanged();
+    partial void OnLast_Maintenance_DateChanging(System.Nullable<System.DateTime> value);
+    partial void OnLast_Maintenance_DateChanged();
+    #endregion
+	
+	public Fishtank_Station()
+	{
+		this._Fishes = new EntitySet<Fish>(new Action<Fish>(this.attach_Fishes), new Action<Fish>(this.detach_Fishes));
+		this._Fishtank_DataPoints = new EntitySet<Fishtank_DataPoint>(new Action<Fishtank_DataPoint>(this.attach_Fishtank_DataPoints), new Action<Fishtank_DataPoint>(this.detach_Fishtank_DataPoints));
+		this._Plants_Harvesteds = new EntitySet<Plants_Harvested>(new Action<Plants_Harvested>(this.attach_Plants_Harvesteds), new Action<Plants_Harvested>(this.detach_Plants_Harvesteds));
+		this._Project = default(EntityRef<Project>);
+		OnCreated();
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FishtankID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+	public int FishtankID
+	{
+		get
+		{
+			return this._FishtankID;
+		}
+		set
+		{
+			if ((this._FishtankID != value))
+			{
+				this.OnFishtankIDChanging(value);
+				this.SendPropertyChanging();
+				this._FishtankID = value;
+				this.SendPropertyChanged("FishtankID");
+				this.OnFishtankIDChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ProjectID", DbType="Int NOT NULL")]
+	public int ProjectID
+	{
+		get
+		{
+			return this._ProjectID;
+		}
+		set
+		{
+			if ((this._ProjectID != value))
+			{
+				if (this._Project.HasLoadedOrAssignedValue)
+				{
+					throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+				}
+				this.OnProjectIDChanging(value);
+				this.SendPropertyChanging();
+				this._ProjectID = value;
+				this.SendPropertyChanged("ProjectID");
+				this.OnProjectIDChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Tank_Location", DbType="VarChar(50)")]
+	public string Tank_Location
+	{
+		get
+		{
+			return this._Tank_Location;
+		}
+		set
+		{
+			if ((this._Tank_Location != value))
+			{
+				this.OnTank_LocationChanging(value);
+				this.SendPropertyChanging();
+				this._Tank_Location = value;
+				this.SendPropertyChanged("Tank_Location");
+				this.OnTank_LocationChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Tank_Name", DbType="VarChar(50)")]
+	public string Tank_Name
+	{
+		get
+		{
+			return this._Tank_Name;
+		}
+		set
+		{
+			if ((this._Tank_Name != value))
+			{
+				this.OnTank_NameChanging(value);
+				this.SendPropertyChanging();
+				this._Tank_Name = value;
+				this.SendPropertyChanged("Tank_Name");
+				this.OnTank_NameChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Tank_Size", DbType="Float")]
+	public System.Nullable<double> Tank_Size
+	{
+		get
+		{
+			return this._Tank_Size;
+		}
+		set
+		{
+			if ((this._Tank_Size != value))
+			{
+				this.OnTank_SizeChanging(value);
+				this.SendPropertyChanging();
+				this._Tank_Size = value;
+				this.SendPropertyChanged("Tank_Size");
+				this.OnTank_SizeChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Last_Maintenance_Date", DbType="Date")]
+	public System.Nullable<System.DateTime> Last_Maintenance_Date
+	{
+		get
+		{
+			return this._Last_Maintenance_Date;
+		}
+		set
+		{
+			if ((this._Last_Maintenance_Date != value))
+			{
+				this.OnLast_Maintenance_DateChanging(value);
+				this.SendPropertyChanging();
+				this._Last_Maintenance_Date = value;
+				this.SendPropertyChanged("Last_Maintenance_Date");
+				this.OnLast_Maintenance_DateChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Fishtank_Station_Fish", Storage="_Fishes", ThisKey="FishtankID", OtherKey="TankID")]
+	public EntitySet<Fish> Fishes
+	{
+		get
+		{
+			return this._Fishes;
+		}
+		set
+		{
+			this._Fishes.Assign(value);
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Fishtank_Station_Fishtank_DataPoint", Storage="_Fishtank_DataPoints", ThisKey="FishtankID", OtherKey="TankID")]
+	public EntitySet<Fishtank_DataPoint> Fishtank_DataPoints
+	{
+		get
+		{
+			return this._Fishtank_DataPoints;
+		}
+		set
+		{
+			this._Fishtank_DataPoints.Assign(value);
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Fishtank_Station_Plants_Harvested", Storage="_Plants_Harvesteds", ThisKey="FishtankID", OtherKey="Tank_ID")]
+	public EntitySet<Plants_Harvested> Plants_Harvesteds
+	{
+		get
+		{
+			return this._Plants_Harvesteds;
+		}
+		set
+		{
+			this._Plants_Harvesteds.Assign(value);
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Project_Fishtank_Station", Storage="_Project", ThisKey="ProjectID", OtherKey="ProjectID", IsForeignKey=true)]
+	public Project Project
+	{
+		get
+		{
+			return this._Project.Entity;
+		}
+		set
+		{
+			Project previousValue = this._Project.Entity;
+			if (((previousValue != value) 
+						|| (this._Project.HasLoadedOrAssignedValue == false)))
+			{
+				this.SendPropertyChanging();
+				if ((previousValue != null))
+				{
+					this._Project.Entity = null;
+					previousValue.Fishtank_Stations.Remove(this);
+				}
+				this._Project.Entity = value;
+				if ((value != null))
+				{
+					value.Fishtank_Stations.Add(this);
+					this._ProjectID = value.ProjectID;
+				}
+				else
+				{
+					this._ProjectID = default(int);
+				}
+				this.SendPropertyChanged("Project");
+			}
+		}
+	}
+	
+	public event PropertyChangingEventHandler PropertyChanging;
+	
+	public event PropertyChangedEventHandler PropertyChanged;
+	
+	protected virtual void SendPropertyChanging()
+	{
+		if ((this.PropertyChanging != null))
+		{
+			this.PropertyChanging(this, emptyChangingEventArgs);
+		}
+	}
+	
+	protected virtual void SendPropertyChanged(String propertyName)
+	{
+		if ((this.PropertyChanged != null))
+		{
+			this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+		}
+	}
+	
+	private void attach_Fishes(Fish entity)
+	{
+		this.SendPropertyChanging();
+		entity.Fishtank_Station = this;
+	}
+	
+	private void detach_Fishes(Fish entity)
+	{
+		this.SendPropertyChanging();
+		entity.Fishtank_Station = null;
+	}
+	
+	private void attach_Fishtank_DataPoints(Fishtank_DataPoint entity)
+	{
+		this.SendPropertyChanging();
+		entity.Fishtank_Station = this;
+	}
+	
+	private void detach_Fishtank_DataPoints(Fishtank_DataPoint entity)
+	{
+		this.SendPropertyChanging();
+		entity.Fishtank_Station = null;
+	}
+	
+	private void attach_Plants_Harvesteds(Plants_Harvested entity)
+	{
+		this.SendPropertyChanging();
+		entity.Fishtank_Station = this;
+	}
+	
+	private void detach_Plants_Harvesteds(Plants_Harvested entity)
+	{
+		this.SendPropertyChanging();
+		entity.Fishtank_Station = null;
+	}
+}
+
 [global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.foodWaste")]
 public partial class foodWaste : INotifyPropertyChanging, INotifyPropertyChanged
 {
 	
 	private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-	
-	private int _datapointID;
 	
 	private System.DateTime _date;
 	
@@ -212,12 +1933,12 @@ public partial class foodWaste : INotifyPropertyChanging, INotifyPropertyChanged
 	
 	private double _percentDairy;
 	
+	private int _datapointID;
+	
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
-    partial void OndatapointIDChanging(int value);
-    partial void OndatapointIDChanged();
     partial void OndateChanging(System.DateTime value);
     partial void OndateChanged();
     partial void OnweightChanging(double value);
@@ -230,31 +1951,13 @@ public partial class foodWaste : INotifyPropertyChanging, INotifyPropertyChanged
     partial void OnpercentVegChanged();
     partial void OnpercentDairyChanging(double value);
     partial void OnpercentDairyChanged();
+    partial void OndatapointIDChanging(int value);
+    partial void OndatapointIDChanged();
     #endregion
 	
 	public foodWaste()
 	{
 		OnCreated();
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_datapointID", DbType="Int NOT NULL", IsPrimaryKey=true)]
-	public int datapointID
-	{
-		get
-		{
-			return this._datapointID;
-		}
-		set
-		{
-			if ((this._datapointID != value))
-			{
-				this.OndatapointIDChanging(value);
-				this.SendPropertyChanging();
-				this._datapointID = value;
-				this.SendPropertyChanged("datapointID");
-				this.OndatapointIDChanged();
-			}
-		}
 	}
 	
 	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_date", DbType="Date NOT NULL")]
@@ -377,6 +2080,26 @@ public partial class foodWaste : INotifyPropertyChanging, INotifyPropertyChanged
 		}
 	}
 	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_datapointID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+	public int datapointID
+	{
+		get
+		{
+			return this._datapointID;
+		}
+		set
+		{
+			if ((this._datapointID != value))
+			{
+				this.OndatapointIDChanging(value);
+				this.SendPropertyChanging();
+				this._datapointID = value;
+				this.SendPropertyChanged("datapointID");
+				this.OndatapointIDChanged();
+			}
+		}
+	}
+	
 	public event PropertyChangingEventHandler PropertyChanging;
 	
 	public event PropertyChangedEventHandler PropertyChanged;
@@ -398,346 +2121,335 @@ public partial class foodWaste : INotifyPropertyChanging, INotifyPropertyChanged
 	}
 }
 
-[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Projects")]
-public partial class Project : INotifyPropertyChanging, INotifyPropertyChanged
+[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Plant")]
+public partial class Plant : INotifyPropertyChanging, INotifyPropertyChanged
 {
 	
 	private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 	
-	private int _ProjectID;
+	private int _Plant_TypeID;
 	
-	private int _DomainID;
+	private string _Plant_Name;
 	
-	private string _Project_Name;
-	
-	private string _description;
-	
-	private string _Principal_Investigator;
-	
-	private System.Nullable<System.DateTime> _Date_Created;
-	
-	private System.Nullable<int> _number_of_users;
-	
-	private EntityRef<domain> _domain;
+	private EntitySet<Plants_Harvested> _Plants_Harvesteds;
 	
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
-    partial void OnProjectIDChanging(int value);
-    partial void OnProjectIDChanged();
-    partial void OnDomainIDChanging(int value);
-    partial void OnDomainIDChanged();
-    partial void OnProject_NameChanging(string value);
-    partial void OnProject_NameChanged();
-    partial void OndescriptionChanging(string value);
-    partial void OndescriptionChanged();
-    partial void OnPrincipal_InvestigatorChanging(string value);
-    partial void OnPrincipal_InvestigatorChanged();
-    partial void OnDate_CreatedChanging(System.Nullable<System.DateTime> value);
-    partial void OnDate_CreatedChanged();
-    partial void Onnumber_of_usersChanging(System.Nullable<int> value);
-    partial void Onnumber_of_usersChanged();
+    partial void OnPlant_TypeIDChanging(int value);
+    partial void OnPlant_TypeIDChanged();
+    partial void OnPlant_NameChanging(string value);
+    partial void OnPlant_NameChanged();
     #endregion
 	
-	public Project()
+	public Plant()
 	{
-		this._domain = default(EntityRef<domain>);
+		this._Plants_Harvesteds = new EntitySet<Plants_Harvested>(new Action<Plants_Harvested>(this.attach_Plants_Harvesteds), new Action<Plants_Harvested>(this.detach_Plants_Harvesteds));
 		OnCreated();
 	}
 	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ProjectID", DbType="Int NOT NULL", IsPrimaryKey=true)]
-	public int ProjectID
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Plant_TypeID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+	public int Plant_TypeID
 	{
 		get
 		{
-			return this._ProjectID;
+			return this._Plant_TypeID;
 		}
 		set
 		{
-			if ((this._ProjectID != value))
+			if ((this._Plant_TypeID != value))
 			{
-				if (this._domain.HasLoadedOrAssignedValue)
+				this.OnPlant_TypeIDChanging(value);
+				this.SendPropertyChanging();
+				this._Plant_TypeID = value;
+				this.SendPropertyChanged("Plant_TypeID");
+				this.OnPlant_TypeIDChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Plant_Name", DbType="VarChar(MAX)")]
+	public string Plant_Name
+	{
+		get
+		{
+			return this._Plant_Name;
+		}
+		set
+		{
+			if ((this._Plant_Name != value))
+			{
+				this.OnPlant_NameChanging(value);
+				this.SendPropertyChanging();
+				this._Plant_Name = value;
+				this.SendPropertyChanged("Plant_Name");
+				this.OnPlant_NameChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Plant_Plants_Harvested", Storage="_Plants_Harvesteds", ThisKey="Plant_TypeID", OtherKey="Plant_ID")]
+	public EntitySet<Plants_Harvested> Plants_Harvesteds
+	{
+		get
+		{
+			return this._Plants_Harvesteds;
+		}
+		set
+		{
+			this._Plants_Harvesteds.Assign(value);
+		}
+	}
+	
+	public event PropertyChangingEventHandler PropertyChanging;
+	
+	public event PropertyChangedEventHandler PropertyChanged;
+	
+	protected virtual void SendPropertyChanging()
+	{
+		if ((this.PropertyChanging != null))
+		{
+			this.PropertyChanging(this, emptyChangingEventArgs);
+		}
+	}
+	
+	protected virtual void SendPropertyChanged(String propertyName)
+	{
+		if ((this.PropertyChanged != null))
+		{
+			this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+		}
+	}
+	
+	private void attach_Plants_Harvesteds(Plants_Harvested entity)
+	{
+		this.SendPropertyChanging();
+		entity.Plant = this;
+	}
+	
+	private void detach_Plants_Harvesteds(Plants_Harvested entity)
+	{
+		this.SendPropertyChanging();
+		entity.Plant = null;
+	}
+}
+
+[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Plants_Harvested")]
+public partial class Plants_Harvested : INotifyPropertyChanging, INotifyPropertyChanged
+{
+	
+	private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+	
+	private int _Harvest_DatapointID;
+	
+	private int _Plant_ID;
+	
+	private int _Tank_ID;
+	
+	private System.DateTime _Harvest_Date;
+	
+	private double _Harvest_Amount;
+	
+	private EntityRef<Plant> _Plant;
+	
+	private EntityRef<Fishtank_Station> _Fishtank_Station;
+	
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnHarvest_DatapointIDChanging(int value);
+    partial void OnHarvest_DatapointIDChanged();
+    partial void OnPlant_IDChanging(int value);
+    partial void OnPlant_IDChanged();
+    partial void OnTank_IDChanging(int value);
+    partial void OnTank_IDChanged();
+    partial void OnHarvest_DateChanging(System.DateTime value);
+    partial void OnHarvest_DateChanged();
+    partial void OnHarvest_AmountChanging(double value);
+    partial void OnHarvest_AmountChanged();
+    #endregion
+	
+	public Plants_Harvested()
+	{
+		this._Plant = default(EntityRef<Plant>);
+		this._Fishtank_Station = default(EntityRef<Fishtank_Station>);
+		OnCreated();
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Harvest_DatapointID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+	public int Harvest_DatapointID
+	{
+		get
+		{
+			return this._Harvest_DatapointID;
+		}
+		set
+		{
+			if ((this._Harvest_DatapointID != value))
+			{
+				this.OnHarvest_DatapointIDChanging(value);
+				this.SendPropertyChanging();
+				this._Harvest_DatapointID = value;
+				this.SendPropertyChanged("Harvest_DatapointID");
+				this.OnHarvest_DatapointIDChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Plant_ID", DbType="Int NOT NULL")]
+	public int Plant_ID
+	{
+		get
+		{
+			return this._Plant_ID;
+		}
+		set
+		{
+			if ((this._Plant_ID != value))
+			{
+				if (this._Plant.HasLoadedOrAssignedValue)
 				{
 					throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
 				}
-				this.OnProjectIDChanging(value);
+				this.OnPlant_IDChanging(value);
 				this.SendPropertyChanging();
-				this._ProjectID = value;
-				this.SendPropertyChanged("ProjectID");
-				this.OnProjectIDChanged();
+				this._Plant_ID = value;
+				this.SendPropertyChanged("Plant_ID");
+				this.OnPlant_IDChanged();
 			}
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DomainID", DbType="Int NOT NULL")]
-	public int DomainID
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Tank_ID", DbType="Int NOT NULL")]
+	public int Tank_ID
 	{
 		get
 		{
-			return this._DomainID;
+			return this._Tank_ID;
 		}
 		set
 		{
-			if ((this._DomainID != value))
+			if ((this._Tank_ID != value))
 			{
-				this.OnDomainIDChanging(value);
+				if (this._Fishtank_Station.HasLoadedOrAssignedValue)
+				{
+					throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+				}
+				this.OnTank_IDChanging(value);
 				this.SendPropertyChanging();
-				this._DomainID = value;
-				this.SendPropertyChanged("DomainID");
-				this.OnDomainIDChanged();
+				this._Tank_ID = value;
+				this.SendPropertyChanged("Tank_ID");
+				this.OnTank_IDChanged();
 			}
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[Project Name]", Storage="_Project_Name", DbType="VarChar(50)")]
-	public string Project_Name
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Harvest_Date", DbType="Date NOT NULL")]
+	public System.DateTime Harvest_Date
 	{
 		get
 		{
-			return this._Project_Name;
+			return this._Harvest_Date;
 		}
 		set
 		{
-			if ((this._Project_Name != value))
+			if ((this._Harvest_Date != value))
 			{
-				this.OnProject_NameChanging(value);
+				this.OnHarvest_DateChanging(value);
 				this.SendPropertyChanging();
-				this._Project_Name = value;
-				this.SendPropertyChanged("Project_Name");
-				this.OnProject_NameChanged();
+				this._Harvest_Date = value;
+				this.SendPropertyChanged("Harvest_Date");
+				this.OnHarvest_DateChanged();
 			}
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_description", DbType="VarChar(MAX)")]
-	public string description
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Harvest_Amount", DbType="Float NOT NULL")]
+	public double Harvest_Amount
 	{
 		get
 		{
-			return this._description;
+			return this._Harvest_Amount;
 		}
 		set
 		{
-			if ((this._description != value))
+			if ((this._Harvest_Amount != value))
 			{
-				this.OndescriptionChanging(value);
+				this.OnHarvest_AmountChanging(value);
 				this.SendPropertyChanging();
-				this._description = value;
-				this.SendPropertyChanged("description");
-				this.OndescriptionChanged();
+				this._Harvest_Amount = value;
+				this.SendPropertyChanged("Harvest_Amount");
+				this.OnHarvest_AmountChanged();
 			}
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[Principal Investigator]", Storage="_Principal_Investigator", DbType="VarChar(50)")]
-	public string Principal_Investigator
+	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Plant_Plants_Harvested", Storage="_Plant", ThisKey="Plant_ID", OtherKey="Plant_TypeID", IsForeignKey=true)]
+	public Plant Plant
 	{
 		get
 		{
-			return this._Principal_Investigator;
+			return this._Plant.Entity;
 		}
 		set
 		{
-			if ((this._Principal_Investigator != value))
-			{
-				this.OnPrincipal_InvestigatorChanging(value);
-				this.SendPropertyChanging();
-				this._Principal_Investigator = value;
-				this.SendPropertyChanged("Principal_Investigator");
-				this.OnPrincipal_InvestigatorChanged();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[Date Created]", Storage="_Date_Created", DbType="Date")]
-	public System.Nullable<System.DateTime> Date_Created
-	{
-		get
-		{
-			return this._Date_Created;
-		}
-		set
-		{
-			if ((this._Date_Created != value))
-			{
-				this.OnDate_CreatedChanging(value);
-				this.SendPropertyChanging();
-				this._Date_Created = value;
-				this.SendPropertyChanged("Date_Created");
-				this.OnDate_CreatedChanged();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[number of users]", Storage="_number_of_users", DbType="Int")]
-	public System.Nullable<int> number_of_users
-	{
-		get
-		{
-			return this._number_of_users;
-		}
-		set
-		{
-			if ((this._number_of_users != value))
-			{
-				this.Onnumber_of_usersChanging(value);
-				this.SendPropertyChanging();
-				this._number_of_users = value;
-				this.SendPropertyChanged("number_of_users");
-				this.Onnumber_of_usersChanged();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="domain_Project", Storage="_domain", ThisKey="ProjectID", OtherKey="DomainID", IsForeignKey=true)]
-	public domain domain
-	{
-		get
-		{
-			return this._domain.Entity;
-		}
-		set
-		{
-			domain previousValue = this._domain.Entity;
+			Plant previousValue = this._Plant.Entity;
 			if (((previousValue != value) 
-						|| (this._domain.HasLoadedOrAssignedValue == false)))
+						|| (this._Plant.HasLoadedOrAssignedValue == false)))
 			{
 				this.SendPropertyChanging();
 				if ((previousValue != null))
 				{
-					this._domain.Entity = null;
-					previousValue.Project = null;
+					this._Plant.Entity = null;
+					previousValue.Plants_Harvesteds.Remove(this);
 				}
-				this._domain.Entity = value;
+				this._Plant.Entity = value;
 				if ((value != null))
 				{
-					value.Project = this;
-					this._ProjectID = value.DomainID;
+					value.Plants_Harvesteds.Add(this);
+					this._Plant_ID = value.Plant_TypeID;
 				}
 				else
 				{
-					this._ProjectID = default(int);
+					this._Plant_ID = default(int);
 				}
-				this.SendPropertyChanged("domain");
+				this.SendPropertyChanged("Plant");
 			}
 		}
 	}
 	
-	public event PropertyChangingEventHandler PropertyChanging;
-	
-	public event PropertyChangedEventHandler PropertyChanged;
-	
-	protected virtual void SendPropertyChanging()
-	{
-		if ((this.PropertyChanging != null))
-		{
-			this.PropertyChanging(this, emptyChangingEventArgs);
-		}
-	}
-	
-	protected virtual void SendPropertyChanged(String propertyName)
-	{
-		if ((this.PropertyChanged != null))
-		{
-			this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-		}
-	}
-}
-
-[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.domains")]
-public partial class domain : INotifyPropertyChanging, INotifyPropertyChanged
-{
-	
-	private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-	
-	private int _DomainID;
-	
-	private string _Domain_Name;
-	
-	private EntityRef<Project> _Project;
-	
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnDomainIDChanging(int value);
-    partial void OnDomainIDChanged();
-    partial void OnDomain_NameChanging(string value);
-    partial void OnDomain_NameChanged();
-    #endregion
-	
-	public domain()
-	{
-		this._Project = default(EntityRef<Project>);
-		OnCreated();
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DomainID", DbType="Int NOT NULL", IsPrimaryKey=true)]
-	public int DomainID
+	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Fishtank_Station_Plants_Harvested", Storage="_Fishtank_Station", ThisKey="Tank_ID", OtherKey="FishtankID", IsForeignKey=true)]
+	public Fishtank_Station Fishtank_Station
 	{
 		get
 		{
-			return this._DomainID;
+			return this._Fishtank_Station.Entity;
 		}
 		set
 		{
-			if ((this._DomainID != value))
-			{
-				this.OnDomainIDChanging(value);
-				this.SendPropertyChanging();
-				this._DomainID = value;
-				this.SendPropertyChanged("DomainID");
-				this.OnDomainIDChanged();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[Domain Name]", Storage="_Domain_Name", DbType="VarChar(50)")]
-	public string Domain_Name
-	{
-		get
-		{
-			return this._Domain_Name;
-		}
-		set
-		{
-			if ((this._Domain_Name != value))
-			{
-				this.OnDomain_NameChanging(value);
-				this.SendPropertyChanging();
-				this._Domain_Name = value;
-				this.SendPropertyChanged("Domain_Name");
-				this.OnDomain_NameChanged();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="domain_Project", Storage="_Project", ThisKey="DomainID", OtherKey="ProjectID", IsUnique=true, IsForeignKey=false)]
-	public Project Project
-	{
-		get
-		{
-			return this._Project.Entity;
-		}
-		set
-		{
-			Project previousValue = this._Project.Entity;
+			Fishtank_Station previousValue = this._Fishtank_Station.Entity;
 			if (((previousValue != value) 
-						|| (this._Project.HasLoadedOrAssignedValue == false)))
+						|| (this._Fishtank_Station.HasLoadedOrAssignedValue == false)))
 			{
 				this.SendPropertyChanging();
 				if ((previousValue != null))
 				{
-					this._Project.Entity = null;
-					previousValue.domain = null;
+					this._Fishtank_Station.Entity = null;
+					previousValue.Plants_Harvesteds.Remove(this);
 				}
-				this._Project.Entity = value;
+				this._Fishtank_Station.Entity = value;
 				if ((value != null))
 				{
-					value.domain = this;
+					value.Plants_Harvesteds.Add(this);
+					this._Tank_ID = value.FishtankID;
 				}
-				this.SendPropertyChanged("Project");
+				else
+				{
+					this._Tank_ID = default(int);
+				}
+				this.SendPropertyChanged("Fishtank_Station");
 			}
 		}
 	}
