@@ -23,11 +23,25 @@
       <div id="RSSContent"style="border:dashed; overflow:auto; height:auto;"></div>
 
       <canvas id="canvas2"></canvas>
-      <div id="buttontest" style="height:100px; border:dashed; overflow:auto;" onclick="DynamicDiv();">CLICK ME TO MAKE A NEW PIE CHART!!
+      <div id="buttontest" style="height:100px; border:dashed; overflow:auto;" onclick="DynamicDiv();">CLICK ME TO MAKE A NEW PIE CHART!! Press the green one first though.
           <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="/mgmt/Default.aspx">HyperLink</asp:HyperLink>
           <asp:HyperLink ID="HyperLink2" runat="server">HyperLink</asp:HyperLink>
           <asp:HyperLink ID="HyperLink3" runat="server">HyperLink</asp:HyperLink>
        </div>
+      <div id="selections"><select id="one">
+    <option>2010</option>
+    <option>2011</option>
+    <option>2012</option>
+    <option>2013</option>
+    <option>2014</option>
+    <option>2015</option>
+</select>
+<select id="two">
+    <option value="1">Jan</option>
+    <option value="2">Feb</option>
+    <option value="3">Mar</option></select></div>
+      <div id="sendJSONtest" style="border:dotted;" onclick="sendJSONTest();">CLICK HERE TO SEND SELECTED THINGIES</div>
+      <div id="twoWayOutput">What does twoWayOutput say?</div>
  
 
  
@@ -65,8 +79,8 @@
         // This will get the first returned node in the jQuery collection.
         //var myNewChart = new Chart(ctx).<chartype>(data);
         //-----------------------------------------------------------
-
-        var out;
+        
+        var out; //the data payload from the ajax calls
         var count = 0;
         function buildGraphData(jsonobject) {
             var graphPayload = [];
@@ -82,7 +96,7 @@
             return graphPayload;
         }
 
-        //Create a new pie chart. It calls dynDiv (Dynamic Div) which at the moment is tied to the "out" variable which holds
+        //new Pie creates a new pie chart. It calls dynDiv (Dynamic Div) which at the moment is tied to the "out" variable which holds
         //the retrieved json object(s). What this means is that if getJsonPie() hasn't been called by clicking on the green button (currently
         //the "jsontype" id div) then there will be no data for it to show and it won't work.  tl;dr Click the green button first and this function
         //will make a new copy of the pie chart with the "out" data. This will get changed soon, obviously.
@@ -140,6 +154,36 @@
                 }
             });
         }
+
+
+        //This function actually SENDS data to the webmethod, which then does stuff with it. The webmethod sends back a "yay" json string message if you send it a 
+        //2010 value from the "one" list. Anything else that is sent gets a "nope" json string back. The webmethod is just doing a switch on sendme[0] (a string). See service.cs
+        //for details.
+        function sendJSONTest() {
+            var sendme= []; //a simple array
+            sendme[0] = $("#one").val(); //the CURRENT VALUE of the dropdown box called one (the one with the years).
+            sendme[1] = $("#two").val(); //the dropdownbox with the months.  We are putting these in the array. they're simple strings at this point. 
+            
+        //the following takes a javascript array and converts it into a json object ready for transport through the ajax function call
+            var jsonData = JSON.stringify({
+                sendme: sendme
+            });
+
+            $.ajax({
+                type: "POST",
+                url: "Service.asmx/returnTwoWay",
+                data: jsonData, //this is getting sent to service.asmx/returnTwoWay (it gets passed as a parameter to returnTwoWay();
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                error: function () { document.getElementById("jsontype").innerHTML = "error"; },
+                success: function (msg)
+                {
+                    var twoWayData = msg.d;//get payload, put it in a variable
+                    document.getElementById("twoWayOutput").innerHTML = twoWayData; //change the html inside the twoWayOutput div to twoWayData
+                } //close success function
+            }); //close ajax function call
+        } //close sendJSONTest()
+
         //dynamically adds a new canvas in the "RSSContent" div using javascript.
         function DynamicDiv() {
             var dynDiv = document.createElement("canvas");  //create a new html5 canvas

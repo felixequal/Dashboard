@@ -71,5 +71,19 @@ public class Service : WebService
     {
         return g;
     }
-  
+
+    [WebMethod]
+    [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+    public string returnTwoWay(List<string> sendme)
+    {
+        switch(sendme[0])
+        {
+            case ("2010"):
+                return "yay";
+            default:
+                return "nope"; 
+        }
+    }
+
+
 }
