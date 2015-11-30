@@ -19,7 +19,7 @@
   <form id="form1" runat="server">
        <asp:Button ID="Button1" runat="server" Text="Button1"/>
       <asp:Button ID="Button2" runat="server" Text="Button2" onclick="Button2_Click"/>
-        <div id="jsontype" onclick="getJsonPie();" style="height:50px; width:100px; border:dashed; background-color:green;">Click Here for Pie Chart</div>
+        <div id="PieChart" onclick="getJsonPie();" style="height:50px; width:100px; border:dashed; background-color:green;">Click Here for Pie Chart</div>
       <div id="RSSContent"style="border:dashed; overflow:auto; height:auto;"></div>
 
       <canvas id="canvas2"></canvas>
@@ -80,7 +80,7 @@
         //var myNewChart = new Chart(ctx).<chartype>(data);
         //-----------------------------------------------------------
         
-        var out; //the data payload from the ajax calls
+        /*var out; //the data payload from the ajax calls
         var count = 0;
         function buildGraphData(jsonobject) {
             var graphPayload = [];
@@ -94,7 +94,7 @@
                 };
             }
             return graphPayload;
-        }
+        }*/
 
         //new Pie creates a new pie chart. It calls dynDiv (Dynamic Div) which at the moment is tied to the "out" variable which holds
         //the retrieved json object(s). What this means is that if getJsonPie() hasn't been called by clicking on the green button (currently
@@ -121,29 +121,29 @@
         {
             $.ajax({
                 type: "POST",
+                dataType: "json",
                 url: "Service.asmx/returnGraphStuff",
                 data: "{}", //Even if we are sending no parameters/objects to the webmethod you MUST define an empty dataset here
                 contentType: "application/json; charset=utf-8",
-                dataType: "json",
                 error: getJsonPieError,
                 success: getJsonPieSuccess,
             });
         }
         function getJsonPieError() {
-            document.getElementById("jsontype").innerHTML = "error";
+            document.getElementById("PieChart").innerHTML = "error";
         }
         function getJsonPieSuccess(response){
             //msg is the payload that's returned. I'm assigning the name msg to it. But it exists whether or not you do (you just
             //cant do anything with it if you don't give it a name. obviously.
             //out = buildGraphData(msg.d);
-            var data = response.d;
+            var data = JSON.parse(response.d);
             var newGraph = document.getElementById("canvas2").getContext("2d"); //get html5 canvas 2d element.
-            window.myDoughnut = new Chart(newGraph).Doughnut(data); //draw a chart.js chart on the 2d element.
+            new Chart(newGraph).Doughnut(data); //draw a chart.js chart on the 2d element.
         }
         //same as getJsonPie except that we make a line graph instead of a pie graph. the object that we need from the webmethod has different fields
         //for a line chart though. Pie expects a series of objects with ONE data element for EACH object. Line charts expect an array of data element values.
         //This has not been taken care of on the webmethod side yet so this function will never work right till that's fixed. See chart.js documentation for more details.
-       /* function getJsonLine() {
+        function getJsonLine() {
             $.ajax({
                 type: "POST",
                 url: "Service.asmx/returnGraphStuff",
@@ -157,7 +157,7 @@
                     window.myLine = new Chart(ctx_Line).Line(out);
                 }
             });
-        }*/
+        }
 
 
         //This function actually SENDS data to the webmethod, which then does stuff with it. The webmethod sends back a "yay" json string message if you send it a 

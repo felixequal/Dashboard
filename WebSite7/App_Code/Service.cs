@@ -1,14 +1,11 @@
-﻿using System.IO;
-using System.Linq;
-using System.Web;
+﻿using System.Linq;
 using System.Web.Script.Services;
 using System.Web.Services;
-using System.Web.UI;
 using System.Data;
-using System;
 using System.Collections.Generic;
-
-using System.Text;
+using System.Web.Script.Serialization;
+using System;
+using System.Drawing;
 
 [WebService(Namespace = "http://microsoft.com/webservices/")]
 [WebServiceBinding(ConformsTo = WsiProfiles.BasicProfile1_1)]
@@ -63,15 +60,17 @@ public class Service : WebService
 
     [WebMethod]
     [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
-    public String[] returnGraphStuff()
+    public string returnGraphStuff()
     {
+        Random rand = new Random();
         double[] value = (from a in db.foodWastes select a.weight).ToArray();
-        String[] graph = new String[value.Length];    
-        for (int i = 0; i < value.Length; i++) { 
-            PieDonutGraph g = new PieDonutGraph(value[i]);
-            graph[i] = g.ToString();
+        List<PieDonutGraph> graph = new List<PieDonutGraph>(); 
+        for (int i = 0; i < value.Length; i++) {
+            graph.Add(new PieDonutGraph() {value = value[i], color = generateRandomColor(rand), highlight = "#ffff00", label = value[i].ToString() });
         }
-        return graph;
+        string result = new JavaScriptSerializer().Serialize(graph.ToArray());
+        System.Diagnostics.Debug.WriteLine(result);
+        return result;
     }
 
     [WebMethod]
@@ -86,6 +85,10 @@ public class Service : WebService
                 return "nope"; 
         }
     }
-
+    private string generateRandomColor(Random random)
+    {
+        Color randomColor = Color.FromArgb(random.Next(0, 255), random.Next(0, 255), random.Next(0, 255));
+        return "#" + randomColor.R.ToString("X2") + randomColor.G.ToString("X2") + randomColor.B.ToString("X2");
+    }
 
 }
