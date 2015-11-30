@@ -1,0 +1,134 @@
+﻿<!doctype html>
+<html>
+<head>
+    <title>Demo &raquo; Custom drag handle &raquo; gridster.js</title>
+    <link rel="stylesheet" type="text/css" href="../Style/gridster.css">
+   <link rel="stylesheet" type="text/css" href="../Style/test.css"
+</head>
+
+<body>
+
+    <div class="gridster">
+        <ul>
+            <li data-row="1" data-col="2" data-sizex="2" data-sizey="1"><canvas id="canvas1"></canvas></li>
+            <li data-row="2" data-col="1" data-sizex="1" data-sizey="1"></li>
+            <li data-row="3" data-col="1" data-sizex="1" data-sizey="1"></li>
+
+            <li data-row="1" data-col="2" data-sizex="2" data-sizey="1"></li>
+            <li data-row="2" data-col="2" data-sizex="2" data-sizey="2"></li>
+
+            <li data-row="1" data-col="4" data-sizex="1" data-sizey="1"></li>
+            <li data-row="2" data-col="4" data-sizex="2" data-sizey="1"></li>
+            <li data-row="3" data-col="4" data-sizex="1" data-sizey="1"></li>
+
+            <li data-row="1" data-col="5" data-sizex="2" data-sizey="2"><canvas id="canvas2"></canvas></li>
+            <li data-row="3" data-col="5" data-sizex="1" data-sizey="1"></li>
+
+            <li data-row="1" data-col="6" data-sizex="1" data-sizey="1"></li>
+            <li data-row="2" data-col="6" data-sizex="2" data-sizey="1"><canvas id="canvas3"></canvas></li>
+        </ul>
+    </div>
+
+    <script type="text/javascript" src="../Scripts/jquery-2.1.4.js"></script>
+    <script src="../Scripts/gridster.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript" src="../Scripts/Chart.js"></script>
+    <script type="text/javascript" src="./Scripts/jquery-ui-1.11.4.js"></script>
+
+    <script type="text/javascript">
+        $(function () { //DOM Ready
+
+            $(".gridster ul").gridster({
+                widget_margins: [10, 10],
+                widget_base_dimensions: [140, 140]
+            });
+
+        });
+
+        var randomScalingFactor = function () { return Math.round(Math.random() * 100) };
+
+        var barChartData = {
+            labels: ["January", "February", "March", "April", "May", "June", "July"],
+            datasets: [
+            {
+                fillColor: "rgba(220,220,220,0.5)",
+                strokeColor: "rgba(220,220,220,0.8)",
+                highlightFill: "rgba(220,220,220,0.75)",
+                highlightStroke: "rgba(220,220,220,1)",
+                data: [randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor()]
+            },
+            {
+                fillColor: "rgba(151,187,205,0.5)",
+                strokeColor: "rgba(151,187,205,0.8)",
+                highlightFill: "rgba(151,187,205,0.75)",
+                highlightStroke: "rgba(151,187,205,1)",
+                data: [randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor()]
+            }
+            ]
+        }
+
+        var doughnutData = [
+{
+    value: 300,
+    color: "#F7464A",
+    highlight: "#FF5A5E",
+    label: "Red"
+},
+{
+    value: 50,
+    color: "#46BFBD",
+    highlight: "#5AD3D1",
+    label: "Green"
+},
+{
+    value: 100,
+    color: "#FDB45C",
+    highlight: "#FFC870",
+    label: "Yellow"
+},
+{
+    value: 40,
+    color: "#949FB1",
+    highlight: "#A8B3C5",
+    label: "Grey"
+},
+{
+    value: 120,
+    color: "#4D5360",
+    highlight: "#616774",
+    label: "Dark Grey"
+}
+        ];
+
+        var data = {
+            labels: ["January", "February", "March", "April", "May", "June", "July"],
+            datasets: [
+            {
+                label: "My First dataset",
+                fillColor: "rgba(220,220,220,0.5)",
+                strokeColor: "rgba(220,220,220,0.8)",
+                highlightFill: "rgba(220,220,220,0.75)",
+                highlightStroke: "rgba(220,220,220,1)",
+                data: [65, 59, 80, 81, 56, 55, 40]
+            },
+            {
+                label: "My Second dataset",
+                fillColor: "rgba(151,187,205,0.5)",
+                strokeColor: "rgba(151,187,205,0.8)",
+                highlightFill: "rgba(151,187,205,0.75)",
+                highlightStroke: "rgba(151,187,205,1)",
+                data: [28, 48, 40, 19, 86, 27, 90]
+            }
+            ]
+        };
+
+        window.onload = function () {
+            var ctx = document.getElementById("canvas1").getContext("2d");
+            var myLine = new Chart(ctx).Line(data);
+            var ctx_donut = document.getElementById("canvas2").getContext("2d");
+            window.myDoughnut = new Chart(ctx_donut).Doughnut(doughnutData);
+            var ctx_bar = document.getElementById("canvas3").getContext("2d");
+            window.myBar = new Chart(ctx_bar).Bar(barChartData);
+        }
+    </script>
+</body>
+</html>
