@@ -9,37 +9,6 @@ using System.Drawing;
 
 [WebService(Namespace = "http://microsoft.com/webservices/")]
 [WebServiceBinding(ConformsTo = WsiProfiles.BasicProfile1_1)]
-// To allow this Web Service to be called from script, using ASP.NET AJAX, uncomment the following line. 
-//[System.Web.Script.Services.ScriptService]
-
-/* public class graphStuff
-{
-    public int[] value;
-    public string[] color;
-    public string[] highlight;
-    public string[] label;
-
-    protected internal graphStuff()
-    {
-        value = new int[] { 5, 6, 7, 8, 9, 20, 50 };
-        color = new string[] { "#4D5360", "#46BFBD", "#FDB45C", "#FFFF00", "#949FC1", "#4D5360", "#FFFF00" };
-        highlight = new string[] { "#616774", "#A8B3C5", "#A8B3C5", "#FFFFAE", "#5AD3D1", "#FF5A5E", "#FFFF01" };
-        label = new string[] {"red", "green", "blue", "grey", "yellow", "Dark Grey", "yellow" };
-    }
-
-    //Put data from table into the object being sent to the piechart
-    public void setGraphData(double[] fromTable)
-    {
-        if(fromTable.Length != 0)
-        { 
-       for (int x = 0; x<value.Length; x++)
-       {
-            value[x] = (int)fromTable[x];
-       };
-        }
-    }
-    
-}*/
 
 [ScriptService]
 public class Service : WebService
@@ -60,16 +29,37 @@ public class Service : WebService
 
     [WebMethod]
     [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
-    public string returnGraphStuff()
+    public string returnPieDonutChart(string type, string project )
     {
         Random rand = new Random();
-        double[] value = (from a in db.foodWastes select a.weight).ToArray();
-        List<PieDonutGraph> graph = new List<PieDonutGraph>(); 
-        for (int i = 0; i < value.Length; i++) {
-            graph.Add(new PieDonutGraph() {value = value[i], color = generateRandomColor(rand), highlight = "#ffff00", label = value[i].ToString() });
+        string result = "";
+
+        if (type.Equals("Donut Graph")){
+            if (project.Equals("Vermiculture"))
+            {
+                double[] value = (from data in db.foodWastes select data.weight).ToArray();
+                List<PieDonutGraph> graph = new List<PieDonutGraph>();
+                for (int i = 0; i < value.Length; i++)
+                {
+                    graph.Add(new PieDonutGraph() { value = value[i], color = generateRandomColor(rand), highlight = "#ffff00", label = value[i].ToString() });
+                }
+                result = new JavaScriptSerializer().Serialize(graph.ToArray());
+            }
         }
-        string result = new JavaScriptSerializer().Serialize(graph.ToArray());
-        System.Diagnostics.Debug.WriteLine(result);
+
+        if (type.Equals("Pie Graph")){
+            if (project.Equals("Vermiculture"))
+            {
+                double[] value = (from data in db.foodWastes select data.weight).ToArray();
+                List<PieDonutGraph> graph = new List<PieDonutGraph>();
+                for (int i = 0; i < value.Length; i++)
+                {
+                    graph.Add(new PieDonutGraph() { value = value[i], color = generateRandomColor(rand), highlight = "#ffff00", label = value[i].ToString() });
+                }
+                result = new JavaScriptSerializer().Serialize(graph.ToArray());
+            }
+        }
+        System.Diagnostics.Debug.WriteLine(project);
         return result;
     }
 

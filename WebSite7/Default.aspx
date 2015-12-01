@@ -122,7 +122,7 @@
             $.ajax({
                 type: "POST",
                 dataType: "json",
-                url: "Service.asmx/returnGraphStuff",
+                url: "Service.asmx/returnPieDonutChart",
                 data: "{}", //Even if we are sending no parameters/objects to the webmethod you MUST define an empty dataset here
                 contentType: "application/json; charset=utf-8",
                 error: getJsonPieError,
