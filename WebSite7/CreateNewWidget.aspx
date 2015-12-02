@@ -20,13 +20,14 @@
     <body>
         <form id="form1" runat="server">
             <asp:Label ID="WidgetTypeSelectionLabel" runat="server" Text="Select the type of Widget you would like to Create"></asp:Label>
-            <asp:DropDownList ID="WidgetTypeSelection" runat="server" AutoPostBack="True"></asp:DropDownList>
+            <asp:DropDownList ID="WidgetTypeSelection" runat="server" AutoPostBack="True" OnSelectedIndexChanged="WidgetTypeSelection_SelectionIndexChanged"></asp:DropDownList>
             <br />
-            <asp:Label ID="ProjectSelectionLabel" runat="server" Text="Please Select a Project"></asp:Label>
-            <asp:DropDownList ID="ProjectSelection" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ProjectSelection_SelectedIndexChanged">
-            </asp:DropDownList>
+            <asp:Label ID="ProjectSelectionLabel" runat="server" Text="Please Select a Project" Visible="False"></asp:Label>
+            <asp:DropDownList ID="ProjectSelection" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ProjectSelection_SelectedIndexChanged" Visible="False"></asp:DropDownList>
             <br/>
-            <asp:Label ID="Label2" runat="server" Text="Please select data to view from a project"></asp:Label>
+            <asp:Label ID="ProjectDataSelectLabel" runat="server" Text="Please select data to view from a project" Visible="False"></asp:Label>
+            <asp:DropDownList ID="ProjectDataSelect" runat="server" AutoPostBack="True" Visible="False">
+            </asp:DropDownList>
             <br />
             <div id="PieChart" onclick="getJsonPie();" style="height:50px; width:100px; border:dashed; background-color:green;">Click Here for Pie Chart</div>
             <div id="RSSContent"style="border:dashed; overflow:auto; height:auto;"></div>
@@ -61,14 +62,89 @@
                     //msg is the payload that's returned. I'm assigning the name msg to it. But it exists whether or not you do (you just
                     //cant do anything with it if you don't give it a name. obviously.
                     //out = buildGraphData(msg.d);
-                    var data = JSON.parse(response.d);
-                    var newGraph = document.getElementById("canvas2").getContext("2d"); //get html5 canvas 2d element.
+                    var data = response.d;
                     var graphType = document.getElementById('WidgetTypeSelection').value;
-                    if (graphType = "Donut Graph") {
-                        new Chart(newGraph).Doughnut(data); //draw a chart.js chart on the 2d element.
+                    var newGraph = document.getElementById("canvas2").getContext("2d"); //get html5 canvas 2d element.
+
+                    if (graphType == 'Donut Graph') {
+                        var arr = [];
+                        $.each(data, function (inx, val) {
+                            var obj = {};
+                            obj.color = val.color;
+                            obj.value = val.value;
+                            obj.label = val.label;
+                            arr.push(obj);
+                        });
+                        new Chart(newGraph).Doughnut(arr); //draw a chart.js chart on the 2d element.
                     }
-                    if (graphType = "Pie Graph") {
-                        new Chart(newGraph).Pie(data); //draw a chart.js chart on the 2d element.
+                    if (graphType == 'Pie Graph') {
+                        var arr = [];
+                        $.each(data, function (inx, val) {
+                            var obj = {};
+                            obj.color = val.color;
+                            obj.value = val.value;
+                            obj.label = val.label;
+                            arr.push(obj);
+                        });
+                        new Chart(newGraph).Pie(arr); //draw a chart.js chart on the 2d element.
+                    }
+                    if (graphType == 'Bar Graph') {
+                        var labels = data[0];
+                        var dataset1 = data[1];
+                        var dataset2 = data[2];
+                        var obj = {
+                            labels: labels,
+                            datasets: [
+                                {
+                                    label: "My First dataset",
+                                    fillColor: "rgba(220,220,220,0.5)",
+                                    strokeColor: "rgba(220,220,220,0.8)",
+                                    highlightFill: "rgba(220,220,220,0.75)",
+                                    highlightStroke: "rgba(220,220,220,1)",
+                                    data: dataset1
+                                },
+                                {
+                                    label: "Second dataset",
+                                    fillColor: "rgba(151,187,205,0.5)",
+                                    strokeColor: "rgba(151,187,205,0.8)",
+                                    highlightFill: "rgba(151,187,205,0.75)",
+                                    highlightStroke: "rgba(151,187,205,1)",
+                                    data: dataset2
+                                }
+                            ]
+                        };
+                        new Chart(newGraph).Bar(obj); //draw a chart.js chart on the 2d element.
+                    }
+                    if (graphType == 'Line Graph') {
+                        var labels = data[0];
+                        var dataset1 = data[1];
+                        var dataset2 = data[2];
+                        var obj = {
+                            labels: labels,
+                            datasets: [
+                                {
+                                    label: "My First dataset",
+                                    fillColor: "rgba(220,220,220,0.2)",
+                                    strokeColor: "rgba(220,220,220,1)",
+                                    pointColor: "rgba(220,220,220,1)",
+                                    pointStrokeColor: "#fff",
+                                    pointHighlightFill: "#fff",
+                                    pointHighlightStroke: "rgba(220,220,220,1)",
+                                    data: dataset1
+                                },
+                                {
+                                    label: "Second dataset",
+                                    fillColor: "rgba(151,187,205,0.2)",
+                                    strokeColor: "rgba(151,187,205,1)",
+                                    pointColor: "rgba(151,187,205,1)",
+                                    pointStrokeColor: "#fff",
+                                    pointHighlightFill: "#fff",
+                                    pointHighlightStroke: "rgba(151,187,205,1)",
+                                    data: dataset2
+                                }
+                            ]
+                        };
+                        new Chart(newGraph).Line(obj); //draw a chart.js chart on the 2d element.
                     }
                 }
                 //same as getJsonPie except that we make a line graph instead of a pie graph. the object that we need from the webmethod has different fields
