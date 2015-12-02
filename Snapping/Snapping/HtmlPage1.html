@@ -1,0 +1,92 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+	<meta charset="utf-8" />
+    <title>Demo &raquo; Custom drag handle &raquo; gridster.js</title>
+    <link rel="stylesheet" type="text/css" href="../Style/gridster.css" />
+    <link rel="stylesheet" type="text/css" href="../Style/test.css" />
+    <script type="text/javascript" src="../Scripts/jquery-2.1.4.js"></script>
+    <script src="../Scripts/gridster.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript" src="../Scripts/Chart.js"></script>
+    <script type="text/javascript" src="../Scripts/jquery-ui-1.11.4.js"></script>
+    <script type="text/javascript" src="../Scripts/snap_grid.js"></script>
+</head>
+<body>
+    <style>
+        
+.deleteWidgetDiv {
+    background: #999;
+    float: right;
+    font-size: 12px;
+    padding: 4px 4px 0px ;
+    cursor: pointer;
+}
+
+.gridster li header .dragDiv {
+            background: #AAA;
+            font-size: 12px;
+            display: block;
+            padding: 4px 0 0px ;
+            cursor: move;
+        }
+    </style>
+    <div>
+        <form>
+            <p>Add new widget:</p>
+
+            <button id="addWidgetButton">Add widget</button>
+        </form>
+    </div>
+    <div class="gridster">
+        <ul>
+            <li data-row="1" data-col="2" data-sizex="3" data-sizey="2">
+                <header>
+                    <div class="deleteWidgetDiv">X</div>
+                    <div class="dragDiv">Chart Widget</div>
+                </header>
+                <canvas id="canvas1"></canvas>
+
+               
+            </li>
+
+        </ul>
+
+    </div>
+    <script>
+        var count = 4;
+        var gridster;
+        var newLineWidget = '<li data-row="1" data-col="1" data-sizex="2" data-sizey="2"><header><div class="deleteWidgetDiv">X</div><div class="updateWidgetDiv"></div> <div class="dragDiv">Example widget</div></header><canvas id="canvas"+count></canvas></li>'
+        var newLineBarWidget = '<li data-row="1" data-col="1" data-sizex="2" data-sizey="2"></li>';
+
+        $(function () {
+
+            gridster = $(".gridster ul").gridster({
+                widget_base_dimensions: [200, 200],
+                widget_margins: [10, 10],
+                helper: 'clone',
+                avoid_overlapped_widgets: true,
+                draggable: {
+                    handle: '.dragDiv'
+                }
+            }).data('gridster');
+
+            $(document).on("click", "#addWidgetButton", function (e) {
+                e.preventDefault();
+                gridster.add_widget.apply(gridster, [newLineWidget, 1, 2]);
+                var ctx = document.getElementById(newWidget).getContext("2d");
+                var myLine = new Chart(ctx).Line(data);
+                count++;
+
+            });
+
+            $(document).on("click", ".deleteWidgetDiv", function () {
+                $(this).closest("li").addClass("activ");
+                gridster.remove_widget($('.activ'));
+            });
+
+
+        });
+    </script>
+</body>
+</html>
