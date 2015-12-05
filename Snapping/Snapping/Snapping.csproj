@@ -66,6 +66,11 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="HtmlPage1.html" />
+    <Content Include="Images\leaf_cli.png" />
+    <Content Include="Images\leaf_hov.png" />
+    <Content Include="Images\leaf_un.png" />
+    <Content Include="Multiview.aspx" />
     <Content Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -79,12 +84,21 @@
     <Content Include="Scripts\gridster.js" />
     <Content Include="Scripts\jquery-2.1.4.js" />
     <Content Include="Scripts\jquery-ui-1.11.4.js" />
+    <Content Include="Scripts\snap_grid.js" />
     <Content Include="snap.html" />
     <Content Include="Style\gridster.css" />
+    <Content Include="Style\Tabs.css" />
     <Content Include="Style\test.css" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Multiview.aspx.cs">
+      <DependentUpon>Multiview.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Multiview.aspx.designer.cs">
+      <DependentUpon>Multiview.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <PropertyGroup>
