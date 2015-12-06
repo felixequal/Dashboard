@@ -76,24 +76,6 @@ namespace Snapping {
         protected global::System.Web.UI.WebControls.View View1;
         
         /// <summary>
-        /// addChart control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button addChart;
-        
-        /// <summary>
-        /// tester control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl tester;
-        
-        /// <summary>
         /// View2 control.
         /// </summary>
         /// <remarks>

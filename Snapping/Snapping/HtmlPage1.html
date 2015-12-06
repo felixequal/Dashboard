@@ -32,11 +32,15 @@
         }
     </style>
     <div>
-        <form>
             <p>Add new widget:</p>
 
-            <button id="addWidgetButton">Add widget</button>
-        </form>
+            <button id="addLineWidgetButton">Add Line Chart widget</button>
+            <button id="addBarWidgetButton">Add Bar Chart widget</button>
+            <button id="addPieWidgetButton">Add Pie Chart widget</button>
+            <br />
+            <button class="js-seralize">Serialize</button>
+            <br />
+            <textarea id="log"></textarea>
     </div>
     <div class="gridster">
         <ul>
@@ -59,17 +63,30 @@
 
         $(function () {
 
-            gridster = $(".gridster ul").gridster({
+
+            $(".gridster ul").gridster({
                 widget_base_dimensions: [200, 200],
                 widget_margins: [10, 10],
                 helper: 'clone',
                 avoid_overlapped_widgets: true,
                 draggable: {
                     handle: '.dragDiv'
+                },
+                serialize_params: function ($w, wgd) {
+                    return {
+                        id: wgd.el[0].id,
+                        col: wgd.col,
+                        row: wgd.row,
+                        x: wgd.size_x,
+                        y: wgd.size_y,
+                        htmlContent: $($w).html()
+                    };
                 }
-            }).data('gridster');
+            });
 
-            $(document).on("click", "#addWidgetButton", function (e) {
+            gridster = $(".gridster ul").gridster().data('gridster');
+
+            $(document).on("click", "#addLineWidgetButton", function (e) {
                 e.preventDefault();
                 var wid = document.createElement("li");
                 var head = document.createElement("header");
@@ -81,7 +98,7 @@
                 dragwid.innerHTML = "Line Chart";
                 var can = document.createElement("canvas");
                 can.id = "canvas" + count;
-                can.innerHTML = "this is me no graph";
+                can.innerHTML = "Line_Graph deafult data";
                 head.appendChild(deletewid);
                 head.appendChild(dragwid);
                 wid.appendChild(head);
@@ -92,10 +109,62 @@
                 count++;
             });
 
+            $(document).on("click", "#addBarWidgetButton", function (e) {
+                e.preventDefault();
+                var wid = document.createElement("li");
+                var head = document.createElement("header");
+                var deletewid = document.createElement("div");
+                deletewid.classList.add("deleteWidgetDiv");
+                deletewid.innerHTML = "X";
+                var dragwid = document.createElement("div");
+                dragwid.classList.add("dragDiv");
+                dragwid.innerHTML = "Bar Chart";
+                var can = document.createElement("canvas");
+                can.id = "canvas" + count;
+                can.innerHTML = "this is me no graph";
+                head.appendChild(deletewid);
+                head.appendChild(dragwid);
+                wid.appendChild(head);
+                wid.appendChild(can);
+                gridster.add_widget.apply(gridster, [wid, 3, 2]);
+                var ctx_bars = document.getElementById(can.id).getContext("2d");
+                window.myBar = new Chart(ctx_bars).Bar(barChartData);
+                count++;
+            });
+
+            $(document).on("click", "#addPieWidgetButton", function (e) {
+                e.preventDefault();
+                var wid = document.createElement("li");
+                var head = document.createElement("header");
+                var deletewid = document.createElement("div");
+                deletewid.classList.add("deleteWidgetDiv");
+                deletewid.innerHTML = "X";
+                var dragwid = document.createElement("div");
+                dragwid.classList.add("dragDiv");
+                dragwid.innerHTML = "Pie Chart";
+                var can = document.createElement("canvas");
+                can.id = "canvas" + count;
+                can.innerHTML = "this is me no graph";
+                head.appendChild(deletewid);
+                head.appendChild(dragwid);
+                wid.appendChild(head);
+                wid.appendChild(can);
+                gridster.add_widget.apply(gridster, [wid, 2, 2]);
+                var ctx_donuts = document.getElementById(can.id).getContext("2d");
+                window.myDoughnut = new Chart(ctx_donuts).Doughnut(doughnutData);
+                count++;
+            });
+
             $(document).on("click", ".deleteWidgetDiv", function () {
                 $(this).closest("li").addClass("activ");
                 gridster.remove_widget($('.activ'));
             });
+
+            $('.js-seralize').on('click', function () {
+                var s = gridster.serialize();
+
+                $('#log').val(JSON.stringify(s));
+            })
 
 
         });

@@ -27,30 +27,142 @@
                         <asp:View ID="View1" runat="server">
                             <br />
                             <br />
-                            <asp:Button Text="Add a Chart" BorderStyle="None" ID="addChart" runat="server"/>
-                            <div id="tester" runat="server"></div>
-                            <br />
-                            <br />
+                            <style>
+        
+                        .deleteWidgetDiv {
+                            background: #999;
+                            float: right;
+                            font-size: 12px;
+                            padding: 4px 4px 0px ;
+                            cursor: pointer;
+                        }
+
+                        .gridster li header .dragDiv {
+                                    background: #AAA;
+                                    font-size: 12px;
+                                    display: block;
+                                    padding: 4px 0 0px ;
+                                    cursor: move;
+                                }
+                            </style>
+                            <div>
+                                <form>
+                                    <p>Add new widget:</p>
+
+                                    <button id="addLineWidgetButton">Add Line Chart widget</button>
+                                    <button id="addBarWidgetButton">Add Bar Chart widget</button>
+                                    <button id="addPieWidgetButton">Add Pie Chart widget</button>
+                                </form>
+                            </div>
                             <div class="gridster">
                                 <ul>
-                                    <li data-row="1" data-col="2" data-sizex="2" data-sizey="1"><canvas id="canvas1"></canvas></li>
-                                    <!--<li data-row="2" data-col="1" data-sizex="1" data-sizey="1"></li>
-                                    <li data-row="3" data-col="1" data-sizex="1" data-sizey="1"></li>
+                                    <li data-row="4" data-col="4" data-sizex="2" data-sizey="1">
+                                        <header>
+                                            <div class="deleteWidgetDiv">X</div>
+                                            <div class="dragDiv">Chart Widget</div>
+                                        </header>
+                                        <canvas id="canvas1"></canvas>
 
-                                    <li data-row="1" data-col="2" data-sizex="2" data-sizey="1"></li>
-                                    <li data-row="2" data-col="2" data-sizex="2" data-sizey="2"></li>
+               
+                                    </li>
 
-                                    <li data-row="1" data-col="4" data-sizex="1" data-sizey="1"></li>
-                                    <li data-row="2" data-col="4" data-sizex="2" data-sizey="1"></li>
-                                    <li data-row="3" data-col="4" data-sizex="1" data-sizey="1"></li>
-
-                                    <li data-row="1" data-col="5" data-sizex="2" data-sizey="2"><canvas id="canvas2"></canvas></li>
-                                    <li data-row="3" data-col="5" data-sizex="1" data-sizey="1"></li>
-
-                                    <li data-row="1" data-col="6" data-sizex="1" data-sizey="1"></li>
-                                    <li data-row="2" data-col="6" data-sizex="2" data-sizey="1"><canvas id="canvas3"></canvas></li>-->
                                 </ul>
+
                             </div>
+                            <script>
+                                var count = 2;
+                                var gridster;
+
+                                $(function () {
+
+                                    gridster = $(".gridster ul").gridster({
+                                        widget_base_dimensions: [200, 200],
+                                        widget_margins: [10, 10],
+                                        helper: 'clone',
+                                        avoid_overlapped_widgets: true,
+                                        draggable: {
+                                            handle: '.dragDiv'
+                                        }
+                                    }).data('gridster');
+
+                                    $(document).on("click", "#addLineWidgetButton", function (e) {
+                                        e.preventDefault();
+                                        var wid = document.createElement("li");
+                                        var head = document.createElement("header");
+                                        var deletewid = document.createElement("div");
+                                        deletewid.classList.add("deleteWidgetDiv");
+                                        deletewid.innerHTML = "X";
+                                        var dragwid = document.createElement("div");
+                                        dragwid.classList.add("dragDiv");
+                                        dragwid.innerHTML = "Line Chart";
+                                        var can = document.createElement("canvas");
+                                        can.id = "canvas" + count;
+                                        can.innerHTML = "this is me no graph";
+                                        head.appendChild(deletewid);
+                                        head.appendChild(dragwid);
+                                        wid.appendChild(head);
+                                        wid.appendChild(can);
+                                        gridster.add_widget.apply(gridster, [wid, 2, 1]);
+                                        var ctx2 = document.getElementById(can.id).getContext("2d");
+                                        var myLines = new Chart(ctx2).Line(data);
+                                        count++;
+                                    });
+
+                                    $(document).on("click", "#addBarWidgetButton", function (e) {
+                                        e.preventDefault();
+                                        var wid = document.createElement("li");
+                                        var head = document.createElement("header");
+                                        var deletewid = document.createElement("div");
+                                        deletewid.classList.add("deleteWidgetDiv");
+                                        deletewid.innerHTML = "X";
+                                        var dragwid = document.createElement("div");
+                                        dragwid.classList.add("dragDiv");
+                                        dragwid.innerHTML = "Bar Chart";
+                                        var can = document.createElement("canvas");
+                                        can.id = "canvas" + count;
+                                        can.innerHTML = "this is me no graph";
+                                        head.appendChild(deletewid);
+                                        head.appendChild(dragwid);
+                                        wid.appendChild(head);
+                                        wid.appendChild(can);
+                                        gridster.add_widget.apply(gridster, [wid, 2, 1]);
+                                        var ctx_bars = document.getElementById(can.id).getContext("2d");
+                                        window.myBar = new Chart(ctx_bars).Bar(barChartData);
+                                        count++;
+                                    });
+
+                                    $(document).on("click", "#addPieWidgetButton", function (e) {
+                                        e.preventDefault();
+                                        var wid = document.createElement("li");
+                                        var head = document.createElement("header");
+                                        var deletewid = document.createElement("div");
+                                        deletewid.classList.add("deleteWidgetDiv");
+                                        deletewid.innerHTML = "X";
+                                        var dragwid = document.createElement("div");
+                                        dragwid.classList.add("dragDiv");
+                                        dragwid.innerHTML = "Pie Chart";
+                                        var can = document.createElement("canvas");
+                                        can.id = "canvas" + count;
+                                        can.innerHTML = "this is me no graph";
+                                        head.appendChild(deletewid);
+                                        head.appendChild(dragwid);
+                                        wid.appendChild(head);
+                                        wid.appendChild(can);
+                                        gridster.add_widget.apply(gridster, [wid, 1, 1]);
+                                        var ctx_donuts = document.getElementById(can.id).getContext("2d");
+                                        window.myDoughnut = new Chart(ctx_donuts).Doughnut(doughnutData);
+                                        count++;
+                                    });
+
+                                    $(document).on("click", ".deleteWidgetDiv", function () {
+                                        $(this).closest("li").addClass("activ");
+                                        gridster.remove_widget($('.activ'));
+                                    });
+
+
+                                });
+                            </script>
+
                             
                         </asp:View>
                         <asp:View ID="View2" runat="server">

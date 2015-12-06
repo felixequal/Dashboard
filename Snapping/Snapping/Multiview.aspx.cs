@@ -49,11 +49,5 @@ namespace Snapping
             Tab3.CssClass = "Clicked";
             MainView.ActiveViewIndex = 3;
         }
-
-        protected void addChart_Click(object sender, EventArgs e)
-        {
-            tester.InnerHtml = "<p>Hello World</p>";
-           // tester.InnerHtml += "<br/>";    
-        }
     }
 }
