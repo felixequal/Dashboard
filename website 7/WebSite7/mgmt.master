@@ -18,7 +18,7 @@
             <li><a href="~/mgmt/foodwaste.aspx" runat="server">manage Data</a></li>
 
         </ul>
-        <div style="width: 750px; float: left;">
+        <div style="width: 1365px; float: left;">
         <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server"></asp:ContentPlaceHolder>
         </div>
     </div>

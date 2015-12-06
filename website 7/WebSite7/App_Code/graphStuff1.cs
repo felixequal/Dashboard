@@ -1,4 +1,6 @@
-﻿public class graphStuff
+﻿using System.Diagnostics;
+
+public class graphStuff
 {
   
     public int[] value;
@@ -19,9 +21,11 @@
     {
         if (fromTable.Length != 0)
         {
-            for (int x = 0; x < value.Length; x++)
+            for (int x = 0; x < fromTable.Length; x++)
             {
-                value[x] = (int)fromTable[x];
+                try {
+                    value[x] = (int)fromTable[x];
+                }catch (System.IndexOutOfRangeException e) { Debug.WriteLine("error caught:" + e); break; }
             };
         }
     }

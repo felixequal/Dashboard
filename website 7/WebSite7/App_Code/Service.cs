@@ -7,6 +7,7 @@ using System.Web.UI;
 using System.Data;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 
 using System.Text;
 
@@ -76,14 +77,34 @@ public class Service : WebService
     [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
     public string returnTwoWay(List<string> sendme)
     {
-        switch(sendme[0])
+        switch (sendme[0])
         {
             case ("2010"):
                 return "yay";
             default:
-                return "nope"; 
+                return "nope";
         }
     }
 
-
+    [WebMethod]
+    [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+    public graphStuff returnMaxStuff()
+    {
+        int counter = 0;
+        DateTime minDate = new DateTime(2015, 1, 24);
+        DateTime maxDate = new DateTime(2015, 2, 18);
+        value = (
+            from a in db.foodWastes
+            where a.date > minDate && a.date < maxDate
+            select a.weight).ToArray();
+        foreach (double thing in value)
+        {
+            
+            Debug.WriteLine("result["+counter+"]:" +thing);
+            counter++;
+        }
+        
+        g.setGraphData(value);
+        return g;
+    }
 }

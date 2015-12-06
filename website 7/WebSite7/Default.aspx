@@ -21,8 +21,15 @@
       <asp:Button ID="Button2" runat="server" Text="Button2" onclick="Button2_Click"/>
         <div id="jsontype" onclick="getJsonPie();" style="height:50px; width:100px; border:dashed; background-color:green;">Click Here for Pie Chart</div>
       <div id="RSSContent"style="border:dashed; overflow:auto; height:auto;"></div>
-
-      <canvas id="canvas2"></canvas>
+      <div id="widget" ><select id="pieparam" style="align-content:center;">
+    <option>avg</option>
+    <option>max</option>
+    <option>2012</option>
+    <option>2013</option>
+    <option>2014</option>
+    <option>2015</option>
+</select> <canvas id="canvas2"></canvas></div>
+     
       <div id="buttontest" style="height:100px; border:dashed; overflow:auto;" onclick="DynamicDiv();">CLICK ME TO MAKE A NEW PIE CHART!! Press the green one first though.
           <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="/mgmt/Default.aspx">HyperLink</asp:HyperLink>
           <asp:HyperLink ID="HyperLink2" runat="server">HyperLink</asp:HyperLink>
@@ -122,7 +129,7 @@
             
             $.ajax({
                 type: "POST",
-                url: "Service.asmx/returnGraphStuff",
+                url: "Service.asmx/returnMaxStuff",
                 data: "{}", //Even if we are sending no parameters/objects to the webmethod you MUST define an empty dataset here
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
