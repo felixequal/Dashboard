@@ -14,46 +14,103 @@ using System.Web.UI.WebControls;
 public partial class mgmt_foodwaste : System.Web.UI.Page
 {
     //GridView GridView2;
+    foodWaste food;
+    List<System.Reflection.PropertyInfo> foodmembers;
+    List<double> inputBoxes;
     List<foodWaste> theList
     {
         get { return (List<foodWaste>)Session["theList"]; }
         set { Session["theList"] = value; }
     }
-
-    globalFood f;
     
-
-    protected void Page_Load(object sender, EventArgs e)
+    List<Label> labelList
     {
+        get { return (List<Label>)Session["labelList"]; }
+        set { Session["labelList"] = value; }
+    }
 
+    List<TextBox> textBoxes
+    {
+        get { return (List<TextBox>)Session["textboxList"]; }
+        set { Session["textboxList"] = value; }
+    }
 
-        System.Web.UI.HtmlControls.HtmlGenericControl myDiv = new System.Web.UI.HtmlControls.HtmlGenericControl("DIV");
-        myDiv.ID = "myDiv";
-        myDiv.InnerText = "No Data to Submit";
-        Panel1.Controls.Add(myDiv);
-        if (theList == null)
+    protected void Page_Init(object sender, EventArgs e)
+    {
+        
+        
+            //Page.Form.Controls.Add(testPanel);
+            food = new foodWaste();
+            foodmembers = food.GetType().GetProperties().ToList();
+            List<TextBox> textBoxes = new List<TextBox>();
+        
+        foreach (System.Reflection.PropertyInfo foo in foodmembers)
         {
-            
-            Panel1.Visible = true;
+            if (foo.Name != "datapointID")
+            {
+                TextBox myTextbox = new TextBox();
+                Label myLabel = new Label();
+                myTextbox.CssClass = "dataEntryTextbox";
+                myTextbox.ID = "InputBox" + foo.Name;
+                myTextbox.Text = foo.Name;
+                myLabel.ID = "InputLabel" + foo.Name;
+                myLabel.Text = foo.Name;
+                textBoxes.Add(myTextbox);
+                testPanel.Controls.Add(myLabel);
+                testPanel.Controls.Add(myTextbox);
+            }
         }
 
 
+    }
+
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        food = new foodWaste();
+
+        /*
+        foreach (System.Reflection.PropertyInfo foo in foodmembers)
+        {
+            if (foo.Name != "datapointID")
+            {
+                TextBox myTextbox = new TextBox();
+                Label myLabel = new Label();
+                myTextbox.CssClass = "dataEntryTextbox";
+                myTextbox.ID = "InputBox" + foo.Name;
+                myTextbox.Text = foo.Name;
+                myLabel.ID = "InputLabel" + foo.Name;
+                myLabel.Text = foo.Name;
+                textBoxes.Add(myTextbox);
+                testPanel.Controls.Add(myLabel);
+                testPanel.Controls.Add(myTextbox);
+            }
+        }
+        */
+        if (!Page.IsPostBack)
+        {
+            inputBoxes = new List<double>();
+            if (textBoxes == null) { textBoxes = new List<TextBox>(); Debug.WriteLine("yeah textboxes is NULL"); }
+           
+        /*  System.Web.UI.HtmlControls.HtmlGenericControl myTextbox = new System.Web.UI.HtmlControls.HtmlGenericControl("TEXTBOX");
+          myTextbox.ID = "what";
+          myTextbox.InnerText = "whaaat";
+          myTextbox.EnableViewState = true;
+          testPanel.Controls.Add(myTextbox);
+  */
         if (theList == null)
         {
             Debug.WriteLine("NULL LIST. CREATING NEW"); theList = new List<foodWaste>();
         }
-        if (!Page.IsPostBack)
-        {
+        
             GridView2.DataSource = theList;
             GridView2.DataBind();
         }
-       
-        //f = new globalFood();
-
     }
 
     protected void submitfw_Click(object sender, EventArgs e)
     {
+        
+        
         // GridView GridView2 = new GridView();
         DateTime dateInput = new DateTime();
         var weightinput = new double();
@@ -62,7 +119,9 @@ public partial class mgmt_foodwaste : System.Web.UI.Page
         var vegInput = new double();
         var dairyInput = new double();
 
-        foodWaste food = new foodWaste();
+        
+        List<System.Reflection.PropertyInfo> foodmembers = food.GetType().GetProperties().ToList();
+        Debug.WriteLine("foodmembers[1]: " + foodmembers[1].Name);
         DateTime.TryParse(DateInputBox.Text, out dateInput);
         double.TryParse(WeightInputBox.Text, out weightinput);
         double.TryParse(GrainsInputBox.Text, out grainsInput);
@@ -70,12 +129,35 @@ public partial class mgmt_foodwaste : System.Web.UI.Page
         double.TryParse(VegInputBox.Text, out vegInput);
         double.TryParse(DairyInputBox.Text, out dairyInput);
 
+        try
+        {
+            Session["textboxList"] = textBoxes;
+            //textBoxes[1].Text = textBoxes[1].;
+            //food.weight = double.Parse(textBoxes[1].Text);
+            Debug.WriteLine("current weight textbox text: " + textBoxes[1].Text);
+            List < TextBox > blah = (List<TextBox>)Session["textboxList"];
+            
+            Debug.WriteLine("session weight textbox text: " + blah[1].Text);
+            //inputBoxes.Add(double.Parse(WeightInputBox.Text));
+        }
+        catch (Exception inputError)
+        {
+            Debug.WriteLine("input Error:" + inputError.Message);
+            WeightInputBox.Text = "Input Error!";
+            Debug.WriteLine("textBoxes[1].Text: " + textBoxes[1].Text);
+        }
+        double.TryParse(GrainsInputBox.Text, out grainsInput);
+        double.TryParse(FruitInputBox.Text, out fruitInput);
+        double.TryParse(VegInputBox.Text, out vegInput);
+        double.TryParse(DairyInputBox.Text, out dairyInput);
+
         food.date = dateInput;
-        food.weight = weightinput;
+        //food.weight = weightinput;
         food.percentGrains = grainsInput;
         food.percentFruit = fruitInput;
         food.percentVeg = vegInput;
         food.percentDairy = dairyInput;
+
 
         theList.Add(food);
         //f.addToFoods(food);

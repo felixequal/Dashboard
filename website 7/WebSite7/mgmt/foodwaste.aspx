@@ -7,8 +7,9 @@
     </asp:GridView>
    -->
     
-   
-        Date<asp:TextBox ID="DateInputBox" runat="server"></asp:TextBox>
+   <asp:Panel ID="DataEntryPanel" runat="server">
+        <asp:Label ID="DateLabel" runat="server" Text="Date"></asp:Label>
+    <asp:TextBox ID="DateInputBox" runat="server"></asp:TextBox>
     
    
         Weight<asp:TextBox ID="WeightInputBox" runat="server">Enter Weight</asp:TextBox>
@@ -17,13 +18,16 @@
         Percent Vegetables<asp:TextBox ID="VegInputBox" runat="server">%</asp:TextBox>
         Percent Dairy<asp:TextBox ID="DairyInputBox" runat="server" CssClass="auto-style1" Width="128px">%</asp:TextBox>
 <asp:Button ID="Submitfw" runat="server" Text="Submit" OnClick="submitfw_Click"></asp:Button>
-    <asp:Panel ID="Panel1" runat="server"></asp:Panel>
+    </asp:Panel>
+    <asp:Panel ID="testPanel" runat="server">
+    </asp:Panel>
     <asp:GridView ID="GridView2" runat="server" OnRowUpdating="GridView2_RowUpdating" OnRowEditing="GridView2_RowEditing" OnRowDeleting="GridView2_RowDeleting">
         <Columns>
             <asp:CommandField ShowEditButton="True" />
             <asp:CommandField ShowDeleteButton="True" />
         </Columns>
     </asp:GridView> 
+    
     <asp:Button ID="submitToDB" runat="server" Text="COMMIT" OnClick="submitToDB_Click" />
    
     <asp:GridView ID="GridView3" runat="server" AutoGenerateColumns="False" DataKeyNames="datapointID" DataSourceID="EntityDataSource1" AllowSorting="True">
