@@ -1,4 +1,4 @@
-﻿function addNewWidget(count) {
+﻿function addNewWidget(count, gridster) {
 
     var wid = document.createElement("li");
     var head = document.createElement("header");
@@ -44,6 +44,7 @@
 
     var button = document.createElement("button");
     button.id = "Button" + count;
+    button.type = "button";
     button.innerHTML = "Create Chart";
     button.hidden = true;
     button.onclick = function () { ButtonOnClick(count)};
@@ -65,7 +66,7 @@
     wid.appendChild(selectionBoxes);
     wid.appendChild(can);
 
-    gridster.add_widget.apply(gridster, [wid, 3, 2]);
+    gridster.add_widget.apply(gridster, [wid, 2, 2]);
 
     var addBR = document.getElementById("div" + count);
     addBR.insertBefore(document.createElement("br"), document.getElementById("Button" + count));
@@ -181,7 +182,7 @@ function ButtonOnClick(count) {
     var data = document.getElementById("DataSelect" + count);
     var dataValue = data.options[data.selectedIndex].value;
     createNewChart(typeValue, projectValue, dataValue, count);
-    hideAll(count);
+   // hideAll(count);
 }
 //Ajax query to db to get all of the current projects
 function getCurrentProjects(count) {

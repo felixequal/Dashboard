@@ -12,82 +12,98 @@ public partial class Homepage : System.Web.UI.Page
     {
         if (!IsPostBack)
         {
-            //Type of Widget Dropdown setup 
-           // string[] widgetTypes = new string[5];
-            //widgetTypes[0] = "--Select--";
-            //widgetTypes[1] = "Bar Chart";
-            //widgetTypes[2] = "Line Chart";
-            //widgetTypes[3] = "Pie Chart";
-            //widgetTypes[4] = "Donut Chart";
-            //WidgetTypeSelection.DataSource = widgetTypes;
-            //WidgetTypeSelection.DataBind();
-            //Project Dropdown setup 
-            //DataClassesDataContext db = new DataClassesDataContext();
-            //List<string> populateProjectDropdown = (from project in db.Projects select project.Project_Name).ToList();
-            //populateProjectDropdown.Insert(0, "--Select--");
-            //ProjectSelection.DataSource = populateProjectDropdown;
-            //ProjectSelection.DataBind();
+            Tab1.CssClass = "Clicked";
+            MainView.ActiveViewIndex = 0;
+        }
+    }
 
-        }
-    }
-   
-    /*protected void ProjectSelection_SelectedIndexChanged(object sender, EventArgs e)
+    protected void Tab1_Click(object sender, EventArgs e)
     {
-        ProjectDataSelect.ClearSelection();
-        string dataSelect = ProjectSelection.SelectedValue.ToString();
-        if (dataSelect.Equals("Aquaponics"))
-        {
-            string[] dropdownPopulate = new string[3];
-            dropdownPopulate[0] = "--Select--";
-            dropdownPopulate[1] = "Chemical Levels";
-            dropdownPopulate[2] = "Fish Stats";
-            ProjectDataSelect.DataSource = dropdownPopulate;
-            ProjectDataSelect.DataBind();
-        }
-        else if (dataSelect.Equals("Vermiculture"))
-        {
-            string[] dropdownPopulate = new string[3];
-            dropdownPopulate[0] = "--Select--";
-            dropdownPopulate[1] = "Foodwaste - Weights";
-            dropdownPopulate[2] = "Foodwaste - Percentages";
-            ProjectDataSelect.DataSource = dropdownPopulate;
-            ProjectDataSelect.DataBind();
-        }
-        else if (dataSelect.Equals("Biodiesil"))
-        {
-            string[] dropdownPopulate = new string[3];
-            dropdownPopulate[0] = "--Select--";
-            dropdownPopulate[1] = "Foodwaste - Weights";
-            dropdownPopulate[2] = "Foodwaste - Percentages";
-            ProjectDataSelect.DataSource = dropdownPopulate;
-            ProjectDataSelect.DataBind();
-        }
-        else if (dataSelect.Equals("Energy"))
-        {
-            string[] dropdownPopulate = new string[3];
-            dropdownPopulate[0] = "--Select--";
-            dropdownPopulate[1] = "Foodwaste - Weights";
-            dropdownPopulate[2] = "Foodwaste - Percentages";
-            ProjectDataSelect.DataSource = dropdownPopulate;
-            ProjectDataSelect.DataBind();
-        }
-        else
-        {
-            string[] dropdownPopulate = new string[1];
-            dropdownPopulate[0] = "--N/A--";
-            ProjectDataSelect.DataSource = dropdownPopulate;
-            ProjectDataSelect.DataBind();
-        }
-        ProjectDataSelect.Visible = true;
-        ProjectDataSelectLabel.Visible = true;
+        Tab1.CssClass = "Clicked";
+        Tab2.CssClass = "Initial";
+        Tab3.CssClass = "Initial";
+        MainView.ActiveViewIndex = 0;
     }
-    protected void WidgetTypeSelection_SelectionIndexChanged(object sender, EventArgs e)
+
+    protected void Tab2_Click(object sender, EventArgs e)
     {
-        ProjectSelectionLabel.Visible = true;
-        ProjectSelection.Visible = true;
-        ProjectDataSelect.Visible = false;
-        ProjectDataSelectLabel.Visible = false;
-        ProjectSelection.ClearSelection();
-        ProjectDataSelect.ClearSelection();
-    }*/
+        Tab1.CssClass = "Initial";
+        Tab2.CssClass = "Clicked";
+        Tab3.CssClass = "Initial";
+        MainView.ActiveViewIndex = 1;
+    }
+
+    protected void Tab3_Click(object sender, EventArgs e)
+    {
+        Tab1.CssClass = "Initial";
+        Tab2.CssClass = "Initial";
+        Tab3.CssClass = "Clicked";
+        MainView.ActiveViewIndex = 2;
+    }
+
+    protected void aqua_Click(object sender, EventArgs e)
+    {
+        Aquaponics.CssClass = "Clicked_Datasub_aqua";
+        Vermiculture.CssClass = "Initial_DataSub_vermi";
+        Compost.CssClass = "Initial_DataSub_comp";
+        Energy.CssClass = "Initial_DataSub_energy";
+        Biodiesel.CssClass = "Initial_DataSub_bio";
+    }
+
+    protected void vermi_Click(object sender, EventArgs e)
+    {
+        Aquaponics.CssClass = "Initial_DataSub_aqua";
+        Vermiculture.CssClass = "Clicked_Datasub_vermi";
+        Compost.CssClass = "Initial_DataSub_comp";
+        Energy.CssClass = "Initial_DataSub_energy";
+        Biodiesel.CssClass = "Initial_DataSub_bio";
+    }
+
+    protected void comp_Click(object sender, EventArgs e)
+    {
+        Aquaponics.CssClass = "Initial_DataSub_aqua";
+        Vermiculture.CssClass = "Initial_DataSub_vermi";
+        Compost.CssClass = "Clicked_Datasub_comp";
+        Energy.CssClass = "Initial_DataSub_energy";
+        Biodiesel.CssClass = "Initial_DataSub_bio";
+    }
+
+    protected void energy_Click(object sender, EventArgs e)
+    {
+        Aquaponics.CssClass = "Initial_DataSub_aqua";
+        Vermiculture.CssClass = "Initial_DataSub_vermi";
+        Compost.CssClass = "Initial_DataSub_comp";
+        Energy.CssClass = "Clicked_Datasub_energy";
+        Biodiesel.CssClass = "Initial_DataSub_bio";
+    }
+
+    protected void bio_Click(object sender, EventArgs e)
+    {
+        Aquaponics.CssClass = "Initial_DataSub_aqua";
+        Vermiculture.CssClass = "Initial_DataSub_vermi";
+        Compost.CssClass = "Initial_DataSub_comp";
+        Energy.CssClass = "Initial_DataSub_energy";
+        Biodiesel.CssClass = "Clicked_Datasub_bio";
+    }
+
+    protected void adduser_Click(object sender, EventArgs e)
+    {
+        add_user.CssClass = "Clicked_adduser";
+        delete_user.CssClass = "Initial_deleteuser";
+        manage_user.CssClass = "Initial_manageuser";
+    }
+
+    protected void deleteuser_Click(object sender, EventArgs e)
+    {
+        delete_user.CssClass = "Clicked_deleteuser";
+        add_user.CssClass = "Initial_adduser";
+        manage_user.CssClass = "Initial_manageuser";
+    }
+
+    protected void manageuser_Click(object sender, EventArgs e)
+    {
+        delete_user.CssClass = "Initial_deleteuser";
+        add_user.CssClass = "Initial_adduser";
+        manage_user.CssClass = "Clicked_manageuser";
+    }
 }
