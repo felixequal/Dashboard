@@ -8,15 +8,13 @@
    -->
     
    <asp:Panel ID="DataEntryPanel" runat="server">
-        <asp:Label ID="DateLabel" runat="server" Text="Date"></asp:Label>
-    <asp:TextBox ID="DateInputBox" runat="server"></asp:TextBox>
-    
-   
-        Weight<asp:TextBox ID="WeightInputBox" runat="server">Enter Weight</asp:TextBox>
-        Percent Grains<asp:TextBox ID="GrainsInputBox" runat="server">%</asp:TextBox>
-        Percent Fruit<asp:TextBox ID="FruitInputBox" runat="server">%</asp:TextBox>
-        Percent Vegetables<asp:TextBox ID="VegInputBox" runat="server">%</asp:TextBox>
-        Percent Dairy<asp:TextBox ID="DairyInputBox" runat="server" CssClass="auto-style1" Width="128px">%</asp:TextBox>
+        
+        Date<asp:TextBox ID="dateInputBox" runat="server"></asp:TextBox>
+        Weight<asp:TextBox ID="weightInputBox" runat="server">Enter Weight</asp:TextBox>
+        Percent Grains<asp:TextBox ID="percentGrainsInputBox" runat="server">%</asp:TextBox>
+        Percent Fruit<asp:TextBox ID="percentFruitInputBox" runat="server">%</asp:TextBox>
+        Percent Vegetables<asp:TextBox ID="percentVegInputBox" runat="server">%</asp:TextBox>
+        Percent Dairy<asp:TextBox ID="percentDairyInputBox" runat="server" CssClass="auto-style1" Width="128px">%</asp:TextBox>
 <asp:Button ID="Submitfw" runat="server" Text="Submit" OnClick="submitfw_Click"></asp:Button>
     </asp:Panel>
     <asp:Panel ID="testPanel" runat="server">
