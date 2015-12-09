@@ -1,6 +1,8 @@
 ﻿function addNewWidget(count, gridster) {
 
     var wid = document.createElement("li");
+    wid.className = "widget";
+    wid.id = "Li" + count;
     var head = document.createElement("header");
 
     var deletewid = document.createElement("div");
@@ -13,6 +15,19 @@
 
     var selectionBoxes = document.createElement("div");
     selectionBoxes.id = "div" + count;
+    selectionBoxes.className = "menu-holder";
+    selectionBoxes.setAttribute('data-id', count);
+
+    var menuPopup = document.createElement("div");
+    menuPopup.className = "task__actions";
+    menuPopup.id = "divMenu" + count;
+
+    var list1 = document.createElement("i");
+    list1.className = "edit-Widget";
+
+    var list2 = document.createElement("i");
+    list2.className = "delete-Widget";
+    list2.id = "DeleteWidget" + count;
 
     var selectChartTypeLabel = document.createElement("label");
     selectChartTypeLabel.id = "ChartSelectLab" + count;
@@ -63,8 +78,11 @@
     selectionBoxes.appendChild(selectDataLabel);
     selectionBoxes.appendChild(selectData);
     selectionBoxes.appendChild(button);
+    selectionBoxes.appendChild(can);
+    menuPopup.appendChild(list1);
+    menuPopup.appendChild(list2);
+    selectionBoxes.appendChild(menuPopup);
     wid.appendChild(selectionBoxes);
-    wid.appendChild(can);
 
     gridster.add_widget.apply(gridster, [wid, 2, 2]);
 
@@ -234,4 +252,10 @@ function hideAll(count) {
 
     var button = document.getElementById("Button" + count);
     button.hidden = true;
+}
+function deleteWidget(gridster) {
+    window.alert("Im here");
+    $(this).closest("li").addClass("activ");
+    gridster.remove_widget($('.activ'));
+    window.alert("Im here");
 }
