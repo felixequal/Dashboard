@@ -183,38 +183,39 @@ public partial class mgmt_foodwaste : System.Web.UI.Page
     //The COMMIT button code.
     protected void submitToDB_Click(object sender, EventArgs e)
     {
-         DataClassesDataContext db = new DataClassesDataContext();
+         DataClassesDataContext db = new DataClassesDataContext();  //create a new instance of the database class-object
 
-        foreach (foodWaste x in theList)
+        if (theList != null)
         {
-            db.foodWastes.InsertOnSubmit(x);
+            foreach (foodWaste x in theList)
+            {
+                db.foodWastes.InsertOnSubmit(x);  //insert each foodwaste object in the list into the db (the class that represents our db.
+                //Which puts it in the actual database;
+            }
+            try
+            {
+                db.SubmitChanges();  //submit the changes to the db.
+            }
+            catch (Exception exception)
+            {
+                Console.WriteLine(exception);
+                // Make some adjustments.
+                // ...
+                // Try again.
+                db.SubmitChanges();
+            }
         }
-        // Add the new object to the Orders collection.
-        // Submit the change to the database.
-        try
-        {
-            db.SubmitChanges();
-        }
-        catch (Exception exception)
-        {
-            Console.WriteLine(exception);
-            // Make some adjustments.
-            // ...
-            // Try again.
-            db.SubmitChanges();
-        }
-
-        theList = null;
-        GridView2.DataSource = theList;
+        theList = null; //clear out our list. We've submitted successfully and don't want people submitting the same data twice.
+        GridView2.DataSource = theList;  //rebind the gridview to the list, which should now be empty.  The gridview should disappear.
         GridView2.DataBind();
         GridView3.DataBind();  //Gridview 3 is just to see the data being updated in the db. Not strictly necessary for the page.
     }
 
     //!IMPORTANT - this function needs to be used everywhere so the code doesn't look like garbage and we have reliable validation. And we can re use this in every page.
-    //A nicer function to validate all textbox to foodwaste property assignments. This can replace all try-catches in all places once it's complete.
+    //This is a function to validate all textbox to foodwaste property assignments. This can replace all textbox to foodwaste-value try-catches in all places once it's complete.
     protected object validate(object a, ref TextBox b)  //textbox is passed by reference. It is not allowed to pass food.<whatevers>. I tried.
     {
-        Object x = null;  //a holder object
+        Object x = null;  //a holder object. Generic object gets turned into whatever datatype depending on the type.
         Type passedObjectType = a.GetType();  //what kind of object was passed in (double, dateTime, etc)?
         string theTypeString = passedObjectType.ToString();  //ok then we switch on that kind of object.
         Debug.WriteLine("theTypeString: " + theTypeString);  //debug
