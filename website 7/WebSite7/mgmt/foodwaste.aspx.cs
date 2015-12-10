@@ -130,7 +130,7 @@ public partial class mgmt_foodwaste : System.Web.UI.Page
     protected void GridView2_RowEditing(object sender, GridViewEditEventArgs e)
     {
         GridView2.EditIndex = e.NewEditIndex;
-        foodWaste ds = theList[e.NewEditIndex];
+        foodWaste ds = theList[e.NewEditIndex];  //Foodwaste object list
         GridView2.DataSource = theList;
         GridView2.DataBind();
     }
@@ -149,7 +149,6 @@ public partial class mgmt_foodwaste : System.Web.UI.Page
         int row = e.RowIndex;
 
         TextBox tDate = Grow.Cells[2].Controls[0] as TextBox;
-        if (tDate == null) { Debug.WriteLine("tDate is null"); }
         TextBox tWeight = Grow.Cells[3].Controls[0] as TextBox;
         TextBox tpGrains = Grow.Cells[4].Controls[0] as TextBox;
         TextBox tpFruit = Grow.Cells[5].Controls[0] as TextBox;
@@ -157,12 +156,18 @@ public partial class mgmt_foodwaste : System.Web.UI.Page
         TextBox tpDairy = Grow.Cells[7].Controls[0] as TextBox;
         GridView2.EditIndex = -1;
 
-        theList[row].date = Convert.ToDateTime(tDate.Text);
-        theList[row].weight = Convert.ToInt32(tWeight.Text);
-        theList[row].percentGrains = Convert.ToInt32(tpGrains.Text);
-        theList[row].percentFruit = Convert.ToInt32(tpFruit.Text);
-        theList[row].percentVeg = Convert.ToInt32(tpVeg.Text);
-        theList[row].percentDairy = Convert.ToInt32(tpDairy.Text);
+        theList[row].date = (DateTime)validate(theList[row].date, ref tDate);
+        //theList[row].date = Convert.ToDateTime(tDate.Text);
+        theList[row].weight = (double)validate(theList[row].weight, ref tWeight);
+        //theList[row].weight = Convert.ToInt32(tWeight.Text);
+        theList[row].percentGrains = (double)validate(theList[row].percentGrains, ref tpGrains);
+        //theList[row].percentGrains = Convert.ToInt32(tpGrains.Text);
+        theList[row].percentFruit = (double)validate(theList[row].percentFruit, ref tpFruit);
+        //theList[row].percentFruit = Convert.ToInt32(tpFruit.Text);
+        theList[row].percentVeg = (double)validate(theList[row].percentVeg, ref tpVeg);
+        //theList[row].percentVeg = Convert.ToInt32(tpVeg.Text);
+        theList[row].percentDairy = (double)validate(theList[row].percentDairy, ref tpDairy);
+        //theList[row].percentDairy = Convert.ToInt32(tpDairy.Text);
 
         GridView2.DataSource = theList;
         GridView2.DataBind();
@@ -171,6 +176,7 @@ public partial class mgmt_foodwaste : System.Web.UI.Page
     protected void GridView2_RowDeleting(object sender, GridViewDeleteEventArgs e)
     {
         if (theList != null) theList.RemoveAt(e.RowIndex);
+        GridView2.DataSource = theList;
         GridView2.DataBind();
     }
 
@@ -201,7 +207,7 @@ public partial class mgmt_foodwaste : System.Web.UI.Page
         theList = null;
         GridView2.DataSource = theList;
         GridView2.DataBind();
-        GridView3.DataBind();
+        GridView3.DataBind();  //Gridview 3 is just to see the data being updated in the db. Not strictly necessary for the page.
     }
 
     //!IMPORTANT - this function needs to be used everywhere so the code doesn't look like garbage and we have reliable validation. And we can re use this in every page.
@@ -211,20 +217,29 @@ public partial class mgmt_foodwaste : System.Web.UI.Page
         Object x = null;  //a holder object
         Type passedObjectType = a.GetType();  //what kind of object was passed in (double, dateTime, etc)?
         string theTypeString = passedObjectType.ToString();  //ok then we switch on that kind of object.
-        Debug.WriteLine("D: " + theTypeString);  //debug
-        Debug.WriteLine("B:" + b.Text);  //debug
+        Debug.WriteLine("theTypeString: " + theTypeString);  //debug
+        Debug.WriteLine("textbox:" + b.Text);  //debug
         switch (theTypeString) //ADD MORE CASES PLEASE
         {
             case "System.Double":  //this string has to match exactly the kind of object type (case sensitive).
                 try { x = Convert.ToDouble(b.Text); }
-                catch (Exception e) { b.Text = "INPUT ERROR!"; Debug.WriteLine("error x:" + x.ToString()); }
-                Debug.WriteLine("good x:" + x.ToString());
+                catch (Exception e) { b.Text = "INPUT ERROR!"; break; Debug.WriteLine("error x:" + x.ToString()); }
                 return (double)x;  //returns the specific type so the calling function doesn't have to cast anything. This DOES work.
 
             case "System.DateTime":
                 try { x = Convert.ToDateTime(b.Text); }
-                catch (Exception e) { b.Text = "INPUT ERROR!"; }
+                catch (Exception e) { b.Text = "INPUT ERROR!"; break; }
                 return (DateTime)x;
+
+            case "System.Int32":
+                try { x = Convert.ToInt32(b.Text); }
+                catch (Exception e) { b.Text = "INPUT ERROR!"; break; }
+                return (int)x;
+
+            case "System.Single":
+                try { x = Convert.ToSingle(b.Text); }
+                catch (Exception e) { b.Text = "INPUT ERROR!"; break; }
+                return (float)x;
 
             default:
                 break;
