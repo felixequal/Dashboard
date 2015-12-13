@@ -1,0 +1,121 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 14.875, 10.125" name="DataClasses">
+  <DataContextMoniker Name="/DataClassesDataContext" />
+  <nestedChildShapes>
+    <classShape Id="52b53772-29ab-4390-aed7-8ff767ab4cbb" absoluteBounds="0.5, 1.25, 2, 1.3862939453125005">
+      <DataClassMoniker Name="/DataClassesDataContext/Domain" />
+      <nestedChildShapes>
+        <elementListCompartment Id="aa78c5d3-5f75-4d9d-bfa0-f98bc7c40691" absoluteBounds="0.515, 1.71, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="c4a40545-b5e0-4d7a-a5f8-2e9791127333" absoluteBounds="3.25, 0.875, 2, 2.1554996744791666">
+      <DataClassMoniker Name="/DataClassesDataContext/Project" />
+      <nestedChildShapes>
+        <elementListCompartment Id="084b0fb0-100c-460b-8351-964ef9b3f6f2" absoluteBounds="3.265, 1.335, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="4fea4760-3ec5-48c3-b6ed-c94e408fa786" absoluteBounds="8.75, 1, 2, 1.5785953776041666">
+      <DataClassMoniker Name="/DataClassesDataContext/Fish" />
+      <nestedChildShapes>
+        <elementListCompartment Id="ae0b0c68-726f-4232-a3fe-d407831028f9" absoluteBounds="8.765, 1.46, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="4dfc3b66-2dcf-4673-b587-ad3750892b0c" absoluteBounds="12.625, 0.75, 2, 1.9631982421875005">
+      <DataClassMoniker Name="/DataClassesDataContext/Fish_Datapoint" />
+      <nestedChildShapes>
+        <elementListCompartment Id="9e4f927f-9577-469e-abe9-70951b2683ce" absoluteBounds="12.64, 1.21, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="499ea9f3-dfe1-4431-9b64-4bbf236515a5" absoluteBounds="0.75, 3.625, 2, 1.3862939453125">
+      <DataClassMoniker Name="/DataClassesDataContext/fishimage" />
+      <nestedChildShapes>
+        <elementListCompartment Id="f81f644b-a740-4f1f-b9e7-8ac42eed82c3" absoluteBounds="0.76500000000000012, 4.0850000000000009, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="0355b7a4-9b11-42d3-b6da-ba03cf9ba7bd" absoluteBounds="8.875, 5, 2, 4.0785139973958318">
+      <DataClassMoniker Name="/DataClassesDataContext/Fishtank_DataPoint" />
+      <nestedChildShapes>
+        <elementListCompartment Id="e15da43b-7242-490f-bc70-8c397abff992" absoluteBounds="8.89, 5.4600000000000009, 1.9700000000000002, 3.518513997395833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="2b34f595-c579-4a6c-b1a7-4204b1b1c8bc" absoluteBounds="6, 1, 2, 1.9631982421875005">
+      <DataClassMoniker Name="/DataClassesDataContext/Fishtank_Station" />
+      <nestedChildShapes>
+        <elementListCompartment Id="be32a952-ee71-4031-9035-48c026bdf624" absoluteBounds="6.015, 1.46, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="f851dbaf-e51f-42c1-856d-16903a2ce90c" absoluteBounds="3.25, 3.375, 2, 2.1554996744791666">
+      <DataClassMoniker Name="/DataClassesDataContext/foodWaste" />
+      <nestedChildShapes>
+        <elementListCompartment Id="1c1114c6-44cc-45d3-8989-777c1a2039e4" absoluteBounds="3.265, 3.8350000000000009, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="b14e5efa-b3a6-4de6-aee1-9cca0b553e5e" absoluteBounds="12.625, 3.375, 2, 1.1939925130208335">
+      <DataClassMoniker Name="/DataClassesDataContext/Plant" />
+      <nestedChildShapes>
+        <elementListCompartment Id="cce95102-b084-41ee-80f4-e303fa2efc16" absoluteBounds="12.64, 3.835, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="99c02c4b-f852-41c8-ab06-8642dfe4d13e" absoluteBounds="8.875, 2.875, 2, 1.7708968098958327">
+      <DataClassMoniker Name="/DataClassesDataContext/Plants_Harvested" />
+      <nestedChildShapes>
+        <elementListCompartment Id="9edbc32c-b3af-431b-abae-57fff76842b7" absoluteBounds="8.89, 3.335, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(2.5 : 1.94314697265625); (3.25 : 1.94314697265625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/DataClassesDataContext/Domain/Domain_Project" />
+      <nodes>
+        <classShapeMoniker Id="52b53772-29ab-4390-aed7-8ff767ab4cbb" />
+        <classShapeMoniker Id="c4a40545-b5e0-4d7a-a5f8-2e9791127333" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(10.75 : 1.78929768880208); (12.625 : 1.78929768880208)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/DataClassesDataContext/Fish/Fish_Fish_Datapoint" />
+      <nodes>
+        <classShapeMoniker Id="4fea4760-3ec5-48c3-b6ed-c94e408fa786" />
+        <classShapeMoniker Id="4dfc3b66-2dcf-4673-b587-ad3750892b0c" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(8 : 1.78929768880208); (8.75 : 1.78929768880208)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/DataClassesDataContext/Fishtank_Station/Fishtank_Station_Fish" />
+      <nodes>
+        <classShapeMoniker Id="2b34f595-c579-4a6c-b1a7-4204b1b1c8bc" />
+        <classShapeMoniker Id="4fea4760-3ec5-48c3-b6ed-c94e408fa786" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(6.8906235 : 2.9631982421875); (6.8906235 : 6.15625); (8.875 : 6.15625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/DataClassesDataContext/Fishtank_Station/Fishtank_Station_Fishtank_DataPoint" />
+      <nodes>
+        <classShapeMoniker Id="2b34f595-c579-4a6c-b1a7-4204b1b1c8bc" />
+        <classShapeMoniker Id="0355b7a4-9b11-42d3-b6da-ba03cf9ba7bd" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.25 : 1.98159912109375); (6 : 1.98159912109375)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/DataClassesDataContext/Project/Project_Fishtank_Station" />
+      <nodes>
+        <classShapeMoniker Id="c4a40545-b5e0-4d7a-a5f8-2e9791127333" />
+        <classShapeMoniker Id="2b34f595-c579-4a6c-b1a7-4204b1b1c8bc" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(12.625 : 3.97199625651042); (10.875 : 3.97199625651042)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/DataClassesDataContext/Plant/Plant_Plants_Harvested" />
+      <nodes>
+        <classShapeMoniker Id="b14e5efa-b3a6-4de6-aee1-9cca0b553e5e" />
+        <classShapeMoniker Id="99c02c4b-f852-41c8-ab06-8642dfe4d13e" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(7.531252 : 2.9631982421875); (7.531252 : 3.60659912109375); (8.875 : 3.60659912109375)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/DataClassesDataContext/Fishtank_Station/Fishtank_Station_Plants_Harvested" />
+      <nodes>
+        <classShapeMoniker Id="2b34f595-c579-4a6c-b1a7-4204b1b1c8bc" />
+        <classShapeMoniker Id="99c02c4b-f852-41c8-ab06-8642dfe4d13e" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="bd50ec7e-6f62-462a-999b-a854d5c9e7be" absoluteBounds="3.5, 6.375, 2, 3.5016097005208326">
+      <DataClassMoniker Name="/DataClassesDataContext/Compost" />
+      <nestedChildShapes>
+        <elementListCompartment Id="482f2a9e-bd4e-4ff0-9fce-bb3fd0996c53" absoluteBounds="3.5149999999999997, 6.835, 1.9700000000000002, 2.941609700520833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>

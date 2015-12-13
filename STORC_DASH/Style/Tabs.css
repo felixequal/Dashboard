@@ -1,0 +1,242 @@
+﻿
+.Initial
+{
+    display: block;
+    padding: 10px 28px 21px 28px;
+    float: left;
+    background: url("../Images/leaf_un.png") no-repeat right top;
+    color: Black;
+    font-weight: bold;
+}
+.Initial:hover
+{
+    color: White;
+    background: url("../Images/leaf_hov.png") no-repeat right top;
+}
+.Clicked
+{
+    float: left;
+    display: block;
+    background: url("../Images/leaf_cli.png") no-repeat right top;
+    padding: 10px 28px 21px 28px;
+    color: Black;
+    font-weight: bold;
+    color: White;
+}
+.Initial_DataSub_aqua
+{
+    display: block;
+    padding: 10px 28px 21px 28px;
+    float: left;
+    background: url("../Images/fish.png") no-repeat right top;
+    color: darkblue;
+    font-weight: bold;
+}
+
+.Initial_DataSub_aqua:hover
+{
+    color: White;
+    background: url("../Images/fish_hov.png") no-repeat right top;
+}
+
+.Clicked_Datasub_aqua
+{
+    float: left;
+    display: block;
+    background: url("../Images/fish_cl.png") no-repeat right top;
+    padding: 10px 28px 21px 28px;
+    color: darkgrey;
+    font-weight: bold;
+    color: lightblue;
+}
+
+.Initial_DataSub_vermi
+{
+    display: block;
+    padding: 10px 28px 21px 28px;
+    float: left;
+    background: url("../Images/vermi.png") no-repeat right top;
+    color: darkblue;
+    font-weight: bold;
+}
+
+.Initial_DataSub_vermi:hover
+{
+    color: White;
+    background: url("../Images/vermi_hov.png") no-repeat right top;
+}
+
+.Clicked_Datasub_vermi
+{
+    float: left;
+    display: block;
+    background: url("../Images/vermi_cli.png") no-repeat right top;
+    padding: 10px 28px 21px 28px;
+    color: Black;
+    font-weight: bold;
+    color: lightblue;
+}
+
+.Initial_DataSub_comp
+{
+    display: block;
+    padding: 10px 28px 21px 28px;
+    float: left;
+    background: url("../Images/compost.png") no-repeat right top;
+    color: darkblue;
+    font-weight: bold;
+}
+
+.Initial_DataSub_comp:hover
+{
+    color: White;
+    background: url("../Images/compost_hov.png") no-repeat right top;
+}
+
+.Clicked_Datasub_comp
+{
+    float: left;
+    display: block;
+    background: url("../Images/compost_cli.png") no-repeat right top;
+    padding: 10px 28px 21px 28px;
+    color: Black;
+    font-weight: bold;
+    color: lightblue;
+}
+
+.Initial_DataSub_energy
+{
+    display: block;
+    padding: 10px 28px 21px 28px;
+    float: left;
+    background: url("../Images/energy.png") no-repeat right top;
+    color: darkblue;
+    font-weight: bold;
+}
+
+.Initial_DataSub_energy:hover
+{
+    color: White;
+    background: url("../Images/energy_hov.png") no-repeat right top;
+}
+
+.Clicked_Datasub_energy
+{
+    float: left;
+    display: block;
+    background: url("../Images/energy_cli.png") no-repeat right top;
+    padding: 10px 28px 21px 28px;
+    color: Black;
+    font-weight: bold;
+    color: lightblue;
+}
+
+.Initial_DataSub_bio
+{
+    display: block;
+    padding: 10px 28px 21px 28px;
+    float: left;
+    background: url("../Images/bio_dis.png") no-repeat right top;
+    color: darkblue;
+    font-weight: bold;
+}
+
+.Initial_DataSub_bio:hover
+{
+    color: White;
+    background: url("../Images/bio_dis_hov.png") no-repeat right top;
+}
+
+.Clicked_Datasub_bio
+{
+    float: left;
+    display: block;
+    background: url("../Images/bio_dis_cli.png") no-repeat right top;
+    padding: 10px 28px 21px 28px;
+    color: Black;
+    font-weight: bold;
+    color: lightblue;
+}
+
+.Initial_adduser
+{
+    display: block;
+    padding: 10px 28px 21px 28px;
+    float: left;
+    background: url("../Images/add_user_logo.png") no-repeat right top;
+    color: darkblue;
+    font-weight: bold;
+}
+
+.Initial_adduser:hover
+{
+    color: White;
+    background: url("../Images/add_user_logo_hov.png") no-repeat right top;
+}
+
+.Clicked_adduser
+{
+    float: left;
+    display: block;
+    background: url("../Images/add_user_logo_cli.png") no-repeat right top;
+    padding: 10px 28px 21px 28px;
+    color: Black;
+    font-weight: bold;
+    color: lightblue;
+}
+
+.Initial_deleteuser
+{
+    display: block;
+    padding: 10px 28px 21px 28px;
+    float: left;
+    background: url("../Images/delete_user_logo.png") no-repeat right top;
+    color: darkblue;
+    font-weight: bold;
+}
+
+.Initial_deleteuser:hover
+{
+    color: White;
+    background: url("../Images/delete_user_logo_hov.png") no-repeat right top;
+}
+
+.Clicked_deleteuser
+{
+    float: left;
+    display: block;
+    background: url("../Images/delete_user_logo_cli.png") no-repeat right top;
+    padding: 10px 28px 21px 28px;
+    color: Black;
+    font-weight: bold;
+    color: lightblue;
+}
+
+.Initial_manageuser
+{
+    display: block;
+    padding: 10px 28px 21px 28px;
+    float: left;
+    background: url("../Images/manage_user.png") no-repeat right top;
+    color: darkblue;
+    font-weight: bold;
+}
+
+.Initial_manageuser:hover
+{
+    color: White;
+    background: url("../Images/manage_user_hov.png") no-repeat right top;
+}
+
+.Clicked_manageuser
+{
+    float: left;
+    display: block;
+    background: url("../Images/manage_user_cli.png") no-repeat right top;
+    padding: 10px 28px 21px 28px;
+    color: Black;
+    font-weight: bold;
+    color: lightblue;
+}
+
+

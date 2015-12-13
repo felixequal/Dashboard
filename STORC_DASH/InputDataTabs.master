@@ -1,0 +1,57 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/LeafTabs.master" AutoEventWireup="true" CodeFile="InputDataTabs.master.cs" Inherits="InputDataTabs" %>
+
+<asp:Content ID="Content2" ContentPlaceHolderID="InputDataHolder" Runat="Server">
+    <!--Tabs with pics corresponding to projects-->
+    <table align="left" border="0">
+        <tr>
+            <td>
+                <asp:Button Text="Aquaponics" BorderStyle="None" ID="Aquaponics" CssClass="Initial_DataSub_aqua" runat="server" OnClick="aqua_Click" />
+                <asp:Button Text="Vermiculture" BorderStyle="None" ID="Vermiculture" CssClass="Initial_DataSub_vermi" runat="server" OnClick="vermi_Click" />
+                <asp:Button Text="Compost" BorderStyle="None" ID="Compost" CssClass="Initial_DataSub_comp" runat="server" OnClick="comp_Click" />
+                <asp:Button Text="Energy" BorderStyle="None" ID="Energy" CssClass="Initial_DataSub_energy" runat="server" OnClick="energy_Click" />
+                <asp:Button Text="Biodiesel" BorderStyle="None" ID="Biodiesel" CssClass="Initial_DataSub_bio" runat="server" OnClick="bio_Click" />
+            </td>
+        </tr>
+    </table>
+    <br />
+    <br />
+    <!-- Multiview for each tab load different page-->
+    <asp:MultiView ID="SubInputView" runat="server">
+        <!-- First Tab will load Aquaponics forms-->
+        <asp:View ID="Aqua" runat="server"> 
+            <asp:ContentPlaceHolder id="AquaHolder" runat="server">
+        
+            </asp:ContentPlaceHolder>
+        </asp:View>
+
+        <!--This tab will load vermiculture page-->
+        <asp:View ID="Vermi" runat="server"> 
+            <asp:ContentPlaceHolder id="VermiHolder" runat="server">
+        
+            </asp:ContentPlaceHolder>
+        </asp:View>
+
+        <!--This tab will load compost-->
+        <asp:View ID="comp" runat="server"> 
+            <asp:ContentPlaceHolder id="compHolder" runat="server">
+        
+            </asp:ContentPlaceHolder>
+        </asp:View>
+
+        <!--this tab will load Energy-->
+        <asp:View ID="ener" runat="server"> 
+            <asp:ContentPlaceHolder id="enerHolder" runat="server">
+        
+            </asp:ContentPlaceHolder>
+        </asp:View>
+
+        <!-- This tab will load biodesiel-->
+       <asp:View ID="biod" runat="server"> 
+            <asp:ContentPlaceHolder id="diodHolder" runat="server">
+        
+            </asp:ContentPlaceHolder>
+        </asp:View>
+    </asp:MultiView>
+</asp:Content>
+
+

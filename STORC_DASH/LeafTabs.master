@@ -1,0 +1,55 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="LeafTabs.master.cs" Inherits="LeafTabs" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>STORC Dashboard</title>
+  <!--  <asp:ContentPlaceHolder id="head" runat="server">
+    </asp:ContentPlaceHolder>-->
+    <link rel="stylesheet" type="text/css" href="../Style/Tabs.css" />
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div>
+            <!--Create the leaf tabs-->
+            <table border="0" align="left">
+                <tr>
+                    <td>
+                        <asp:Button Text="Dashboard" BorderStyle="None" ID="TabWidget" CssClass="Initial" runat="server" OnClick="TabWidget_Click" />
+                        <asp:Button Text="Input Data" BorderStyle="None" ID="TabInput" CssClass="Initial" runat="server" OnClick="TabInput_Click" />
+                        <asp:Button Text="Edit Data" BorderStyle="None" ID="TabEdit" CssClass="Initial" runat="server" OnClick="TabEdit_Click" />
+                    </td>
+                </tr>
+            </table>
+            <!-- STORC Image-->
+             <image src="../Images/logo_plain.png" alt="STORC Dashboard Logo" align="right" size="90%"></image>
+        </div>
+        <br />
+        <br />
+        <div>
+            <!-- Multiview for each tab load different page-->
+            <asp:MultiView ID="MainView" runat="server">
+                <!-- First Tab will load widgets-->
+                <asp:View ID="Widgets" runat="server"> 
+                    <asp:ContentPlaceHolder id="WidgetHolder" runat="server">
+        
+                    </asp:ContentPlaceHolder>
+                </asp:View>
+                <!-- Second tab will load the input data tab-->
+                <asp:View ID="InputData" runat="server">
+                    <asp:ContentPlaceHolder ID="InputDataHolder" runat="server">
+                        
+                    </asp:ContentPlaceHolder>
+                </asp:View>
+                <!-- Third tab will load the edit data tab-->
+                <asp:View ID="EditData" runat="server">
+                    <asp:ContentPlaceHolder ID="EditDataHolder" runat="server">
+
+                    </asp:ContentPlaceHolder>
+                </asp:View>
+            </asp:MultiView>
+        </div>
+    </form>
+</body>
+</html>
