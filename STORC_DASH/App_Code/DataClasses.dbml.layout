@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 14.875, 10.125" name="DataClasses">
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 14.875, 11.625" name="DataClasses">
   <DataContextMoniker Name="/DataClassesDataContext" />
   <nestedChildShapes>
     <classShape Id="52b53772-29ab-4390-aed7-8ff767ab4cbb" absoluteBounds="0.5, 1.25, 2, 1.3862939453125005">
@@ -83,7 +83,7 @@
         <classShapeMoniker Id="4fea4760-3ec5-48c3-b6ed-c94e408fa786" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(6.8906235 : 2.9631982421875); (6.8906235 : 6.15625); (8.875 : 6.15625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(6.8906235 : 2.9631982421875); (6.8906235 : 6.15625); (8.875 : 6.15625)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/DataClassesDataContext/Fishtank_Station/Fishtank_Station_Fishtank_DataPoint" />
       <nodes>
         <classShapeMoniker Id="2b34f595-c579-4a6c-b1a7-4204b1b1c8bc" />
@@ -115,6 +115,18 @@
       <DataClassMoniker Name="/DataClassesDataContext/Compost" />
       <nestedChildShapes>
         <elementListCompartment Id="482f2a9e-bd4e-4ff0-9fce-bb3fd0996c53" absoluteBounds="3.5149999999999997, 6.835, 1.9700000000000002, 2.941609700520833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="e823a1fa-1973-46b7-ad52-d0269cd7ee11" absoluteBounds="6.25, 7.25, 2, 4.0785139973958326">
+      <DataClassMoniker Name="/DataClassesDataContext/Biodiesel" />
+      <nestedChildShapes>
+        <elementListCompartment Id="0be5e95f-affa-4041-870c-a95ddd1089a1" absoluteBounds="6.265, 7.71, 1.9700000000000002, 3.518513997395833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="5e1d1a30-35a9-4038-85ac-190039bf2abf" absoluteBounds="1.25, 6.75, 2, 3.3093082682291666">
+      <DataClassMoniker Name="/DataClassesDataContext/Vermiculture" />
+      <nestedChildShapes>
+        <elementListCompartment Id="66af9bec-ab00-4536-8e14-a23025392c9d" absoluteBounds="1.2650000000000001, 7.21, 1.9700000000000002, 2.7493082682291665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
   </nestedChildShapes>

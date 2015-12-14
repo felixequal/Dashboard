@@ -132,4 +132,42 @@
       <Column Name="percentOilFull" Type="System.Double" DbType="Float" CanBeNull="true" />
     </Type>
   </Table>
+  <Table Name="dbo.Biodiesel" Member="Biodiesels">
+    <Type Name="Biodiesel">
+      <Column Name="BatchNumber" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="StartRunDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="EndRunDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="TotalProcessingTime" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="VolumeWasteOilColleted" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="VolumeWasteOilProduced" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="VolumeBiodieselProduced" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="VolumeWasteProduced" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="EnergyRequired" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="MethanolUsed" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="PotassiumHydroxideUsed" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="QualityPassFail" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="CostOfWasteOil" Type="System.Decimal" DbType="Money NOT NULL" CanBeNull="false" />
+      <Column Name="ManHours" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="CostOfDisposal" Type="System.Decimal" DbType="Money NOT NULL" CanBeNull="false" />
+      <Column Name="MarketCostBiodiesel" Type="System.Decimal" DbType="Money NOT NULL" CanBeNull="false" />
+      <Column Name="Notes" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Vermiculture" Member="Vermicultures">
+    <Type Name="Vermiculture">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="StartDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="EndDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="VolumeCompostProduced" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="BedTemperature" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="BedMoisture" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="TeaProduced" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="WomsRemoved" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="ProductionCost" Type="System.Decimal" DbType="Money NOT NULL" CanBeNull="false" />
+      <Column Name="MarketValue" Type="System.Decimal" DbType="Money NOT NULL" CanBeNull="false" />
+      <Column Name="WormsAdded" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="WormRemoved" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Notes" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+    </Type>
+  </Table>
 </Database>

@@ -41,7 +41,7 @@ public partial class FoodWaste : System.Web.UI.Page
             // Convert
             double weight = Convert.ToDouble(Weight.Text);
             //Send the valid method if weight is greater than 0 (aka not negative)
-            e.IsValid = (weight > 0);
+            e.IsValid = (weight >= 0);
         }
         catch
         { }

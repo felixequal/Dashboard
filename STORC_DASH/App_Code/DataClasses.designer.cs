@@ -62,6 +62,12 @@ public partial class DataClassesDataContext : System.Data.Linq.DataContext
   partial void InsertCompost(Compost instance);
   partial void UpdateCompost(Compost instance);
   partial void DeleteCompost(Compost instance);
+  partial void InsertBiodiesel(Biodiesel instance);
+  partial void UpdateBiodiesel(Biodiesel instance);
+  partial void DeleteBiodiesel(Biodiesel instance);
+  partial void InsertVermiculture(Vermiculture instance);
+  partial void UpdateVermiculture(Vermiculture instance);
+  partial void DeleteVermiculture(Vermiculture instance);
   #endregion
 	
 	public DataClassesDataContext() : 
@@ -179,6 +185,22 @@ public partial class DataClassesDataContext : System.Data.Linq.DataContext
 		get
 		{
 			return this.GetTable<Compost>();
+		}
+	}
+	
+	public System.Data.Linq.Table<Biodiesel> Biodiesels
+	{
+		get
+		{
+			return this.GetTable<Biodiesel>();
+		}
+	}
+	
+	public System.Data.Linq.Table<Vermiculture> Vermicultures
+	{
+		get
+		{
+			return this.GetTable<Vermiculture>();
 		}
 	}
 }
@@ -2835,6 +2857,802 @@ public partial class Compost : INotifyPropertyChanging, INotifyPropertyChanged
 				this._percentOilFull = value;
 				this.SendPropertyChanged("percentOilFull");
 				this.OnpercentOilFullChanged();
+			}
+		}
+	}
+	
+	public event PropertyChangingEventHandler PropertyChanging;
+	
+	public event PropertyChangedEventHandler PropertyChanged;
+	
+	protected virtual void SendPropertyChanging()
+	{
+		if ((this.PropertyChanging != null))
+		{
+			this.PropertyChanging(this, emptyChangingEventArgs);
+		}
+	}
+	
+	protected virtual void SendPropertyChanged(String propertyName)
+	{
+		if ((this.PropertyChanged != null))
+		{
+			this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+		}
+	}
+}
+
+[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Biodiesel")]
+public partial class Biodiesel : INotifyPropertyChanging, INotifyPropertyChanged
+{
+	
+	private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+	
+	private int _BatchNumber;
+	
+	private System.DateTime _StartRunDate;
+	
+	private System.DateTime _EndRunDate;
+	
+	private double _TotalProcessingTime;
+	
+	private double _VolumeWasteOilColleted;
+	
+	private double _VolumeWasteOilProduced;
+	
+	private double _VolumeBiodieselProduced;
+	
+	private double _VolumeWasteProduced;
+	
+	private double _EnergyRequired;
+	
+	private double _MethanolUsed;
+	
+	private double _PotassiumHydroxideUsed;
+	
+	private bool _QualityPassFail;
+	
+	private decimal _CostOfWasteOil;
+	
+	private double _ManHours;
+	
+	private decimal _CostOfDisposal;
+	
+	private decimal _MarketCostBiodiesel;
+	
+	private string _Notes;
+	
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnBatchNumberChanging(int value);
+    partial void OnBatchNumberChanged();
+    partial void OnStartRunDateChanging(System.DateTime value);
+    partial void OnStartRunDateChanged();
+    partial void OnEndRunDateChanging(System.DateTime value);
+    partial void OnEndRunDateChanged();
+    partial void OnTotalProcessingTimeChanging(double value);
+    partial void OnTotalProcessingTimeChanged();
+    partial void OnVolumeWasteOilColletedChanging(double value);
+    partial void OnVolumeWasteOilColletedChanged();
+    partial void OnVolumeWasteOilProducedChanging(double value);
+    partial void OnVolumeWasteOilProducedChanged();
+    partial void OnVolumeBiodieselProducedChanging(double value);
+    partial void OnVolumeBiodieselProducedChanged();
+    partial void OnVolumeWasteProducedChanging(double value);
+    partial void OnVolumeWasteProducedChanged();
+    partial void OnEnergyRequiredChanging(double value);
+    partial void OnEnergyRequiredChanged();
+    partial void OnMethanolUsedChanging(double value);
+    partial void OnMethanolUsedChanged();
+    partial void OnPotassiumHydroxideUsedChanging(double value);
+    partial void OnPotassiumHydroxideUsedChanged();
+    partial void OnQualityPassFailChanging(bool value);
+    partial void OnQualityPassFailChanged();
+    partial void OnCostOfWasteOilChanging(decimal value);
+    partial void OnCostOfWasteOilChanged();
+    partial void OnManHoursChanging(double value);
+    partial void OnManHoursChanged();
+    partial void OnCostOfDisposalChanging(decimal value);
+    partial void OnCostOfDisposalChanged();
+    partial void OnMarketCostBiodieselChanging(decimal value);
+    partial void OnMarketCostBiodieselChanged();
+    partial void OnNotesChanging(string value);
+    partial void OnNotesChanged();
+    #endregion
+	
+	public Biodiesel()
+	{
+		OnCreated();
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BatchNumber", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+	public int BatchNumber
+	{
+		get
+		{
+			return this._BatchNumber;
+		}
+		set
+		{
+			if ((this._BatchNumber != value))
+			{
+				this.OnBatchNumberChanging(value);
+				this.SendPropertyChanging();
+				this._BatchNumber = value;
+				this.SendPropertyChanged("BatchNumber");
+				this.OnBatchNumberChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_StartRunDate", DbType="DateTime NOT NULL")]
+	public System.DateTime StartRunDate
+	{
+		get
+		{
+			return this._StartRunDate;
+		}
+		set
+		{
+			if ((this._StartRunDate != value))
+			{
+				this.OnStartRunDateChanging(value);
+				this.SendPropertyChanging();
+				this._StartRunDate = value;
+				this.SendPropertyChanged("StartRunDate");
+				this.OnStartRunDateChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EndRunDate", DbType="DateTime NOT NULL")]
+	public System.DateTime EndRunDate
+	{
+		get
+		{
+			return this._EndRunDate;
+		}
+		set
+		{
+			if ((this._EndRunDate != value))
+			{
+				this.OnEndRunDateChanging(value);
+				this.SendPropertyChanging();
+				this._EndRunDate = value;
+				this.SendPropertyChanged("EndRunDate");
+				this.OnEndRunDateChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TotalProcessingTime", DbType="Float NOT NULL")]
+	public double TotalProcessingTime
+	{
+		get
+		{
+			return this._TotalProcessingTime;
+		}
+		set
+		{
+			if ((this._TotalProcessingTime != value))
+			{
+				this.OnTotalProcessingTimeChanging(value);
+				this.SendPropertyChanging();
+				this._TotalProcessingTime = value;
+				this.SendPropertyChanged("TotalProcessingTime");
+				this.OnTotalProcessingTimeChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_VolumeWasteOilColleted", DbType="Float NOT NULL")]
+	public double VolumeWasteOilColleted
+	{
+		get
+		{
+			return this._VolumeWasteOilColleted;
+		}
+		set
+		{
+			if ((this._VolumeWasteOilColleted != value))
+			{
+				this.OnVolumeWasteOilColletedChanging(value);
+				this.SendPropertyChanging();
+				this._VolumeWasteOilColleted = value;
+				this.SendPropertyChanged("VolumeWasteOilColleted");
+				this.OnVolumeWasteOilColletedChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_VolumeWasteOilProduced", DbType="Float NOT NULL")]
+	public double VolumeWasteOilProduced
+	{
+		get
+		{
+			return this._VolumeWasteOilProduced;
+		}
+		set
+		{
+			if ((this._VolumeWasteOilProduced != value))
+			{
+				this.OnVolumeWasteOilProducedChanging(value);
+				this.SendPropertyChanging();
+				this._VolumeWasteOilProduced = value;
+				this.SendPropertyChanged("VolumeWasteOilProduced");
+				this.OnVolumeWasteOilProducedChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_VolumeBiodieselProduced", DbType="Float NOT NULL")]
+	public double VolumeBiodieselProduced
+	{
+		get
+		{
+			return this._VolumeBiodieselProduced;
+		}
+		set
+		{
+			if ((this._VolumeBiodieselProduced != value))
+			{
+				this.OnVolumeBiodieselProducedChanging(value);
+				this.SendPropertyChanging();
+				this._VolumeBiodieselProduced = value;
+				this.SendPropertyChanged("VolumeBiodieselProduced");
+				this.OnVolumeBiodieselProducedChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_VolumeWasteProduced", DbType="Float NOT NULL")]
+	public double VolumeWasteProduced
+	{
+		get
+		{
+			return this._VolumeWasteProduced;
+		}
+		set
+		{
+			if ((this._VolumeWasteProduced != value))
+			{
+				this.OnVolumeWasteProducedChanging(value);
+				this.SendPropertyChanging();
+				this._VolumeWasteProduced = value;
+				this.SendPropertyChanged("VolumeWasteProduced");
+				this.OnVolumeWasteProducedChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EnergyRequired", DbType="Float NOT NULL")]
+	public double EnergyRequired
+	{
+		get
+		{
+			return this._EnergyRequired;
+		}
+		set
+		{
+			if ((this._EnergyRequired != value))
+			{
+				this.OnEnergyRequiredChanging(value);
+				this.SendPropertyChanging();
+				this._EnergyRequired = value;
+				this.SendPropertyChanged("EnergyRequired");
+				this.OnEnergyRequiredChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MethanolUsed", DbType="Float NOT NULL")]
+	public double MethanolUsed
+	{
+		get
+		{
+			return this._MethanolUsed;
+		}
+		set
+		{
+			if ((this._MethanolUsed != value))
+			{
+				this.OnMethanolUsedChanging(value);
+				this.SendPropertyChanging();
+				this._MethanolUsed = value;
+				this.SendPropertyChanged("MethanolUsed");
+				this.OnMethanolUsedChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PotassiumHydroxideUsed", DbType="Float NOT NULL")]
+	public double PotassiumHydroxideUsed
+	{
+		get
+		{
+			return this._PotassiumHydroxideUsed;
+		}
+		set
+		{
+			if ((this._PotassiumHydroxideUsed != value))
+			{
+				this.OnPotassiumHydroxideUsedChanging(value);
+				this.SendPropertyChanging();
+				this._PotassiumHydroxideUsed = value;
+				this.SendPropertyChanged("PotassiumHydroxideUsed");
+				this.OnPotassiumHydroxideUsedChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_QualityPassFail", DbType="Bit NOT NULL")]
+	public bool QualityPassFail
+	{
+		get
+		{
+			return this._QualityPassFail;
+		}
+		set
+		{
+			if ((this._QualityPassFail != value))
+			{
+				this.OnQualityPassFailChanging(value);
+				this.SendPropertyChanging();
+				this._QualityPassFail = value;
+				this.SendPropertyChanged("QualityPassFail");
+				this.OnQualityPassFailChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CostOfWasteOil", DbType="Money NOT NULL")]
+	public decimal CostOfWasteOil
+	{
+		get
+		{
+			return this._CostOfWasteOil;
+		}
+		set
+		{
+			if ((this._CostOfWasteOil != value))
+			{
+				this.OnCostOfWasteOilChanging(value);
+				this.SendPropertyChanging();
+				this._CostOfWasteOil = value;
+				this.SendPropertyChanged("CostOfWasteOil");
+				this.OnCostOfWasteOilChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ManHours", DbType="Float NOT NULL")]
+	public double ManHours
+	{
+		get
+		{
+			return this._ManHours;
+		}
+		set
+		{
+			if ((this._ManHours != value))
+			{
+				this.OnManHoursChanging(value);
+				this.SendPropertyChanging();
+				this._ManHours = value;
+				this.SendPropertyChanged("ManHours");
+				this.OnManHoursChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CostOfDisposal", DbType="Money NOT NULL")]
+	public decimal CostOfDisposal
+	{
+		get
+		{
+			return this._CostOfDisposal;
+		}
+		set
+		{
+			if ((this._CostOfDisposal != value))
+			{
+				this.OnCostOfDisposalChanging(value);
+				this.SendPropertyChanging();
+				this._CostOfDisposal = value;
+				this.SendPropertyChanged("CostOfDisposal");
+				this.OnCostOfDisposalChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MarketCostBiodiesel", DbType="Money NOT NULL")]
+	public decimal MarketCostBiodiesel
+	{
+		get
+		{
+			return this._MarketCostBiodiesel;
+		}
+		set
+		{
+			if ((this._MarketCostBiodiesel != value))
+			{
+				this.OnMarketCostBiodieselChanging(value);
+				this.SendPropertyChanging();
+				this._MarketCostBiodiesel = value;
+				this.SendPropertyChanged("MarketCostBiodiesel");
+				this.OnMarketCostBiodieselChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Notes", DbType="NVarChar(MAX)")]
+	public string Notes
+	{
+		get
+		{
+			return this._Notes;
+		}
+		set
+		{
+			if ((this._Notes != value))
+			{
+				this.OnNotesChanging(value);
+				this.SendPropertyChanging();
+				this._Notes = value;
+				this.SendPropertyChanged("Notes");
+				this.OnNotesChanged();
+			}
+		}
+	}
+	
+	public event PropertyChangingEventHandler PropertyChanging;
+	
+	public event PropertyChangedEventHandler PropertyChanged;
+	
+	protected virtual void SendPropertyChanging()
+	{
+		if ((this.PropertyChanging != null))
+		{
+			this.PropertyChanging(this, emptyChangingEventArgs);
+		}
+	}
+	
+	protected virtual void SendPropertyChanged(String propertyName)
+	{
+		if ((this.PropertyChanged != null))
+		{
+			this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+		}
+	}
+}
+
+[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Vermiculture")]
+public partial class Vermiculture : INotifyPropertyChanging, INotifyPropertyChanged
+{
+	
+	private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+	
+	private int _Id;
+	
+	private System.DateTime _StartDate;
+	
+	private System.DateTime _EndDate;
+	
+	private double _VolumeCompostProduced;
+	
+	private double _BedTemperature;
+	
+	private double _BedMoisture;
+	
+	private double _TeaProduced;
+	
+	private double _WomsRemoved;
+	
+	private decimal _ProductionCost;
+	
+	private decimal _MarketValue;
+	
+	private System.Nullable<int> _WormsAdded;
+	
+	private System.Nullable<int> _WormRemoved;
+	
+	private string _Notes;
+	
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(int value);
+    partial void OnIdChanged();
+    partial void OnStartDateChanging(System.DateTime value);
+    partial void OnStartDateChanged();
+    partial void OnEndDateChanging(System.DateTime value);
+    partial void OnEndDateChanged();
+    partial void OnVolumeCompostProducedChanging(double value);
+    partial void OnVolumeCompostProducedChanged();
+    partial void OnBedTemperatureChanging(double value);
+    partial void OnBedTemperatureChanged();
+    partial void OnBedMoistureChanging(double value);
+    partial void OnBedMoistureChanged();
+    partial void OnTeaProducedChanging(double value);
+    partial void OnTeaProducedChanged();
+    partial void OnWomsRemovedChanging(double value);
+    partial void OnWomsRemovedChanged();
+    partial void OnProductionCostChanging(decimal value);
+    partial void OnProductionCostChanged();
+    partial void OnMarketValueChanging(decimal value);
+    partial void OnMarketValueChanged();
+    partial void OnWormsAddedChanging(System.Nullable<int> value);
+    partial void OnWormsAddedChanged();
+    partial void OnWormRemovedChanging(System.Nullable<int> value);
+    partial void OnWormRemovedChanged();
+    partial void OnNotesChanging(string value);
+    partial void OnNotesChanged();
+    #endregion
+	
+	public Vermiculture()
+	{
+		OnCreated();
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+	public int Id
+	{
+		get
+		{
+			return this._Id;
+		}
+		set
+		{
+			if ((this._Id != value))
+			{
+				this.OnIdChanging(value);
+				this.SendPropertyChanging();
+				this._Id = value;
+				this.SendPropertyChanged("Id");
+				this.OnIdChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_StartDate", DbType="DateTime NOT NULL")]
+	public System.DateTime StartDate
+	{
+		get
+		{
+			return this._StartDate;
+		}
+		set
+		{
+			if ((this._StartDate != value))
+			{
+				this.OnStartDateChanging(value);
+				this.SendPropertyChanging();
+				this._StartDate = value;
+				this.SendPropertyChanged("StartDate");
+				this.OnStartDateChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EndDate", DbType="DateTime NOT NULL")]
+	public System.DateTime EndDate
+	{
+		get
+		{
+			return this._EndDate;
+		}
+		set
+		{
+			if ((this._EndDate != value))
+			{
+				this.OnEndDateChanging(value);
+				this.SendPropertyChanging();
+				this._EndDate = value;
+				this.SendPropertyChanged("EndDate");
+				this.OnEndDateChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_VolumeCompostProduced", DbType="Float NOT NULL")]
+	public double VolumeCompostProduced
+	{
+		get
+		{
+			return this._VolumeCompostProduced;
+		}
+		set
+		{
+			if ((this._VolumeCompostProduced != value))
+			{
+				this.OnVolumeCompostProducedChanging(value);
+				this.SendPropertyChanging();
+				this._VolumeCompostProduced = value;
+				this.SendPropertyChanged("VolumeCompostProduced");
+				this.OnVolumeCompostProducedChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BedTemperature", DbType="Float NOT NULL")]
+	public double BedTemperature
+	{
+		get
+		{
+			return this._BedTemperature;
+		}
+		set
+		{
+			if ((this._BedTemperature != value))
+			{
+				this.OnBedTemperatureChanging(value);
+				this.SendPropertyChanging();
+				this._BedTemperature = value;
+				this.SendPropertyChanged("BedTemperature");
+				this.OnBedTemperatureChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BedMoisture", DbType="Float NOT NULL")]
+	public double BedMoisture
+	{
+		get
+		{
+			return this._BedMoisture;
+		}
+		set
+		{
+			if ((this._BedMoisture != value))
+			{
+				this.OnBedMoistureChanging(value);
+				this.SendPropertyChanging();
+				this._BedMoisture = value;
+				this.SendPropertyChanged("BedMoisture");
+				this.OnBedMoistureChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TeaProduced", DbType="Float NOT NULL")]
+	public double TeaProduced
+	{
+		get
+		{
+			return this._TeaProduced;
+		}
+		set
+		{
+			if ((this._TeaProduced != value))
+			{
+				this.OnTeaProducedChanging(value);
+				this.SendPropertyChanging();
+				this._TeaProduced = value;
+				this.SendPropertyChanged("TeaProduced");
+				this.OnTeaProducedChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_WomsRemoved", DbType="Float NOT NULL")]
+	public double WomsRemoved
+	{
+		get
+		{
+			return this._WomsRemoved;
+		}
+		set
+		{
+			if ((this._WomsRemoved != value))
+			{
+				this.OnWomsRemovedChanging(value);
+				this.SendPropertyChanging();
+				this._WomsRemoved = value;
+				this.SendPropertyChanged("WomsRemoved");
+				this.OnWomsRemovedChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ProductionCost", DbType="Money NOT NULL")]
+	public decimal ProductionCost
+	{
+		get
+		{
+			return this._ProductionCost;
+		}
+		set
+		{
+			if ((this._ProductionCost != value))
+			{
+				this.OnProductionCostChanging(value);
+				this.SendPropertyChanging();
+				this._ProductionCost = value;
+				this.SendPropertyChanged("ProductionCost");
+				this.OnProductionCostChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MarketValue", DbType="Money NOT NULL")]
+	public decimal MarketValue
+	{
+		get
+		{
+			return this._MarketValue;
+		}
+		set
+		{
+			if ((this._MarketValue != value))
+			{
+				this.OnMarketValueChanging(value);
+				this.SendPropertyChanging();
+				this._MarketValue = value;
+				this.SendPropertyChanged("MarketValue");
+				this.OnMarketValueChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_WormsAdded", DbType="Int")]
+	public System.Nullable<int> WormsAdded
+	{
+		get
+		{
+			return this._WormsAdded;
+		}
+		set
+		{
+			if ((this._WormsAdded != value))
+			{
+				this.OnWormsAddedChanging(value);
+				this.SendPropertyChanging();
+				this._WormsAdded = value;
+				this.SendPropertyChanged("WormsAdded");
+				this.OnWormsAddedChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_WormRemoved", DbType="Int")]
+	public System.Nullable<int> WormRemoved
+	{
+		get
+		{
+			return this._WormRemoved;
+		}
+		set
+		{
+			if ((this._WormRemoved != value))
+			{
+				this.OnWormRemovedChanging(value);
+				this.SendPropertyChanging();
+				this._WormRemoved = value;
+				this.SendPropertyChanged("WormRemoved");
+				this.OnWormRemovedChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Notes", DbType="NVarChar(MAX)")]
+	public string Notes
+	{
+		get
+		{
+			return this._Notes;
+		}
+		set
+		{
+			if ((this._Notes != value))
+			{
+				this.OnNotesChanging(value);
+				this.SendPropertyChanging();
+				this._Notes = value;
+				this.SendPropertyChanged("Notes");
+				this.OnNotesChanged();
 			}
 		}
 	}
