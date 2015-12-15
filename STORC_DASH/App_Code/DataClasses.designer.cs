@@ -44,9 +44,6 @@ public partial class DataClassesDataContext : System.Data.Linq.DataContext
   partial void Insertfishimage(fishimage instance);
   partial void Updatefishimage(fishimage instance);
   partial void Deletefishimage(fishimage instance);
-  partial void InsertFishtank_DataPoint(Fishtank_DataPoint instance);
-  partial void UpdateFishtank_DataPoint(Fishtank_DataPoint instance);
-  partial void DeleteFishtank_DataPoint(Fishtank_DataPoint instance);
   partial void InsertFishtank_Station(Fishtank_Station instance);
   partial void UpdateFishtank_Station(Fishtank_Station instance);
   partial void DeleteFishtank_Station(Fishtank_Station instance);
@@ -68,6 +65,21 @@ public partial class DataClassesDataContext : System.Data.Linq.DataContext
   partial void InsertVermiculture(Vermiculture instance);
   partial void UpdateVermiculture(Vermiculture instance);
   partial void DeleteVermiculture(Vermiculture instance);
+  partial void InsertEnergyProduction(EnergyProduction instance);
+  partial void UpdateEnergyProduction(EnergyProduction instance);
+  partial void DeleteEnergyProduction(EnergyProduction instance);
+  partial void InsertEnergyConsumed(EnergyConsumed instance);
+  partial void UpdateEnergyConsumed(EnergyConsumed instance);
+  partial void DeleteEnergyConsumed(EnergyConsumed instance);
+  partial void InsertAquaFish(AquaFish instance);
+  partial void UpdateAquaFish(AquaFish instance);
+  partial void DeleteAquaFish(AquaFish instance);
+  partial void InsertAquaFarming(AquaFarming instance);
+  partial void UpdateAquaFarming(AquaFarming instance);
+  partial void DeleteAquaFarming(AquaFarming instance);
+  partial void InsertFishtank_DataPoint(Fishtank_DataPoint instance);
+  partial void UpdateFishtank_DataPoint(Fishtank_DataPoint instance);
+  partial void DeleteFishtank_DataPoint(Fishtank_DataPoint instance);
   #endregion
 	
 	public DataClassesDataContext() : 
@@ -140,14 +152,6 @@ public partial class DataClassesDataContext : System.Data.Linq.DataContext
 		}
 	}
 	
-	public System.Data.Linq.Table<Fishtank_DataPoint> Fishtank_DataPoints
-	{
-		get
-		{
-			return this.GetTable<Fishtank_DataPoint>();
-		}
-	}
-	
 	public System.Data.Linq.Table<Fishtank_Station> Fishtank_Stations
 	{
 		get
@@ -201,6 +205,46 @@ public partial class DataClassesDataContext : System.Data.Linq.DataContext
 		get
 		{
 			return this.GetTable<Vermiculture>();
+		}
+	}
+	
+	public System.Data.Linq.Table<EnergyProduction> EnergyProductions
+	{
+		get
+		{
+			return this.GetTable<EnergyProduction>();
+		}
+	}
+	
+	public System.Data.Linq.Table<EnergyConsumed> EnergyConsumeds
+	{
+		get
+		{
+			return this.GetTable<EnergyConsumed>();
+		}
+	}
+	
+	public System.Data.Linq.Table<AquaFish> AquaFishes
+	{
+		get
+		{
+			return this.GetTable<AquaFish>();
+		}
+	}
+	
+	public System.Data.Linq.Table<AquaFarming> AquaFarmings
+	{
+		get
+		{
+			return this.GetTable<AquaFarming>();
+		}
+	}
+	
+	public System.Data.Linq.Table<Fishtank_DataPoint> Fishtank_DataPoints
+	{
+		get
+		{
+			return this.GetTable<Fishtank_DataPoint>();
 		}
 	}
 }
@@ -1154,493 +1198,6 @@ public partial class fishimage : INotifyPropertyChanging, INotifyPropertyChanged
 	}
 }
 
-[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Fishtank_DataPoint")]
-public partial class Fishtank_DataPoint : INotifyPropertyChanging, INotifyPropertyChanged
-{
-	
-	private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-	
-	private int _DataID;
-	
-	private int _TankID;
-	
-	private System.Nullable<double> _Ammonia_Concentration;
-	
-	private System.Nullable<double> _O2_Concentration;
-	
-	private System.Nullable<double> _Temp;
-	
-	private System.Nullable<double> _EC;
-	
-	private System.Nullable<double> _DO;
-	
-	private System.Nullable<double> _pH;
-	
-	private System.Nullable<double> _NH3_NH4;
-	
-	private System.Nullable<double> _NO2;
-	
-	private System.Nullable<double> _NO3;
-	
-	private System.Nullable<double> _FE;
-	
-	private System.Nullable<double> _P;
-	
-	private System.Nullable<double> _K;
-	
-	private System.Nullable<double> _CO;
-	
-	private System.Nullable<double> _MG;
-	
-	private System.Nullable<System.DateTime> _DataDate;
-	
-	private EntityRef<Fishtank_Station> _Fishtank_Station;
-	
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnDataIDChanging(int value);
-    partial void OnDataIDChanged();
-    partial void OnTankIDChanging(int value);
-    partial void OnTankIDChanged();
-    partial void OnAmmonia_ConcentrationChanging(System.Nullable<double> value);
-    partial void OnAmmonia_ConcentrationChanged();
-    partial void OnO2_ConcentrationChanging(System.Nullable<double> value);
-    partial void OnO2_ConcentrationChanged();
-    partial void OnTempChanging(System.Nullable<double> value);
-    partial void OnTempChanged();
-    partial void OnECChanging(System.Nullable<double> value);
-    partial void OnECChanged();
-    partial void OnDOChanging(System.Nullable<double> value);
-    partial void OnDOChanged();
-    partial void OnpHChanging(System.Nullable<double> value);
-    partial void OnpHChanged();
-    partial void OnNH3_NH4Changing(System.Nullable<double> value);
-    partial void OnNH3_NH4Changed();
-    partial void OnNO2Changing(System.Nullable<double> value);
-    partial void OnNO2Changed();
-    partial void OnNO3Changing(System.Nullable<double> value);
-    partial void OnNO3Changed();
-    partial void OnFEChanging(System.Nullable<double> value);
-    partial void OnFEChanged();
-    partial void OnPChanging(System.Nullable<double> value);
-    partial void OnPChanged();
-    partial void OnKChanging(System.Nullable<double> value);
-    partial void OnKChanged();
-    partial void OnCOChanging(System.Nullable<double> value);
-    partial void OnCOChanged();
-    partial void OnMGChanging(System.Nullable<double> value);
-    partial void OnMGChanged();
-    partial void OnDataDateChanging(System.Nullable<System.DateTime> value);
-    partial void OnDataDateChanged();
-    #endregion
-	
-	public Fishtank_DataPoint()
-	{
-		this._Fishtank_Station = default(EntityRef<Fishtank_Station>);
-		OnCreated();
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DataID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-	public int DataID
-	{
-		get
-		{
-			return this._DataID;
-		}
-		set
-		{
-			if ((this._DataID != value))
-			{
-				this.OnDataIDChanging(value);
-				this.SendPropertyChanging();
-				this._DataID = value;
-				this.SendPropertyChanged("DataID");
-				this.OnDataIDChanged();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TankID", DbType="Int NOT NULL")]
-	public int TankID
-	{
-		get
-		{
-			return this._TankID;
-		}
-		set
-		{
-			if ((this._TankID != value))
-			{
-				if (this._Fishtank_Station.HasLoadedOrAssignedValue)
-				{
-					throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-				}
-				this.OnTankIDChanging(value);
-				this.SendPropertyChanging();
-				this._TankID = value;
-				this.SendPropertyChanged("TankID");
-				this.OnTankIDChanged();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Ammonia_Concentration", DbType="Float")]
-	public System.Nullable<double> Ammonia_Concentration
-	{
-		get
-		{
-			return this._Ammonia_Concentration;
-		}
-		set
-		{
-			if ((this._Ammonia_Concentration != value))
-			{
-				this.OnAmmonia_ConcentrationChanging(value);
-				this.SendPropertyChanging();
-				this._Ammonia_Concentration = value;
-				this.SendPropertyChanged("Ammonia_Concentration");
-				this.OnAmmonia_ConcentrationChanged();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_O2_Concentration", DbType="Float")]
-	public System.Nullable<double> O2_Concentration
-	{
-		get
-		{
-			return this._O2_Concentration;
-		}
-		set
-		{
-			if ((this._O2_Concentration != value))
-			{
-				this.OnO2_ConcentrationChanging(value);
-				this.SendPropertyChanging();
-				this._O2_Concentration = value;
-				this.SendPropertyChanged("O2_Concentration");
-				this.OnO2_ConcentrationChanged();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Temp", DbType="Float")]
-	public System.Nullable<double> Temp
-	{
-		get
-		{
-			return this._Temp;
-		}
-		set
-		{
-			if ((this._Temp != value))
-			{
-				this.OnTempChanging(value);
-				this.SendPropertyChanging();
-				this._Temp = value;
-				this.SendPropertyChanged("Temp");
-				this.OnTempChanged();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EC", DbType="Float")]
-	public System.Nullable<double> EC
-	{
-		get
-		{
-			return this._EC;
-		}
-		set
-		{
-			if ((this._EC != value))
-			{
-				this.OnECChanging(value);
-				this.SendPropertyChanging();
-				this._EC = value;
-				this.SendPropertyChanged("EC");
-				this.OnECChanged();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DO", DbType="Float")]
-	public System.Nullable<double> DO
-	{
-		get
-		{
-			return this._DO;
-		}
-		set
-		{
-			if ((this._DO != value))
-			{
-				this.OnDOChanging(value);
-				this.SendPropertyChanging();
-				this._DO = value;
-				this.SendPropertyChanged("DO");
-				this.OnDOChanged();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_pH", DbType="Float")]
-	public System.Nullable<double> pH
-	{
-		get
-		{
-			return this._pH;
-		}
-		set
-		{
-			if ((this._pH != value))
-			{
-				this.OnpHChanging(value);
-				this.SendPropertyChanging();
-				this._pH = value;
-				this.SendPropertyChanged("pH");
-				this.OnpHChanged();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NH3_NH4", DbType="Float")]
-	public System.Nullable<double> NH3_NH4
-	{
-		get
-		{
-			return this._NH3_NH4;
-		}
-		set
-		{
-			if ((this._NH3_NH4 != value))
-			{
-				this.OnNH3_NH4Changing(value);
-				this.SendPropertyChanging();
-				this._NH3_NH4 = value;
-				this.SendPropertyChanged("NH3_NH4");
-				this.OnNH3_NH4Changed();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NO2", DbType="Float")]
-	public System.Nullable<double> NO2
-	{
-		get
-		{
-			return this._NO2;
-		}
-		set
-		{
-			if ((this._NO2 != value))
-			{
-				this.OnNO2Changing(value);
-				this.SendPropertyChanging();
-				this._NO2 = value;
-				this.SendPropertyChanged("NO2");
-				this.OnNO2Changed();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NO3", DbType="Float")]
-	public System.Nullable<double> NO3
-	{
-		get
-		{
-			return this._NO3;
-		}
-		set
-		{
-			if ((this._NO3 != value))
-			{
-				this.OnNO3Changing(value);
-				this.SendPropertyChanging();
-				this._NO3 = value;
-				this.SendPropertyChanged("NO3");
-				this.OnNO3Changed();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FE", DbType="Float")]
-	public System.Nullable<double> FE
-	{
-		get
-		{
-			return this._FE;
-		}
-		set
-		{
-			if ((this._FE != value))
-			{
-				this.OnFEChanging(value);
-				this.SendPropertyChanging();
-				this._FE = value;
-				this.SendPropertyChanged("FE");
-				this.OnFEChanged();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_P", DbType="Float")]
-	public System.Nullable<double> P
-	{
-		get
-		{
-			return this._P;
-		}
-		set
-		{
-			if ((this._P != value))
-			{
-				this.OnPChanging(value);
-				this.SendPropertyChanging();
-				this._P = value;
-				this.SendPropertyChanged("P");
-				this.OnPChanged();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_K", DbType="Float")]
-	public System.Nullable<double> K
-	{
-		get
-		{
-			return this._K;
-		}
-		set
-		{
-			if ((this._K != value))
-			{
-				this.OnKChanging(value);
-				this.SendPropertyChanging();
-				this._K = value;
-				this.SendPropertyChanged("K");
-				this.OnKChanged();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CO", DbType="Float")]
-	public System.Nullable<double> CO
-	{
-		get
-		{
-			return this._CO;
-		}
-		set
-		{
-			if ((this._CO != value))
-			{
-				this.OnCOChanging(value);
-				this.SendPropertyChanging();
-				this._CO = value;
-				this.SendPropertyChanged("CO");
-				this.OnCOChanged();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MG", DbType="Float")]
-	public System.Nullable<double> MG
-	{
-		get
-		{
-			return this._MG;
-		}
-		set
-		{
-			if ((this._MG != value))
-			{
-				this.OnMGChanging(value);
-				this.SendPropertyChanging();
-				this._MG = value;
-				this.SendPropertyChanged("MG");
-				this.OnMGChanged();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DataDate", DbType="Date")]
-	public System.Nullable<System.DateTime> DataDate
-	{
-		get
-		{
-			return this._DataDate;
-		}
-		set
-		{
-			if ((this._DataDate != value))
-			{
-				this.OnDataDateChanging(value);
-				this.SendPropertyChanging();
-				this._DataDate = value;
-				this.SendPropertyChanged("DataDate");
-				this.OnDataDateChanged();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Fishtank_Station_Fishtank_DataPoint", Storage="_Fishtank_Station", ThisKey="TankID", OtherKey="FishtankID", IsForeignKey=true)]
-	public Fishtank_Station Fishtank_Station
-	{
-		get
-		{
-			return this._Fishtank_Station.Entity;
-		}
-		set
-		{
-			Fishtank_Station previousValue = this._Fishtank_Station.Entity;
-			if (((previousValue != value) 
-						|| (this._Fishtank_Station.HasLoadedOrAssignedValue == false)))
-			{
-				this.SendPropertyChanging();
-				if ((previousValue != null))
-				{
-					this._Fishtank_Station.Entity = null;
-					previousValue.Fishtank_DataPoints.Remove(this);
-				}
-				this._Fishtank_Station.Entity = value;
-				if ((value != null))
-				{
-					value.Fishtank_DataPoints.Add(this);
-					this._TankID = value.FishtankID;
-				}
-				else
-				{
-					this._TankID = default(int);
-				}
-				this.SendPropertyChanged("Fishtank_Station");
-			}
-		}
-	}
-	
-	public event PropertyChangingEventHandler PropertyChanging;
-	
-	public event PropertyChangedEventHandler PropertyChanged;
-	
-	protected virtual void SendPropertyChanging()
-	{
-		if ((this.PropertyChanging != null))
-		{
-			this.PropertyChanging(this, emptyChangingEventArgs);
-		}
-	}
-	
-	protected virtual void SendPropertyChanged(String propertyName)
-	{
-		if ((this.PropertyChanged != null))
-		{
-			this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-		}
-	}
-}
-
 [global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Fishtank_Station")]
 public partial class Fishtank_Station : INotifyPropertyChanging, INotifyPropertyChanged
 {
@@ -1660,8 +1217,6 @@ public partial class Fishtank_Station : INotifyPropertyChanging, INotifyProperty
 	private System.Nullable<System.DateTime> _Last_Maintenance_Date;
 	
 	private EntitySet<Fish> _Fishes;
-	
-	private EntitySet<Fishtank_DataPoint> _Fishtank_DataPoints;
 	
 	private EntitySet<Plants_Harvested> _Plants_Harvesteds;
 	
@@ -1688,7 +1243,6 @@ public partial class Fishtank_Station : INotifyPropertyChanging, INotifyProperty
 	public Fishtank_Station()
 	{
 		this._Fishes = new EntitySet<Fish>(new Action<Fish>(this.attach_Fishes), new Action<Fish>(this.detach_Fishes));
-		this._Fishtank_DataPoints = new EntitySet<Fishtank_DataPoint>(new Action<Fishtank_DataPoint>(this.attach_Fishtank_DataPoints), new Action<Fishtank_DataPoint>(this.detach_Fishtank_DataPoints));
 		this._Plants_Harvesteds = new EntitySet<Plants_Harvested>(new Action<Plants_Harvested>(this.attach_Plants_Harvesteds), new Action<Plants_Harvested>(this.detach_Plants_Harvesteds));
 		this._Project = default(EntityRef<Project>);
 		OnCreated();
@@ -1831,19 +1385,6 @@ public partial class Fishtank_Station : INotifyPropertyChanging, INotifyProperty
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Fishtank_Station_Fishtank_DataPoint", Storage="_Fishtank_DataPoints", ThisKey="FishtankID", OtherKey="TankID")]
-	public EntitySet<Fishtank_DataPoint> Fishtank_DataPoints
-	{
-		get
-		{
-			return this._Fishtank_DataPoints;
-		}
-		set
-		{
-			this._Fishtank_DataPoints.Assign(value);
-		}
-	}
-	
 	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Fishtank_Station_Plants_Harvested", Storage="_Plants_Harvesteds", ThisKey="FishtankID", OtherKey="Tank_ID")]
 	public EntitySet<Plants_Harvested> Plants_Harvesteds
 	{
@@ -1918,18 +1459,6 @@ public partial class Fishtank_Station : INotifyPropertyChanging, INotifyProperty
 	}
 	
 	private void detach_Fishes(Fish entity)
-	{
-		this.SendPropertyChanging();
-		entity.Fishtank_Station = null;
-	}
-	
-	private void attach_Fishtank_DataPoints(Fishtank_DataPoint entity)
-	{
-		this.SendPropertyChanging();
-		entity.Fishtank_Station = this;
-	}
-	
-	private void detach_Fishtank_DataPoints(Fishtank_DataPoint entity)
 	{
 		this.SendPropertyChanging();
 		entity.Fishtank_Station = null;
@@ -3653,6 +3182,1468 @@ public partial class Vermiculture : INotifyPropertyChanging, INotifyPropertyChan
 				this._Notes = value;
 				this.SendPropertyChanged("Notes");
 				this.OnNotesChanged();
+			}
+		}
+	}
+	
+	public event PropertyChangingEventHandler PropertyChanging;
+	
+	public event PropertyChangedEventHandler PropertyChanged;
+	
+	protected virtual void SendPropertyChanging()
+	{
+		if ((this.PropertyChanging != null))
+		{
+			this.PropertyChanging(this, emptyChangingEventArgs);
+		}
+	}
+	
+	protected virtual void SendPropertyChanged(String propertyName)
+	{
+		if ((this.PropertyChanged != null))
+		{
+			this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+		}
+	}
+}
+
+[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.EnergyProduction")]
+public partial class EnergyProduction : INotifyPropertyChanging, INotifyPropertyChanged
+{
+	
+	private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+	
+	private int _Id;
+	
+	private string _EnergyProducer;
+	
+	private System.DateTime _Date;
+	
+	private double _AmountEnergyCreated;
+	
+	private double _PercentageOfEnergyProduced;
+	
+	private string _Notes;
+	
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(int value);
+    partial void OnIdChanged();
+    partial void OnEnergyProducerChanging(string value);
+    partial void OnEnergyProducerChanged();
+    partial void OnDateChanging(System.DateTime value);
+    partial void OnDateChanged();
+    partial void OnAmountEnergyCreatedChanging(double value);
+    partial void OnAmountEnergyCreatedChanged();
+    partial void OnPercentageOfEnergyProducedChanging(double value);
+    partial void OnPercentageOfEnergyProducedChanged();
+    partial void OnNotesChanging(string value);
+    partial void OnNotesChanged();
+    #endregion
+	
+	public EnergyProduction()
+	{
+		OnCreated();
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+	public int Id
+	{
+		get
+		{
+			return this._Id;
+		}
+		set
+		{
+			if ((this._Id != value))
+			{
+				this.OnIdChanging(value);
+				this.SendPropertyChanging();
+				this._Id = value;
+				this.SendPropertyChanged("Id");
+				this.OnIdChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EnergyProducer", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+	public string EnergyProducer
+	{
+		get
+		{
+			return this._EnergyProducer;
+		}
+		set
+		{
+			if ((this._EnergyProducer != value))
+			{
+				this.OnEnergyProducerChanging(value);
+				this.SendPropertyChanging();
+				this._EnergyProducer = value;
+				this.SendPropertyChanged("EnergyProducer");
+				this.OnEnergyProducerChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Date", DbType="DateTime NOT NULL")]
+	public System.DateTime Date
+	{
+		get
+		{
+			return this._Date;
+		}
+		set
+		{
+			if ((this._Date != value))
+			{
+				this.OnDateChanging(value);
+				this.SendPropertyChanging();
+				this._Date = value;
+				this.SendPropertyChanged("Date");
+				this.OnDateChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AmountEnergyCreated", DbType="Float NOT NULL")]
+	public double AmountEnergyCreated
+	{
+		get
+		{
+			return this._AmountEnergyCreated;
+		}
+		set
+		{
+			if ((this._AmountEnergyCreated != value))
+			{
+				this.OnAmountEnergyCreatedChanging(value);
+				this.SendPropertyChanging();
+				this._AmountEnergyCreated = value;
+				this.SendPropertyChanged("AmountEnergyCreated");
+				this.OnAmountEnergyCreatedChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PercentageOfEnergyProduced", DbType="Float NOT NULL")]
+	public double PercentageOfEnergyProduced
+	{
+		get
+		{
+			return this._PercentageOfEnergyProduced;
+		}
+		set
+		{
+			if ((this._PercentageOfEnergyProduced != value))
+			{
+				this.OnPercentageOfEnergyProducedChanging(value);
+				this.SendPropertyChanging();
+				this._PercentageOfEnergyProduced = value;
+				this.SendPropertyChanged("PercentageOfEnergyProduced");
+				this.OnPercentageOfEnergyProducedChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Notes", DbType="NVarChar(MAX)")]
+	public string Notes
+	{
+		get
+		{
+			return this._Notes;
+		}
+		set
+		{
+			if ((this._Notes != value))
+			{
+				this.OnNotesChanging(value);
+				this.SendPropertyChanging();
+				this._Notes = value;
+				this.SendPropertyChanged("Notes");
+				this.OnNotesChanged();
+			}
+		}
+	}
+	
+	public event PropertyChangingEventHandler PropertyChanging;
+	
+	public event PropertyChangedEventHandler PropertyChanged;
+	
+	protected virtual void SendPropertyChanging()
+	{
+		if ((this.PropertyChanging != null))
+		{
+			this.PropertyChanging(this, emptyChangingEventArgs);
+		}
+	}
+	
+	protected virtual void SendPropertyChanged(String propertyName)
+	{
+		if ((this.PropertyChanged != null))
+		{
+			this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+		}
+	}
+}
+
+[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.EnergyConsumed")]
+public partial class EnergyConsumed : INotifyPropertyChanging, INotifyPropertyChanged
+{
+	
+	private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+	
+	private int _Id;
+	
+	private string _EnergyConsumer;
+	
+	private string _SourceOfEnergyUse;
+	
+	private System.DateTime _Date;
+	
+	private double _kWPerHour;
+	
+	private decimal _CostkWPerHour;
+	
+	private string _Notes;
+	
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(int value);
+    partial void OnIdChanged();
+    partial void OnEnergyConsumerChanging(string value);
+    partial void OnEnergyConsumerChanged();
+    partial void OnSourceOfEnergyUseChanging(string value);
+    partial void OnSourceOfEnergyUseChanged();
+    partial void OnDateChanging(System.DateTime value);
+    partial void OnDateChanged();
+    partial void OnkWPerHourChanging(double value);
+    partial void OnkWPerHourChanged();
+    partial void OnCostkWPerHourChanging(decimal value);
+    partial void OnCostkWPerHourChanged();
+    partial void OnNotesChanging(string value);
+    partial void OnNotesChanged();
+    #endregion
+	
+	public EnergyConsumed()
+	{
+		OnCreated();
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+	public int Id
+	{
+		get
+		{
+			return this._Id;
+		}
+		set
+		{
+			if ((this._Id != value))
+			{
+				this.OnIdChanging(value);
+				this.SendPropertyChanging();
+				this._Id = value;
+				this.SendPropertyChanged("Id");
+				this.OnIdChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EnergyConsumer", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+	public string EnergyConsumer
+	{
+		get
+		{
+			return this._EnergyConsumer;
+		}
+		set
+		{
+			if ((this._EnergyConsumer != value))
+			{
+				this.OnEnergyConsumerChanging(value);
+				this.SendPropertyChanging();
+				this._EnergyConsumer = value;
+				this.SendPropertyChanged("EnergyConsumer");
+				this.OnEnergyConsumerChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SourceOfEnergyUse", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+	public string SourceOfEnergyUse
+	{
+		get
+		{
+			return this._SourceOfEnergyUse;
+		}
+		set
+		{
+			if ((this._SourceOfEnergyUse != value))
+			{
+				this.OnSourceOfEnergyUseChanging(value);
+				this.SendPropertyChanging();
+				this._SourceOfEnergyUse = value;
+				this.SendPropertyChanged("SourceOfEnergyUse");
+				this.OnSourceOfEnergyUseChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Date", DbType="DateTime NOT NULL")]
+	public System.DateTime Date
+	{
+		get
+		{
+			return this._Date;
+		}
+		set
+		{
+			if ((this._Date != value))
+			{
+				this.OnDateChanging(value);
+				this.SendPropertyChanging();
+				this._Date = value;
+				this.SendPropertyChanged("Date");
+				this.OnDateChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_kWPerHour", DbType="Float NOT NULL")]
+	public double kWPerHour
+	{
+		get
+		{
+			return this._kWPerHour;
+		}
+		set
+		{
+			if ((this._kWPerHour != value))
+			{
+				this.OnkWPerHourChanging(value);
+				this.SendPropertyChanging();
+				this._kWPerHour = value;
+				this.SendPropertyChanged("kWPerHour");
+				this.OnkWPerHourChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CostkWPerHour", DbType="Money NOT NULL")]
+	public decimal CostkWPerHour
+	{
+		get
+		{
+			return this._CostkWPerHour;
+		}
+		set
+		{
+			if ((this._CostkWPerHour != value))
+			{
+				this.OnCostkWPerHourChanging(value);
+				this.SendPropertyChanging();
+				this._CostkWPerHour = value;
+				this.SendPropertyChanged("CostkWPerHour");
+				this.OnCostkWPerHourChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Notes", DbType="NVarChar(MAX)")]
+	public string Notes
+	{
+		get
+		{
+			return this._Notes;
+		}
+		set
+		{
+			if ((this._Notes != value))
+			{
+				this.OnNotesChanging(value);
+				this.SendPropertyChanging();
+				this._Notes = value;
+				this.SendPropertyChanged("Notes");
+				this.OnNotesChanged();
+			}
+		}
+	}
+	
+	public event PropertyChangingEventHandler PropertyChanging;
+	
+	public event PropertyChangedEventHandler PropertyChanged;
+	
+	protected virtual void SendPropertyChanging()
+	{
+		if ((this.PropertyChanging != null))
+		{
+			this.PropertyChanging(this, emptyChangingEventArgs);
+		}
+	}
+	
+	protected virtual void SendPropertyChanged(String propertyName)
+	{
+		if ((this.PropertyChanged != null))
+		{
+			this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+		}
+	}
+}
+
+[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.AquaFish")]
+public partial class AquaFish : INotifyPropertyChanging, INotifyPropertyChanged
+{
+	
+	private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+	
+	private int _Id;
+	
+	private System.DateTime _Date;
+	
+	private string _TankLocation;
+	
+	private string _Specie;
+	
+	private int _NumberOfFish;
+	
+	private double _TankTemp;
+	
+	private string _HealthOfFish;
+	
+	private string _QualityOfWater;
+	
+	private System.DateTime _LastDateOfWaterChange;
+	
+	private System.DateTime _DateBufferAdded;
+	
+	private double _AmountBufferAdded;
+	
+	private System.DateTime _DateLastFed;
+	
+	private double _AmountFed;
+	
+	private string _Notes;
+	
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(int value);
+    partial void OnIdChanged();
+    partial void OnDateChanging(System.DateTime value);
+    partial void OnDateChanged();
+    partial void OnTankLocationChanging(string value);
+    partial void OnTankLocationChanged();
+    partial void OnSpecieChanging(string value);
+    partial void OnSpecieChanged();
+    partial void OnNumberOfFishChanging(int value);
+    partial void OnNumberOfFishChanged();
+    partial void OnTankTempChanging(double value);
+    partial void OnTankTempChanged();
+    partial void OnHealthOfFishChanging(string value);
+    partial void OnHealthOfFishChanged();
+    partial void OnQualityOfWaterChanging(string value);
+    partial void OnQualityOfWaterChanged();
+    partial void OnLastDateOfWaterChangeChanging(System.DateTime value);
+    partial void OnLastDateOfWaterChangeChanged();
+    partial void OnDateBufferAddedChanging(System.DateTime value);
+    partial void OnDateBufferAddedChanged();
+    partial void OnAmountBufferAddedChanging(double value);
+    partial void OnAmountBufferAddedChanged();
+    partial void OnDateLastFedChanging(System.DateTime value);
+    partial void OnDateLastFedChanged();
+    partial void OnAmountFedChanging(double value);
+    partial void OnAmountFedChanged();
+    partial void OnNotesChanging(string value);
+    partial void OnNotesChanged();
+    #endregion
+	
+	public AquaFish()
+	{
+		OnCreated();
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+	public int Id
+	{
+		get
+		{
+			return this._Id;
+		}
+		set
+		{
+			if ((this._Id != value))
+			{
+				this.OnIdChanging(value);
+				this.SendPropertyChanging();
+				this._Id = value;
+				this.SendPropertyChanged("Id");
+				this.OnIdChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Date", DbType="DateTime NOT NULL")]
+	public System.DateTime Date
+	{
+		get
+		{
+			return this._Date;
+		}
+		set
+		{
+			if ((this._Date != value))
+			{
+				this.OnDateChanging(value);
+				this.SendPropertyChanging();
+				this._Date = value;
+				this.SendPropertyChanged("Date");
+				this.OnDateChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TankLocation", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+	public string TankLocation
+	{
+		get
+		{
+			return this._TankLocation;
+		}
+		set
+		{
+			if ((this._TankLocation != value))
+			{
+				this.OnTankLocationChanging(value);
+				this.SendPropertyChanging();
+				this._TankLocation = value;
+				this.SendPropertyChanged("TankLocation");
+				this.OnTankLocationChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Specie", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+	public string Specie
+	{
+		get
+		{
+			return this._Specie;
+		}
+		set
+		{
+			if ((this._Specie != value))
+			{
+				this.OnSpecieChanging(value);
+				this.SendPropertyChanging();
+				this._Specie = value;
+				this.SendPropertyChanged("Specie");
+				this.OnSpecieChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NumberOfFish", DbType="Int NOT NULL")]
+	public int NumberOfFish
+	{
+		get
+		{
+			return this._NumberOfFish;
+		}
+		set
+		{
+			if ((this._NumberOfFish != value))
+			{
+				this.OnNumberOfFishChanging(value);
+				this.SendPropertyChanging();
+				this._NumberOfFish = value;
+				this.SendPropertyChanged("NumberOfFish");
+				this.OnNumberOfFishChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TankTemp", DbType="Float NOT NULL")]
+	public double TankTemp
+	{
+		get
+		{
+			return this._TankTemp;
+		}
+		set
+		{
+			if ((this._TankTemp != value))
+			{
+				this.OnTankTempChanging(value);
+				this.SendPropertyChanging();
+				this._TankTemp = value;
+				this.SendPropertyChanged("TankTemp");
+				this.OnTankTempChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_HealthOfFish", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+	public string HealthOfFish
+	{
+		get
+		{
+			return this._HealthOfFish;
+		}
+		set
+		{
+			if ((this._HealthOfFish != value))
+			{
+				this.OnHealthOfFishChanging(value);
+				this.SendPropertyChanging();
+				this._HealthOfFish = value;
+				this.SendPropertyChanged("HealthOfFish");
+				this.OnHealthOfFishChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_QualityOfWater", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+	public string QualityOfWater
+	{
+		get
+		{
+			return this._QualityOfWater;
+		}
+		set
+		{
+			if ((this._QualityOfWater != value))
+			{
+				this.OnQualityOfWaterChanging(value);
+				this.SendPropertyChanging();
+				this._QualityOfWater = value;
+				this.SendPropertyChanged("QualityOfWater");
+				this.OnQualityOfWaterChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LastDateOfWaterChange", DbType="DateTime NOT NULL")]
+	public System.DateTime LastDateOfWaterChange
+	{
+		get
+		{
+			return this._LastDateOfWaterChange;
+		}
+		set
+		{
+			if ((this._LastDateOfWaterChange != value))
+			{
+				this.OnLastDateOfWaterChangeChanging(value);
+				this.SendPropertyChanging();
+				this._LastDateOfWaterChange = value;
+				this.SendPropertyChanged("LastDateOfWaterChange");
+				this.OnLastDateOfWaterChangeChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DateBufferAdded", DbType="DateTime NOT NULL")]
+	public System.DateTime DateBufferAdded
+	{
+		get
+		{
+			return this._DateBufferAdded;
+		}
+		set
+		{
+			if ((this._DateBufferAdded != value))
+			{
+				this.OnDateBufferAddedChanging(value);
+				this.SendPropertyChanging();
+				this._DateBufferAdded = value;
+				this.SendPropertyChanged("DateBufferAdded");
+				this.OnDateBufferAddedChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AmountBufferAdded", DbType="Float NOT NULL")]
+	public double AmountBufferAdded
+	{
+		get
+		{
+			return this._AmountBufferAdded;
+		}
+		set
+		{
+			if ((this._AmountBufferAdded != value))
+			{
+				this.OnAmountBufferAddedChanging(value);
+				this.SendPropertyChanging();
+				this._AmountBufferAdded = value;
+				this.SendPropertyChanged("AmountBufferAdded");
+				this.OnAmountBufferAddedChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DateLastFed", DbType="DateTime NOT NULL")]
+	public System.DateTime DateLastFed
+	{
+		get
+		{
+			return this._DateLastFed;
+		}
+		set
+		{
+			if ((this._DateLastFed != value))
+			{
+				this.OnDateLastFedChanging(value);
+				this.SendPropertyChanging();
+				this._DateLastFed = value;
+				this.SendPropertyChanged("DateLastFed");
+				this.OnDateLastFedChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AmountFed", DbType="Float NOT NULL")]
+	public double AmountFed
+	{
+		get
+		{
+			return this._AmountFed;
+		}
+		set
+		{
+			if ((this._AmountFed != value))
+			{
+				this.OnAmountFedChanging(value);
+				this.SendPropertyChanging();
+				this._AmountFed = value;
+				this.SendPropertyChanged("AmountFed");
+				this.OnAmountFedChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Notes", DbType="NVarChar(MAX)")]
+	public string Notes
+	{
+		get
+		{
+			return this._Notes;
+		}
+		set
+		{
+			if ((this._Notes != value))
+			{
+				this.OnNotesChanging(value);
+				this.SendPropertyChanging();
+				this._Notes = value;
+				this.SendPropertyChanged("Notes");
+				this.OnNotesChanged();
+			}
+		}
+	}
+	
+	public event PropertyChangingEventHandler PropertyChanging;
+	
+	public event PropertyChangedEventHandler PropertyChanged;
+	
+	protected virtual void SendPropertyChanging()
+	{
+		if ((this.PropertyChanging != null))
+		{
+			this.PropertyChanging(this, emptyChangingEventArgs);
+		}
+	}
+	
+	protected virtual void SendPropertyChanged(String propertyName)
+	{
+		if ((this.PropertyChanged != null))
+		{
+			this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+		}
+	}
+}
+
+[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.AquaFarming")]
+public partial class AquaFarming : INotifyPropertyChanging, INotifyPropertyChanged
+{
+	
+	private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+	
+	private int _Id;
+	
+	private System.DateTime _Date;
+	
+	private double _GreenHouseTemp;
+	
+	private double _GreenHouseHumidity;
+	
+	private string _PlantType;
+	
+	private double _AmountHarvested;
+	
+	private int _HarvestedBedNumber;
+	
+	private string _PlantHealth;
+	
+	private string _Notes;
+	
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(int value);
+    partial void OnIdChanged();
+    partial void OnDateChanging(System.DateTime value);
+    partial void OnDateChanged();
+    partial void OnGreenHouseTempChanging(double value);
+    partial void OnGreenHouseTempChanged();
+    partial void OnGreenHouseHumidityChanging(double value);
+    partial void OnGreenHouseHumidityChanged();
+    partial void OnPlantTypeChanging(string value);
+    partial void OnPlantTypeChanged();
+    partial void OnAmountHarvestedChanging(double value);
+    partial void OnAmountHarvestedChanged();
+    partial void OnHarvestedBedNumberChanging(int value);
+    partial void OnHarvestedBedNumberChanged();
+    partial void OnPlantHealthChanging(string value);
+    partial void OnPlantHealthChanged();
+    partial void OnNotesChanging(string value);
+    partial void OnNotesChanged();
+    #endregion
+	
+	public AquaFarming()
+	{
+		OnCreated();
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+	public int Id
+	{
+		get
+		{
+			return this._Id;
+		}
+		set
+		{
+			if ((this._Id != value))
+			{
+				this.OnIdChanging(value);
+				this.SendPropertyChanging();
+				this._Id = value;
+				this.SendPropertyChanged("Id");
+				this.OnIdChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Date", DbType="DateTime NOT NULL")]
+	public System.DateTime Date
+	{
+		get
+		{
+			return this._Date;
+		}
+		set
+		{
+			if ((this._Date != value))
+			{
+				this.OnDateChanging(value);
+				this.SendPropertyChanging();
+				this._Date = value;
+				this.SendPropertyChanged("Date");
+				this.OnDateChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_GreenHouseTemp", DbType="Float NOT NULL")]
+	public double GreenHouseTemp
+	{
+		get
+		{
+			return this._GreenHouseTemp;
+		}
+		set
+		{
+			if ((this._GreenHouseTemp != value))
+			{
+				this.OnGreenHouseTempChanging(value);
+				this.SendPropertyChanging();
+				this._GreenHouseTemp = value;
+				this.SendPropertyChanged("GreenHouseTemp");
+				this.OnGreenHouseTempChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_GreenHouseHumidity", DbType="Float NOT NULL")]
+	public double GreenHouseHumidity
+	{
+		get
+		{
+			return this._GreenHouseHumidity;
+		}
+		set
+		{
+			if ((this._GreenHouseHumidity != value))
+			{
+				this.OnGreenHouseHumidityChanging(value);
+				this.SendPropertyChanging();
+				this._GreenHouseHumidity = value;
+				this.SendPropertyChanged("GreenHouseHumidity");
+				this.OnGreenHouseHumidityChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PlantType", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+	public string PlantType
+	{
+		get
+		{
+			return this._PlantType;
+		}
+		set
+		{
+			if ((this._PlantType != value))
+			{
+				this.OnPlantTypeChanging(value);
+				this.SendPropertyChanging();
+				this._PlantType = value;
+				this.SendPropertyChanged("PlantType");
+				this.OnPlantTypeChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AmountHarvested", DbType="Float NOT NULL")]
+	public double AmountHarvested
+	{
+		get
+		{
+			return this._AmountHarvested;
+		}
+		set
+		{
+			if ((this._AmountHarvested != value))
+			{
+				this.OnAmountHarvestedChanging(value);
+				this.SendPropertyChanging();
+				this._AmountHarvested = value;
+				this.SendPropertyChanged("AmountHarvested");
+				this.OnAmountHarvestedChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_HarvestedBedNumber", DbType="Int NOT NULL")]
+	public int HarvestedBedNumber
+	{
+		get
+		{
+			return this._HarvestedBedNumber;
+		}
+		set
+		{
+			if ((this._HarvestedBedNumber != value))
+			{
+				this.OnHarvestedBedNumberChanging(value);
+				this.SendPropertyChanging();
+				this._HarvestedBedNumber = value;
+				this.SendPropertyChanged("HarvestedBedNumber");
+				this.OnHarvestedBedNumberChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PlantHealth", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+	public string PlantHealth
+	{
+		get
+		{
+			return this._PlantHealth;
+		}
+		set
+		{
+			if ((this._PlantHealth != value))
+			{
+				this.OnPlantHealthChanging(value);
+				this.SendPropertyChanging();
+				this._PlantHealth = value;
+				this.SendPropertyChanged("PlantHealth");
+				this.OnPlantHealthChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Notes", DbType="NVarChar(MAX)")]
+	public string Notes
+	{
+		get
+		{
+			return this._Notes;
+		}
+		set
+		{
+			if ((this._Notes != value))
+			{
+				this.OnNotesChanging(value);
+				this.SendPropertyChanging();
+				this._Notes = value;
+				this.SendPropertyChanged("Notes");
+				this.OnNotesChanged();
+			}
+		}
+	}
+	
+	public event PropertyChangingEventHandler PropertyChanging;
+	
+	public event PropertyChangedEventHandler PropertyChanged;
+	
+	protected virtual void SendPropertyChanging()
+	{
+		if ((this.PropertyChanging != null))
+		{
+			this.PropertyChanging(this, emptyChangingEventArgs);
+		}
+	}
+	
+	protected virtual void SendPropertyChanged(String propertyName)
+	{
+		if ((this.PropertyChanged != null))
+		{
+			this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+		}
+	}
+}
+
+[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Fishtank_DataPoint")]
+public partial class Fishtank_DataPoint : INotifyPropertyChanging, INotifyPropertyChanged
+{
+	
+	private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+	
+	private int _DataID;
+	
+	private string _TankID;
+	
+	private System.Nullable<double> _Ammonia_Concentration;
+	
+	private System.Nullable<double> _O2_Concentration;
+	
+	private System.Nullable<double> _Temp;
+	
+	private System.Nullable<double> _EC;
+	
+	private System.Nullable<double> _DO;
+	
+	private System.Nullable<double> _pH;
+	
+	private System.Nullable<double> _NH3_NH4;
+	
+	private System.Nullable<double> _NO2;
+	
+	private System.Nullable<double> _NO3;
+	
+	private System.Nullable<double> _FE;
+	
+	private System.Nullable<double> _P;
+	
+	private System.Nullable<double> _K;
+	
+	private System.Nullable<double> _CO;
+	
+	private System.Nullable<double> _MG;
+	
+	private System.Nullable<System.DateTime> _DataDate;
+	
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnDataIDChanging(int value);
+    partial void OnDataIDChanged();
+    partial void OnTankIDChanging(string value);
+    partial void OnTankIDChanged();
+    partial void OnAmmonia_ConcentrationChanging(System.Nullable<double> value);
+    partial void OnAmmonia_ConcentrationChanged();
+    partial void OnO2_ConcentrationChanging(System.Nullable<double> value);
+    partial void OnO2_ConcentrationChanged();
+    partial void OnTempChanging(System.Nullable<double> value);
+    partial void OnTempChanged();
+    partial void OnECChanging(System.Nullable<double> value);
+    partial void OnECChanged();
+    partial void OnDOChanging(System.Nullable<double> value);
+    partial void OnDOChanged();
+    partial void OnpHChanging(System.Nullable<double> value);
+    partial void OnpHChanged();
+    partial void OnNH3_NH4Changing(System.Nullable<double> value);
+    partial void OnNH3_NH4Changed();
+    partial void OnNO2Changing(System.Nullable<double> value);
+    partial void OnNO2Changed();
+    partial void OnNO3Changing(System.Nullable<double> value);
+    partial void OnNO3Changed();
+    partial void OnFEChanging(System.Nullable<double> value);
+    partial void OnFEChanged();
+    partial void OnPChanging(System.Nullable<double> value);
+    partial void OnPChanged();
+    partial void OnKChanging(System.Nullable<double> value);
+    partial void OnKChanged();
+    partial void OnCOChanging(System.Nullable<double> value);
+    partial void OnCOChanged();
+    partial void OnMGChanging(System.Nullable<double> value);
+    partial void OnMGChanged();
+    partial void OnDataDateChanging(System.Nullable<System.DateTime> value);
+    partial void OnDataDateChanged();
+    #endregion
+	
+	public Fishtank_DataPoint()
+	{
+		OnCreated();
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DataID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+	public int DataID
+	{
+		get
+		{
+			return this._DataID;
+		}
+		set
+		{
+			if ((this._DataID != value))
+			{
+				this.OnDataIDChanging(value);
+				this.SendPropertyChanging();
+				this._DataID = value;
+				this.SendPropertyChanged("DataID");
+				this.OnDataIDChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TankID", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+	public string TankID
+	{
+		get
+		{
+			return this._TankID;
+		}
+		set
+		{
+			if ((this._TankID != value))
+			{
+				this.OnTankIDChanging(value);
+				this.SendPropertyChanging();
+				this._TankID = value;
+				this.SendPropertyChanged("TankID");
+				this.OnTankIDChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Ammonia_Concentration", DbType="Float")]
+	public System.Nullable<double> Ammonia_Concentration
+	{
+		get
+		{
+			return this._Ammonia_Concentration;
+		}
+		set
+		{
+			if ((this._Ammonia_Concentration != value))
+			{
+				this.OnAmmonia_ConcentrationChanging(value);
+				this.SendPropertyChanging();
+				this._Ammonia_Concentration = value;
+				this.SendPropertyChanged("Ammonia_Concentration");
+				this.OnAmmonia_ConcentrationChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_O2_Concentration", DbType="Float")]
+	public System.Nullable<double> O2_Concentration
+	{
+		get
+		{
+			return this._O2_Concentration;
+		}
+		set
+		{
+			if ((this._O2_Concentration != value))
+			{
+				this.OnO2_ConcentrationChanging(value);
+				this.SendPropertyChanging();
+				this._O2_Concentration = value;
+				this.SendPropertyChanged("O2_Concentration");
+				this.OnO2_ConcentrationChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Temp", DbType="Float")]
+	public System.Nullable<double> Temp
+	{
+		get
+		{
+			return this._Temp;
+		}
+		set
+		{
+			if ((this._Temp != value))
+			{
+				this.OnTempChanging(value);
+				this.SendPropertyChanging();
+				this._Temp = value;
+				this.SendPropertyChanged("Temp");
+				this.OnTempChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EC", DbType="Float")]
+	public System.Nullable<double> EC
+	{
+		get
+		{
+			return this._EC;
+		}
+		set
+		{
+			if ((this._EC != value))
+			{
+				this.OnECChanging(value);
+				this.SendPropertyChanging();
+				this._EC = value;
+				this.SendPropertyChanged("EC");
+				this.OnECChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DO", DbType="Float")]
+	public System.Nullable<double> DO
+	{
+		get
+		{
+			return this._DO;
+		}
+		set
+		{
+			if ((this._DO != value))
+			{
+				this.OnDOChanging(value);
+				this.SendPropertyChanging();
+				this._DO = value;
+				this.SendPropertyChanged("DO");
+				this.OnDOChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_pH", DbType="Float")]
+	public System.Nullable<double> pH
+	{
+		get
+		{
+			return this._pH;
+		}
+		set
+		{
+			if ((this._pH != value))
+			{
+				this.OnpHChanging(value);
+				this.SendPropertyChanging();
+				this._pH = value;
+				this.SendPropertyChanged("pH");
+				this.OnpHChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NH3_NH4", DbType="Float")]
+	public System.Nullable<double> NH3_NH4
+	{
+		get
+		{
+			return this._NH3_NH4;
+		}
+		set
+		{
+			if ((this._NH3_NH4 != value))
+			{
+				this.OnNH3_NH4Changing(value);
+				this.SendPropertyChanging();
+				this._NH3_NH4 = value;
+				this.SendPropertyChanged("NH3_NH4");
+				this.OnNH3_NH4Changed();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NO2", DbType="Float")]
+	public System.Nullable<double> NO2
+	{
+		get
+		{
+			return this._NO2;
+		}
+		set
+		{
+			if ((this._NO2 != value))
+			{
+				this.OnNO2Changing(value);
+				this.SendPropertyChanging();
+				this._NO2 = value;
+				this.SendPropertyChanged("NO2");
+				this.OnNO2Changed();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NO3", DbType="Float")]
+	public System.Nullable<double> NO3
+	{
+		get
+		{
+			return this._NO3;
+		}
+		set
+		{
+			if ((this._NO3 != value))
+			{
+				this.OnNO3Changing(value);
+				this.SendPropertyChanging();
+				this._NO3 = value;
+				this.SendPropertyChanged("NO3");
+				this.OnNO3Changed();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FE", DbType="Float")]
+	public System.Nullable<double> FE
+	{
+		get
+		{
+			return this._FE;
+		}
+		set
+		{
+			if ((this._FE != value))
+			{
+				this.OnFEChanging(value);
+				this.SendPropertyChanging();
+				this._FE = value;
+				this.SendPropertyChanged("FE");
+				this.OnFEChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_P", DbType="Float")]
+	public System.Nullable<double> P
+	{
+		get
+		{
+			return this._P;
+		}
+		set
+		{
+			if ((this._P != value))
+			{
+				this.OnPChanging(value);
+				this.SendPropertyChanging();
+				this._P = value;
+				this.SendPropertyChanged("P");
+				this.OnPChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_K", DbType="Float")]
+	public System.Nullable<double> K
+	{
+		get
+		{
+			return this._K;
+		}
+		set
+		{
+			if ((this._K != value))
+			{
+				this.OnKChanging(value);
+				this.SendPropertyChanging();
+				this._K = value;
+				this.SendPropertyChanged("K");
+				this.OnKChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CO", DbType="Float")]
+	public System.Nullable<double> CO
+	{
+		get
+		{
+			return this._CO;
+		}
+		set
+		{
+			if ((this._CO != value))
+			{
+				this.OnCOChanging(value);
+				this.SendPropertyChanging();
+				this._CO = value;
+				this.SendPropertyChanged("CO");
+				this.OnCOChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MG", DbType="Float")]
+	public System.Nullable<double> MG
+	{
+		get
+		{
+			return this._MG;
+		}
+		set
+		{
+			if ((this._MG != value))
+			{
+				this.OnMGChanging(value);
+				this.SendPropertyChanging();
+				this._MG = value;
+				this.SendPropertyChanged("MG");
+				this.OnMGChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DataDate", DbType="Date")]
+	public System.Nullable<System.DateTime> DataDate
+	{
+		get
+		{
+			return this._DataDate;
+		}
+		set
+		{
+			if ((this._DataDate != value))
+			{
+				this.OnDataDateChanging(value);
+				this.SendPropertyChanging();
+				this._DataDate = value;
+				this.SendPropertyChanged("DataDate");
+				this.OnDataDateChanged();
 			}
 		}
 	}

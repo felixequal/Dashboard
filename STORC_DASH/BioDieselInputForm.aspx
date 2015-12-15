@@ -177,7 +177,7 @@
         
          <!-- Cost of kitchen waste oil-->
         <div>
-            <strong class="auto-style1">Cost of kitchen waste oil: &nbsp; </strong>
+            <strong class="auto-style1">Cost of Kitchen Waste Oil: &nbsp; </strong>
             $<asp:textbox runat="server" id="cost_kwo" type="double" Width="50px" />
             <!-- Validator to ensure a number is in the text box (required)-->
             <asp:RequiredFieldValidator runat="server" ControlToValidate="cost_kwo" ErrorMessage="Cost of kitchen waste oil is required" ForeColor="Red" ValidationGroup="bd"> * </asp:RequiredFieldValidator>

@@ -1,0 +1,39 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/InputDataTabs.master" AutoEventWireup="true" CodeFile="AquaponicsForm.master.cs" Inherits="AquaponicsForm" %>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="AquaHolder" Runat="Server">
+    <br />
+    <br />
+    <!--Create the Form tabs-->
+    <table border="0" align="left">
+        <tr>
+            <td>
+                <asp:Button Text="Fish Production" BorderStyle="None" ID="FishPro" runat="server" OnClick="TabFishPro_Click" />
+                <asp:Button Text="Plant Production" BorderStyle="None" ID="PlantPro" runat="server" OnClick="TabPlantPro_Click" />
+                <asp:Button Text="Fish Tank" BorderStyle="None" ID="FishTank" runat="server" OnClick="TabFishTank_Click" />
+            </td>
+        </tr>
+    </table>
+    <asp:MultiView ID="AquaFormView" runat="server">
+        <!-- First Tab will load Aquaponics forms-->
+        <asp:View ID="FP" runat="server"> 
+            <asp:ContentPlaceHolder id="FProHolder" runat="server">
+        
+            </asp:ContentPlaceHolder>
+        </asp:View>
+
+        <!--This tab will load vermiculture page-->
+        <asp:View ID="PP" runat="server"> 
+            <asp:ContentPlaceHolder id="PProHolder" runat="server">
+        
+            </asp:ContentPlaceHolder>
+        </asp:View>
+
+        <!--This tab will load compost-->
+        <asp:View ID="FT" runat="server"> 
+            <asp:ContentPlaceHolder id="FTankHolder" runat="server">
+        
+            </asp:ContentPlaceHolder>
+        </asp:View>
+    </asp:MultiView>
+</asp:Content>
+

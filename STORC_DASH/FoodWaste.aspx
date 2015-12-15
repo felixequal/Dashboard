@@ -33,7 +33,7 @@
 
         <!--DropDown list for where they recived the food waste (which  vendor) -->
         <div>
-            <strong class="auto-style1">Waste Recived From: &nbsp; </strong>
+            <strong class="auto-style1">Waste Received From: &nbsp; </strong>
             <asp:DropDownList runat="server" id="Location" name="D1">
                 <asp:ListItem></asp:ListItem>
                 <asp:ListItem value="Buzz_Ecogrounds">The Buzz/Ecogrounds</asp:ListItem>

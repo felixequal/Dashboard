@@ -104,7 +104,7 @@
 
       <!-- Volume of vermicompost produced-->
     <div>
-        <strong class="auto-style1">Volume of vermicompost Produced: &nbsp; </strong>
+        <strong class="auto-style1">Volume of Vermicompost Produced: &nbsp; </strong>
         <asp:textbox runat="server" id="Vol_vermiproducde" type="double" Width="50px" />
         <!-- Validator to ensure a number is in the text box (required)-->
         <asp:RequiredFieldValidator runat="server" ControlToValidate="Vol_vermiproducde" ErrorMessage="Volume of vermicompost produced is required" ForeColor="Red" ValidationGroup="vermi"> * </asp:RequiredFieldValidator>
@@ -115,7 +115,7 @@
 
       <!-- Vol of vermicompost "tea" produced-->
     <div>
-        <strong class="auto-style1">Volume of Vermicompost "tea"  produced: &nbsp; </strong>
+        <strong class="auto-style1">Volume of Vermicompost "Tea"  Produced: &nbsp; </strong>
         <asp:textbox runat="server" id="vermi_tea" type="double" Width="50px" />
         <!-- Validator to ensure a number is in the text box (required)-->
         <asp:RequiredFieldValidator runat="server" ControlToValidate="vermi_tea" ErrorMessage="vermicompost tea is required" ForeColor="Red" ValidationGroup="vermi"> * </asp:RequiredFieldValidator>

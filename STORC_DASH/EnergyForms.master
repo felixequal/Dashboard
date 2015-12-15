@@ -1,0 +1,32 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/InputDataTabs.master" AutoEventWireup="true" CodeFile="EnergyForms.master.cs" Inherits="EnergyForms" %>
+
+<asp:Content ID="Content4" ContentPlaceHolderID="enerHolder" Runat="Server">
+     <br />
+    <br />
+    <!--Create the Form tabs-->
+    <table border="0" align="left">
+        <tr>
+            <td>
+                <asp:Button Text="Energy Production" BorderStyle="None" ID="Foodwaste" runat="server" OnClick="TabEnergyProd_Click" />
+                <asp:Button Text="Energy Consumpotion" BorderStyle="None" ID="TabInput" runat="server" OnClick="TabEnergyCon_Click" />
+            </td>
+        </tr>
+    </table>
+    <asp:MultiView ID="EnergyFormView" runat="server">
+        <!-- First Tab will load Production forms-->
+        <asp:View ID="EP" runat="server"> 
+            <asp:ContentPlaceHolder id="EnergyProduction" runat="server">
+        
+            </asp:ContentPlaceHolder>
+        </asp:View>
+
+        <!--This tab will load Energy Consumpotion page-->
+        <asp:View ID="EC" runat="server"> 
+            <asp:ContentPlaceHolder id="EnergyConsumpotion" runat="server">
+        
+            </asp:ContentPlaceHolder>
+        </asp:View>
+    </asp:MultiView>
+</asp:Content>
+
+
