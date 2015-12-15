@@ -1,0 +1,223 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="dashboardDB" Class="DataClassesDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=tcp:bipg6l4m0w.database.windows.net;Initial Catalog=dashboardDB;Persist Security Info=True;User ID=storcdash" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="cdjamConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Domain" Member="Domains">
+    <Type Name="Domain">
+      <Column Name="DomainID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Domain_Name" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Domain_Description" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Association Name="Domain_Project" Member="Projects" ThisKey="DomainID" OtherKey="DomainID" Type="Project" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Project" Member="Projects">
+    <Type Name="Project">
+      <Column Name="ProjectID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="DomainID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Project_Name" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Project_description" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="Principal_Investigator" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="DATE_Created" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="number_of_users" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Project_Fishtank_Station" Member="Fishtank_Stations" ThisKey="ProjectID" OtherKey="ProjectID" Type="Fishtank_Station" />
+      <Association Name="Domain_Project" Member="Domain" ThisKey="DomainID" OtherKey="DomainID" Type="Domain" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Fish" Member="Fishes">
+    <Type Name="Fish">
+      <Column Name="FishID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="TankID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Fishype" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="Fishname" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Association Name="Fish_Fish_Datapoint" Member="Fish_Datapoints" ThisKey="FishID" OtherKey="FishID" Type="Fish_Datapoint" />
+      <Association Name="Fishtank_Station_Fish" Member="Fishtank_Station" ThisKey="TankID" OtherKey="FishtankID" Type="Fishtank_Station" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Fish_Datapoint" Member="Fish_Datapoints">
+    <Type Name="Fish_Datapoint">
+      <Column Name="Fish_DatapointID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="FishID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="FishWeight" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="FishFoodWeight" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="FishFat" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="Datapoint_Date" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Association Name="Fish_Fish_Datapoint" Member="Fish" ThisKey="FishID" OtherKey="FishID" Type="Fish" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.fishimage" Member="fishimages">
+    <Type Name="fishimage">
+      <Column Name="imageID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Image_Name" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="Image_data" Type="System.Data.Linq.Binary" DbType="Image" CanBeNull="true" UpdateCheck="Never" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Fishtank_Station" Member="Fishtank_Stations">
+    <Type Name="Fishtank_Station">
+      <Column Name="FishtankID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ProjectID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Tank_Location" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Tank_Name" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Tank_Size" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="Last_Maintenance_Date" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Association Name="Fishtank_Station_Fish" Member="Fishes" ThisKey="FishtankID" OtherKey="TankID" Type="Fish" />
+      <Association Name="Fishtank_Station_Plants_Harvested" Member="Plants_Harvesteds" ThisKey="FishtankID" OtherKey="Tank_ID" Type="Plants_Harvested" />
+      <Association Name="Project_Fishtank_Station" Member="Project" ThisKey="ProjectID" OtherKey="ProjectID" Type="Project" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.foodWaste" Member="foodWastes">
+    <Type Name="foodWaste">
+      <Column Name="date" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="weight" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="percentGrains" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="percentFruit" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="percentVeg" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="percentDairy" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="datapointID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Plant" Member="Plants">
+    <Type Name="Plant">
+      <Column Name="Plant_TypeID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Plant_Name" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Association Name="Plant_Plants_Harvested" Member="Plants_Harvesteds" ThisKey="Plant_TypeID" OtherKey="Plant_ID" Type="Plants_Harvested" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Plants_Harvested" Member="Plants_Harvesteds">
+    <Type Name="Plants_Harvested">
+      <Column Name="Harvest_DatapointID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Plant_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Tank_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Harvest_Date" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="Harvest_Amount" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Association Name="Plant_Plants_Harvested" Member="Plant" ThisKey="Plant_ID" OtherKey="Plant_TypeID" Type="Plant" IsForeignKey="true" />
+      <Association Name="Fishtank_Station_Plants_Harvested" Member="Fishtank_Station" ThisKey="Tank_ID" OtherKey="FishtankID" Type="Fishtank_Station" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Compost" Member="Composts">
+    <Type Name="Compost">
+      <Column Name="date" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="weight" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="percentGrains" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="percentFruit" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="percentVeg" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="percentDairy" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="datapointID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="percentPaper" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="percentCoffeeGrounds" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="trashPresent" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Notes" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="wasteType" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Vendor" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="percentOilFull" Type="System.Double" DbType="Float" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Biodiesel" Member="Biodiesels">
+    <Type Name="Biodiesel">
+      <Column Name="BatchNumber" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="StartRunDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="EndRunDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="TotalProcessingTime" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="VolumeWasteOilColleted" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="VolumeWasteOilProduced" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="VolumeBiodieselProduced" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="VolumeWasteProduced" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="EnergyRequired" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="MethanolUsed" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="PotassiumHydroxideUsed" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="QualityPassFail" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="CostOfWasteOil" Type="System.Decimal" DbType="Money NOT NULL" CanBeNull="false" />
+      <Column Name="ManHours" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="CostOfDisposal" Type="System.Decimal" DbType="Money NOT NULL" CanBeNull="false" />
+      <Column Name="MarketCostBiodiesel" Type="System.Decimal" DbType="Money NOT NULL" CanBeNull="false" />
+      <Column Name="Notes" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Vermiculture" Member="Vermicultures">
+    <Type Name="Vermiculture">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="StartDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="EndDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="VolumeCompostProduced" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="BedTemperature" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="BedMoisture" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="TeaProduced" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="WomsRemoved" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="ProductionCost" Type="System.Decimal" DbType="Money NOT NULL" CanBeNull="false" />
+      <Column Name="MarketValue" Type="System.Decimal" DbType="Money NOT NULL" CanBeNull="false" />
+      <Column Name="WormsAdded" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="WormRemoved" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Notes" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.EnergyProduction" Member="EnergyProductions">
+    <Type Name="EnergyProduction">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="EnergyProducer" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Date" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="AmountEnergyCreated" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="PercentageOfEnergyProduced" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="Notes" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.EnergyConsumed" Member="EnergyConsumeds">
+    <Type Name="EnergyConsumed">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="EnergyConsumer" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="SourceOfEnergyUse" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Date" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="kWPerHour" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="CostkWPerHour" Type="System.Decimal" DbType="Money NOT NULL" CanBeNull="false" />
+      <Column Name="Notes" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.AquaFish" Member="AquaFishes">
+    <Type Name="AquaFish">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Date" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="TankLocation" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Specie" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="NumberOfFish" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TankTemp" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="HealthOfFish" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="QualityOfWater" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="LastDateOfWaterChange" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="DateBufferAdded" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="AmountBufferAdded" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="DateLastFed" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="AmountFed" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="Notes" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.AquaFarming" Member="AquaFarmings">
+    <Type Name="AquaFarming">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Date" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="GreenHouseTemp" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="GreenHouseHumidity" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="PlantType" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="AmountHarvested" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="HarvestedBedNumber" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="PlantHealth" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Notes" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Fishtank_DataPoint" Member="Fishtank_DataPoints">
+    <Type Name="Fishtank_DataPoint">
+      <Column Name="DataID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="TankID" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Ammonia_Concentration" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="O2_Concentration" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="Temp" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="EC" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="DO" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="pH" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="NH3_NH4" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="NO2" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="NO3" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="FE" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="P" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="K" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="CO" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="MG" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="DataDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+    </Type>
+  </Table>
+</Database>

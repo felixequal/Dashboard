@@ -1,0 +1,114 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="Site.master.cs" Inherits="SiteMaster" %>
+
+<!DOCTYPE html>
+<html lang="en">
+<head runat="server">
+    <meta charset="utf-8" />
+    <title><%: Page.Title %>- STORC Dashboard Application</title>
+    <link href="~/Content/Site.css" rel="stylesheet" />
+    <link href="favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <asp:PlaceHolder runat="server">           
+        <script src="<%: ResolveUrl("~/Scripts/modernizr-2.6.2.js") %>"></script>
+    </asp:PlaceHolder>
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <meta name="viewport" content="width=device-width" />
+    <asp:ContentPlaceHolder runat="server" ID="HeadContent" />
+</head>
+<body id="wrapper">
+    
+<style type="text/css">
+    inputbox
+    {
+        font-family:Arial;
+        font-size:10pt;
+    }
+    .ErrorControl
+    {
+        background-color: #FBE3E4;
+        border: solid 1px Red;
+    }
+</style>
+
+    <form runat="server">
+    <asp:ScriptManager runat="server">
+        <Scripts>
+            <asp:ScriptReference Name="jquery" />
+            <asp:ScriptReference Name="jquery.ui.combined" />
+        </Scripts>
+    </asp:ScriptManager>
+       
+    <div id="header">
+        <!--<div class="content-wrapper" style="background-color:darkseagreen;"> -->
+            <div class="float-left">
+                <p class="site-title"><img src="/Images/logo_plain.png" alt="Sample Photo" /></p>
+                    <ul id="mainmenu">
+                        <li id="mainmenu"><a runat="server" href="~/">Home</a></li>
+                        <li id="mainmenu"><a runat="server" href="~/InputData.aspx">Input Data</a></li>
+                        <li id="mainmenu"><a runat="server" href="~/">Edit Data</a></li>
+                    </ul>   
+                </div>
+            <div class="float-right">
+                <section id="login">
+                    <asp:LoginView runat="server" ViewStateMode="Disabled">
+                        <AnonymousTemplate>
+                            <ul>
+                                <li><a id="registerLink" runat="server" href="~/Account/Register">Register</a></li>
+                                <li><a id="loginLink" runat="server" href="~/Account/Login">Log in</a></li>
+                            </ul>
+                        </AnonymousTemplate>
+                        <LoggedInTemplate>
+                            <p>
+                                Hello, <a runat="server" class="username" href="~/Account/Manage" title="Manage your account">
+                                    <asp:LoginName runat="server" CssClass="username" />
+                                </a>!
+                                <asp:LoginStatus runat="server" LogoutAction="Redirect" LogoutText="Log off" LogoutPageUrl="~/" />
+                            </p>
+                        </LoggedInTemplate>
+                    </asp:LoginView>
+                </section>
+                <nav>
+                    <ul id="menu">
+                        <li><a runat="server" href="~/">Home</a></li>
+                        <li><a runat="server" href="~/About">About</a></li>
+                        <li><a runat="server" href="~/Contact">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+      <!--  </div> -->
+    </div>
+    <div id="body">
+       
+            <asp:ContentPlaceHolder runat="server" ID="MainContent" />
+
+    </div>
+    <footer id="footer">
+        
+            <div class="float-left">
+                <p style="color:white;">
+                    <%: DateTime.Now.Year %> - A CDJAM Application
+                </p>
+            </div>
+    </footer>
+    </form>
+    
+<script type="text/javascript">
+function WebForm_OnSubmit() {
+ if (typeof (ValidatorOnSubmit) == "function" && ValidatorOnSubmit() == false) {
+    for (var i in Page_Validators) {
+        try {
+            var control = document.getElementById(Page_Validators[i].controltovalidate);
+            if (!Page_Validators[i].isvalid) {
+                control.className = "ErrorControl";
+            } else {
+                control.className = "";
+            }
+        } catch (e) { }
+    }
+    return false;
+ }
+ return true;
+}
+</script>
+
+</body>
+</html>
