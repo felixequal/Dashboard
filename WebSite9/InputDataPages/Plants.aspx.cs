@@ -26,8 +26,24 @@ public partial class Plants : System.Web.UI.Page
             e.IsValid = (batch >= 0);
         }
         catch
-        { }
+        { e.IsValid = false; }
     }
+
+    protected void plantBed(object sender, ServerValidateEventArgs e)
+    {
+        // Try to convert to double if not send error
+        try
+        {
+            // Convert
+            double batch = Convert.ToDouble(plant_bed.Text);
+            //Send the valid method if batch is greater than 0 (aka not negative)
+            e.IsValid = (batch >= 0);
+        }
+        catch
+        { e.IsValid = false; }
+    }
+
+
 
     //Validation check to ensure batch is not negative
     protected void CheckHumidity(object sender, ServerValidateEventArgs e)
@@ -41,7 +57,7 @@ public partial class Plants : System.Web.UI.Page
             e.IsValid = (process >= 0);
         }
         catch
-        { }
+        { e.IsValid = false; }
     }
 
 
@@ -69,7 +85,7 @@ public partial class Plants : System.Web.UI.Page
             try
             {
                 db.SubmitChanges();
-                Response.Redirect("../Widgets.aspx");
+                Response.Redirect("~/Default.aspx");
             }
             //If not throw error
             catch

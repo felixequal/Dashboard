@@ -56,7 +56,7 @@
         <elementListCompartment Id="9edbc32c-b3af-431b-abae-57fff76842b7" absoluteBounds="8.89, 3.335, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(2.5 : 1.94314697265625); (3.25 : 1.94314697265625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(2.5 : 1.94314697265625); (3.25 : 1.94314697265625)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/DataClassesDataContext/Domain/Domain_Project" />
       <nodes>
         <classShapeMoniker Id="52b53772-29ab-4390-aed7-8ff767ab4cbb" />
@@ -110,10 +110,10 @@
         <elementListCompartment Id="0be5e95f-affa-4041-870c-a95ddd1089a1" absoluteBounds="6.265, 7.71, 1.9700000000000002, 3.518513997395833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="5e1d1a30-35a9-4038-85ac-190039bf2abf" absoluteBounds="1.25, 6.75, 2, 3.3093082682291666">
+    <classShape Id="5e1d1a30-35a9-4038-85ac-190039bf2abf" absoluteBounds="1.25, 6.75, 2, 3.1170068359375005">
       <DataClassMoniker Name="/DataClassesDataContext/Vermiculture" />
       <nestedChildShapes>
-        <elementListCompartment Id="66af9bec-ab00-4536-8e14-a23025392c9d" absoluteBounds="1.2650000000000001, 7.21, 1.9700000000000002, 2.7493082682291665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="66af9bec-ab00-4536-8e14-a23025392c9d" absoluteBounds="1.2650000000000001, 7.21, 1.9700000000000002, 2.5570068359375" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
     <classShape Id="e90dadc2-af99-4958-984d-5679c4ff6a15" absoluteBounds="6.375, 4.5, 2, 1.9631982421875">

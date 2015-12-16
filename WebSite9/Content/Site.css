@@ -2,6 +2,9 @@
     background-color: #e2e2e2;
     margin: 0;
     padding: 0;
+    height:100%;
+    width:100%;
+    
 }
 
 body {
@@ -11,11 +14,13 @@ body {
     font-family: "Segoe UI", Verdana, Helvetica, Sans-Serif;
     margin: 0;
     padding: 0;
+    min-width:100%;
 }
 
 
 form {
      height: 100%;
+     width:100%;
      }
 
 a {
@@ -103,8 +108,7 @@ h5, h6 {
 }
 
 #body {
-  flex: 1;
-  
+  min-height: 100%;
   background-color: #efeeef;
   background: url("../Images/Broadway-Grass3.jpg") no-repeat center center;
 }
@@ -188,8 +192,27 @@ header .content-wrapper {
     }
 
 
-/* menu
+/* Custom - JJ
 ----------------------------------------------------------*/
+.Warning
+
+{
+    color: Red;
+    font-style: italic;
+    font-weight: bold;
+    font-size: x-large;
+}
+
+.gridviewEdit
+{
+    background-color:lightcyan;
+  
+}
+
+    .gridviewEdit tr {background-color:lightcyan;}
+  .gridviewEdit input {width:100%;} /* size textboxes */
+.gridviewEdit select {width:50px;} /* size drop down lists */
+
 ul#mainmenu {
     font-size: 2em;
     font-weight: 600;
@@ -220,6 +243,7 @@ ul#mainmenu {
     background-color: #b3e6cc;
     font-size: 1.6em !important;
     font-weight: 600;
+
     margin: 0 0 5px;
     padding: 0;
     text-align: left;
@@ -254,6 +278,7 @@ ul#mainmenu {
     background-color:#248860;
     font-size: 1.4em !important;
     font-weight: 600;
+    min-height:39px;
     margin: 0 0 5px;
     padding: 0;
     text-align: left;
@@ -336,9 +361,7 @@ ul#menu {
         }
 
 /* page titles */
-hgroup.title {
-    margin-bottom: 10px;
-}
+
 
 hgroup.title h1, hgroup.title h2 {
     display: inline;
@@ -513,12 +536,11 @@ fieldset {
         font-size: 1.2em;
         margin: 5px 0 6px 0;
         padding: 5px;
-        width: 300px;
     }
 
     textarea {
         font-family: inherit;
-        width: 500px;
+        width: 100%;
     }
     
         input:focus, textarea:focus {

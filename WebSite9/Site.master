@@ -4,12 +4,23 @@
 <html lang="en">
 <head runat="server">
     <meta charset="utf-8" />
-    <title><%: Page.Title %>- STORC Dashboard Application</title>
-    <link href="~/Content/Site.css" rel="stylesheet" />
+    <title>STORC Dashboard</title>
+        <link rel="stylesheet" type="text/css" href="~/Style/gridster.css"/>
+        <link rel="stylesheet" type="text/css" href="~/Style/Tabs.css" />
+        <link rel="stylesheet" type="text/css" href="~/Style/colors.css" />
+        <link rel="stylesheet" type="text/css" href="~/Style/PopUpMenu.css" />
+        <link rel="stylesheet" type="text/css" href="~/Style/CanvasStyle.css" />
+        <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+        <script type="text/javascript" src="~/Scripts/jquery-2.1.4.js"></script>
+        <script type="text/javascript" src="~/Scripts/gridster.js"></script>
+        <script type="text/javascript" src="~/Scripts/Chart.js"></script>
+        <script type="text/javascript" src="~/Scripts/jquery-ui-1.11.4.js"></script>
+        <script type="text/javascript" src="~/Scripts/CreateNewChart.js"></script>
+        <script type="text/javascript" src="~/Scripts/CreateNewWidget.js"></script>
+    <link href="Content/Site.css" rel="stylesheet" />
     <link href="favicon.ico" rel="shortcut icon" type="image/x-icon" />
-    <asp:PlaceHolder runat="server">           
-        <script src="<%: ResolveUrl("~/Scripts/modernizr-2.6.2.js") %>"></script>
-    </asp:PlaceHolder>
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
     <meta name="viewport" content="width=device-width" />
     <asp:ContentPlaceHolder runat="server" ID="HeadContent" />
@@ -17,6 +28,40 @@
 <body id="wrapper">
     
 <style type="text/css">
+
+        .deleteWidgetDiv {
+            float: right;
+            height: 22px;
+            width: 22px;
+            margin-left: auto;
+            margin-right: auto;
+            color: white;
+            text-align: center;
+            font-family: verdana;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            padding: 4px, 4px, 4px, 4px;
+            background-color: rgba(255, 0, 0, 1);
+        }
+        .dragDiv{
+            font-size: 16px;
+            font-family: 'Trebuchet MS';
+            font-weight:bold;
+            text-align: center;
+            cursor: move;
+        }
+        .widget, header  {
+            background: #aaaaaa;
+            font-family: 'Trebuchet MS';
+            font-size: 12px;
+            display: block;
+        }
+        .gridster {
+            margin-top: 45px;
+            background-color: rgba(238, 233, 233, 0.5);
+        }
+    
     inputbox
     {
         font-family:Arial;
@@ -42,30 +87,13 @@
             <div class="float-left">
                 <p class="site-title"><img src="/Images/logo_plain.png" alt="Sample Photo" /></p>
                     <ul id="mainmenu">
-                        <li id="mainmenu"><a runat="server" href="~/">Home</a></li>
+                        <li id="mainmenu"><a runat="server" href="~/Default.aspx">Home</a></li>
+                        <li id="mainmenu"><a runat="server" href="~/Homepage.aspx">Homepage</a></li>
                         <li id="mainmenu"><a runat="server" href="~/InputData.aspx">Input Data</a></li>
-                        <li id="mainmenu"><a runat="server" href="~/">Edit Data</a></li>
+                        <li id="mainmenu"><a runat="server" href="~/EditDataPages/EditData.aspx">Edit Data</a></li>
                     </ul>   
                 </div>
             <div class="float-right">
-                <section id="login">
-                    <asp:LoginView runat="server" ViewStateMode="Disabled">
-                        <AnonymousTemplate>
-                            <ul>
-                                <li><a id="registerLink" runat="server" href="~/Account/Register">Register</a></li>
-                                <li><a id="loginLink" runat="server" href="~/Account/Login">Log in</a></li>
-                            </ul>
-                        </AnonymousTemplate>
-                        <LoggedInTemplate>
-                            <p>
-                                Hello, <a runat="server" class="username" href="~/Account/Manage" title="Manage your account">
-                                    <asp:LoginName runat="server" CssClass="username" />
-                                </a>!
-                                <asp:LoginStatus runat="server" LogoutAction="Redirect" LogoutText="Log off" LogoutPageUrl="~/" />
-                            </p>
-                        </LoggedInTemplate>
-                    </asp:LoginView>
-                </section>
                 <nav>
                     <ul id="menu">
                         <li><a runat="server" href="~/">Home</a></li>

@@ -84,7 +84,7 @@
             <!-- Validator to ensure a number is in the text box (required)-->
             <asp:RequiredFieldValidator runat="server" ControlToValidate="num_fish" ErrorMessage="Number of fish is required" ForeColor="Red" ValidationGroup="fp"> * </asp:RequiredFieldValidator>
              <!-- Make custome method to ensure the collect kwo is not a negative number-->
-            <asp:CustomValidator OnServerValidate="CheckNum" ErrorMessage="Number of fish cannot be negative!" ForeColor="Red" runat="server" ControlToValidate="num_fish" ValidationGroup="fp">*</asp:CustomValidator> 
+            <asp:CustomValidator OnServerValidate="CheckNum" ErrorMessage="Invalid number of fish" ForeColor="Red" runat="server" ControlToValidate="num_fish" ValidationGroup="fp">*</asp:CustomValidator> 
         </div>
         <br />
 
@@ -181,7 +181,7 @@
             <!-- Validator to ensure a number is in the text box (required)-->
             <asp:RequiredFieldValidator runat="server" ControlToValidate="buf_add" ErrorMessage="Amount of Buffer added is required" ForeColor="Red" ValidationGroup="fp"> * </asp:RequiredFieldValidator>
              <!-- Make custome method to ensure the bio is not a negative number-->
-            <asp:CustomValidator OnServerValidate="CheckBuf" ErrorMessage="Buffer added cannot be negative!" ForeColor="Red" runat="server" ControlToValidate="buf_add" ValidationGroup="fp">*</asp:CustomValidator>
+            <asp:CustomValidator OnServerValidate="CheckBuf" ErrorMessage="Invalid Buffer added" ForeColor="Red" runat="server" ControlToValidate="buf_add" ValidationGroup="fp">*</asp:CustomValidator>
         </div>
         <br />
 
@@ -192,7 +192,7 @@
             <!-- Validator to ensure a number is in the text box (required)-->
             <asp:RequiredFieldValidator runat="server" ControlToValidate="fish_food" ErrorMessage="Fish food is required" ForeColor="Red" ValidationGroup="fp"> * </asp:RequiredFieldValidator>
              <!-- Make custome method to ensure the bio is not a negative number-->
-            <asp:CustomValidator OnServerValidate="CheckFood" ErrorMessage="Fish food cannot be negative!" ForeColor="Red" runat="server" ControlToValidate="fish_food" ValidationGroup="fp">*</asp:CustomValidator>
+            <asp:CustomValidator OnServerValidate="CheckFood" ErrorMessage="Invalid Fish food entry" ForeColor="Red" runat="server" ControlToValidate="fish_food" ValidationGroup="fp">*</asp:CustomValidator>
         </div>
         <br />
 

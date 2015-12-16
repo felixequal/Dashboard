@@ -2877,8 +2877,6 @@ public partial class Vermiculture : INotifyPropertyChanging, INotifyPropertyChan
 	
 	private double _TeaProduced;
 	
-	private double _WomsRemoved;
-	
 	private decimal _ProductionCost;
 	
 	private decimal _MarketValue;
@@ -2907,8 +2905,6 @@ public partial class Vermiculture : INotifyPropertyChanging, INotifyPropertyChan
     partial void OnBedMoistureChanged();
     partial void OnTeaProducedChanging(double value);
     partial void OnTeaProducedChanged();
-    partial void OnWomsRemovedChanging(double value);
-    partial void OnWomsRemovedChanged();
     partial void OnProductionCostChanging(decimal value);
     partial void OnProductionCostChanged();
     partial void OnMarketValueChanging(decimal value);
@@ -3062,26 +3058,6 @@ public partial class Vermiculture : INotifyPropertyChanging, INotifyPropertyChan
 				this._TeaProduced = value;
 				this.SendPropertyChanged("TeaProduced");
 				this.OnTeaProducedChanged();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_WomsRemoved", DbType="Float NOT NULL")]
-	public double WomsRemoved
-	{
-		get
-		{
-			return this._WomsRemoved;
-		}
-		set
-		{
-			if ((this._WomsRemoved != value))
-			{
-				this.OnWomsRemovedChanging(value);
-				this.SendPropertyChanging();
-				this._WomsRemoved = value;
-				this.SendPropertyChanged("WomsRemoved");
-				this.OnWomsRemovedChanged();
 			}
 		}
 	}

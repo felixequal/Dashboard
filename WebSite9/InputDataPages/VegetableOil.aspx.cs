@@ -25,7 +25,7 @@ public partial class VegetableOil : System.Web.UI.Page
             e.IsValid = (weight >= 0);
         }
         catch
-        { }
+        { e.IsValid = false; }
     }
 
     //When the submit button is commeted should do the following

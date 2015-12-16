@@ -26,7 +26,7 @@ public partial class EnerPro : System.Web.UI.Page
             e.IsValid = (pro >= 0);
         }
         catch
-        { }
+        { e.IsValid = false; }
     }
 
     //When the submit button is commeted should do the following

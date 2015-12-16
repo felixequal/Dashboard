@@ -1,0 +1,13 @@
+﻿.myCanvas {
+    width: 100%;
+    height: 100%;
+}
+.chart-legend ul span {
+    display: inline-block;
+    height: 1em;
+    width: 1em;
+    margin-right: 0.5em;
+}
+.chart-legend ul {
+    list-style: none;
+}

@@ -25,7 +25,9 @@ public partial class FishPro : System.Web.UI.Page
             e.IsValid = (batch >= 0);
         }
         catch
-        { }
+        {
+            e.IsValid = false;
+        }
     }
 
     //Validation check to ensure batch is not negative
@@ -40,7 +42,7 @@ public partial class FishPro : System.Web.UI.Page
             e.IsValid = (process >= 0);
         }
         catch
-        { }
+        { e.IsValid = false; }
     }
 
     //Validation to ensure collected kwo not negative
@@ -55,7 +57,7 @@ public partial class FishPro : System.Web.UI.Page
             e.IsValid = (process >= 0);
         }
         catch
-        { }
+        { e.IsValid = false; }
     }
 
 
@@ -88,7 +90,6 @@ public partial class FishPro : System.Web.UI.Page
             try
             {
                 db.SubmitChanges();
-                Response.Redirect("../Widgets.aspx");
             }
             //If not throw error
             catch

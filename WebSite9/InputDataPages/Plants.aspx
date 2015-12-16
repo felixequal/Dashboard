@@ -89,6 +89,7 @@
             <asp:textbox runat="server" id="plant_bed" Width="80px" />
             <!-- Validates to make sure something is entered into the field (required)-->
             <asp:RequiredFieldValidator runat="server" ControlToValidate="plant_bed" ErrorMessage="Bed Harvested from is required" ForeColor="Red" ValidationGroup="pp"> * </asp:RequiredFieldValidator>
+              <asp:CustomValidator OnServerValidate="plantBed" ErrorMessage="Number of plant cannot be negative!" ForeColor="Red" runat="server" ControlToValidate="plant_bed" ValidationGroup="pp">*</asp:CustomValidator>
         </div>
         <br />
 
@@ -98,6 +99,7 @@
             <asp:textbox runat="server" id="green_temp" type="double" Width="80px" />C
             <!-- ensure value is entered (required)-->
             <asp:RequiredFieldValidator runat="server" ControlToValidate="green_temp" ErrorMessage="A greenhouse temperature is required" ForeColor="Red" ValidationGroup="pp"> * </asp:RequiredFieldValidator>
+          <asp:CustomValidator OnServerValidate="CheckNum" ErrorMessage="Number of plant cannot be negative!" ForeColor="Red" runat="server" ControlToValidate="green_temp" ValidationGroup="pp">*</asp:CustomValidator>
         </div>
         <br />
               

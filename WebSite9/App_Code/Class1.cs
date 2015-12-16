@@ -10,16 +10,16 @@ using System.Text;
 /// </summary>
 public class DataController
 {
-    foodWaste f;
+    Compost c;
     DataClassesDataContext db;
     public DataController()
     {
        db = new DataClassesDataContext();
     }
 
-    public IQueryable<foodWaste> returnData()
+    public IQueryable<Compost> returnData()
     {
-    IQueryable<foodWaste> wste = from d in db.foodWastes
+    IQueryable<Compost> wste = from d in db.Composts
                select d;
     return wste;
     }

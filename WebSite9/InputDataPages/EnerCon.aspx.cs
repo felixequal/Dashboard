@@ -26,7 +26,7 @@ public partial class EnerCon : System.Web.UI.Page
             e.IsValid = (pro >= 0);
         }
         catch
-        { }
+        { e.IsValid = false; }
     }
 
     //Validation check to ensure energy cost is not negative
@@ -41,7 +41,7 @@ public partial class EnerCon : System.Web.UI.Page
             e.IsValid = (pro >= 0);
         }
         catch
-        { }
+        { e.IsValid = false; }
     }
 
     //When the submit button is commeted should do the following

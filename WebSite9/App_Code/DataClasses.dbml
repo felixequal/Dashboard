@@ -139,7 +139,6 @@
       <Column Name="BedTemperature" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
       <Column Name="BedMoisture" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
       <Column Name="TeaProduced" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
-      <Column Name="WomsRemoved" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
       <Column Name="ProductionCost" Type="System.Decimal" DbType="Money NOT NULL" CanBeNull="false" />
       <Column Name="MarketValue" Type="System.Decimal" DbType="Money NOT NULL" CanBeNull="false" />
       <Column Name="WormsAdded" Type="System.Int32" DbType="Int" CanBeNull="true" />

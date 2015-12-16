@@ -26,7 +26,7 @@ public partial class VermicultureInputForm : System.Web.UI.Page
             e.IsValid = (process >= 0);
         }
         catch
-        { }
+        { e.IsValid = false; }
     }
 
     //Ensure that worms removed is not negative
@@ -41,7 +41,7 @@ public partial class VermicultureInputForm : System.Web.UI.Page
             e.IsValid = (process >= 0);
         }
         catch
-        { }
+        { e.IsValid = false; }
     }
 
     //Ensure that worms removed is not negative
@@ -56,7 +56,7 @@ public partial class VermicultureInputForm : System.Web.UI.Page
             e.IsValid = (process >= 0);
         }
         catch
-        { }
+        { e.IsValid = false; }
     }
 
     //Ensure that vermicompost produced is not negative
@@ -71,7 +71,7 @@ public partial class VermicultureInputForm : System.Web.UI.Page
             e.IsValid = (process >= 0);
         }
         catch
-        { }
+        { e.IsValid = false; }
     }
 
     //Ensure that vermicompost tea is not negative
@@ -86,7 +86,7 @@ public partial class VermicultureInputForm : System.Web.UI.Page
             e.IsValid = (process >= 0);
         }
         catch
-        { }
+        { e.IsValid = false; }
     }
 
     //Ensure thatvermicompost cost is not negative
@@ -101,7 +101,7 @@ public partial class VermicultureInputForm : System.Web.UI.Page
             e.IsValid = (process >= 0);
         }
         catch
-        { }
+        { e.IsValid = false; }
     }
 
     //Ensure that worms removed is not negative
@@ -116,7 +116,7 @@ public partial class VermicultureInputForm : System.Web.UI.Page
             e.IsValid = (process >= 0);
         }
         catch
-        { }
+        { e.IsValid = false; }
     }
 
 
