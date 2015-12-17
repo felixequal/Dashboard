@@ -149,7 +149,6 @@ public partial class VermicultureInputForm : System.Web.UI.Page
             try
             {
                 db.SubmitChanges();
-                Response.Redirect("../Widgets.aspx");
             }
             //If not throw error
             catch

@@ -15,6 +15,7 @@ body {
     margin: 0;
     padding: 0;
     min-width:100%;
+    height:100%;
 }
 
 
@@ -204,6 +205,64 @@ header .content-wrapper {
     font-size: x-large;
 }
 
+.current
+{
+    color: Red;
+}
+
+.flex-wrapper
+{
+	display: -webkit-flex;
+	display: flex;
+	min-height:100%;
+	-webkit-flex-direction: column;
+    flex-flow: column;
+	
+	width:100%;
+}
+
+.flex-main
+{	
+	flex: 2;
+	display: flex;
+	flex-flow:column;
+	
+}
+
+.flex-content1
+{
+	
+	
+}
+.flex-content2
+{
+	display:flex;
+	flex-flow: column;
+	flex: 1 1 auto;
+	
+	
+}
+.flex-center
+{
+flex: 1;
+margin:auto;
+}
+
+.flex-subcontent2
+{
+	flex:2;
+
+	
+}
+
+.flex-footer
+{
+	
+	height:30px;
+	
+	
+}
+
 .gridviewEdit
 {
     background-color:lightcyan;
@@ -236,6 +295,11 @@ ul#mainmenu {
         }
 
             ul#mainmenu li a:hover {
+            color: #29ABFE !important;
+            text-decoration:none;
+        }
+
+            ul#mainmenu li a:active {
             color: #29ABFE !important;
             text-decoration:none;
         }

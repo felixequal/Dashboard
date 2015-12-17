@@ -29,7 +29,7 @@
    
 </head>
 <body id="wrapper">
-    
+    <div class="flex-wrapper">
 <style type="text/css">
 
     .deleteWidgetDiv {
@@ -112,7 +112,8 @@
             <asp:ContentPlaceHolder runat="server" ID="MainContent" />
 
     </div>
-    <footer id="footer">
+        
+    <footer id="footer" class="flex-footer">
         
             <div class="float-left">
                 <p style="color:white;">
@@ -140,6 +141,6 @@ function WebForm_OnSubmit() {
  return true;
 }
 </script>
-
+    </div>
 </body>
 </html>
