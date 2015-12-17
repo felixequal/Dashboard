@@ -25,7 +25,7 @@ public partial class BioDieselInputForm : System.Web.UI.Page
             e.IsValid = (batch >= 0);
         }
         catch
-        { }
+        { e.IsValid = false; }
     }
 
     //Validation check to ensure batch is not negative
@@ -40,7 +40,7 @@ public partial class BioDieselInputForm : System.Web.UI.Page
             e.IsValid = (process >= 0);
         }
         catch
-        { }
+        { e.IsValid = false; }
     }
 
     //Validation to ensure collected kwo not negative
@@ -55,7 +55,7 @@ public partial class BioDieselInputForm : System.Web.UI.Page
             e.IsValid = (process >= 0);
         }
         catch
-        { }
+        { e.IsValid = false; }
     }
 
     //Validation to ensure processed kwo not negative
@@ -70,7 +70,7 @@ public partial class BioDieselInputForm : System.Web.UI.Page
             e.IsValid = (process >= 0);
         }
         catch
-        { }
+        { e.IsValid = false; }
     }
 
     //Validation to ensure bio produced kwo not negative
@@ -85,7 +85,7 @@ public partial class BioDieselInputForm : System.Web.UI.Page
             e.IsValid = (process >= 0);
         }
         catch
-        { }
+        { e.IsValid = false; }
     }
 
     //Validation to ensure bio produced kwo not negative
@@ -100,7 +100,7 @@ public partial class BioDieselInputForm : System.Web.UI.Page
             e.IsValid = (process >= 0);
         }
         catch
-        { }
+        { e.IsValid = false; }
     }
 
     //Validation to ensure Energy bio is not negative
@@ -115,7 +115,7 @@ public partial class BioDieselInputForm : System.Web.UI.Page
             e.IsValid = (process >= 0);
         }
         catch
-        { }
+        { e.IsValid = false; }
     }
 
     //Validation to ensure methonal is not negative
@@ -130,7 +130,7 @@ public partial class BioDieselInputForm : System.Web.UI.Page
             e.IsValid = (process >= 0);
         }
         catch
-        { }
+        { e.IsValid = false; }
     }
 
     //Validation to ensure KH2 is not negative
@@ -145,7 +145,7 @@ public partial class BioDieselInputForm : System.Web.UI.Page
             e.IsValid = (process >= 0);
         }
         catch
-        { }
+        { e.IsValid = false; }
     }
 
     //Ensure that cost of kwo is not negative
@@ -160,7 +160,7 @@ public partial class BioDieselInputForm : System.Web.UI.Page
             e.IsValid = (process >= 0);
         }
         catch
-        { }
+        { e.IsValid = false; }
     }
 
     //Ensure that cost of wd is not negative
@@ -175,7 +175,7 @@ public partial class BioDieselInputForm : System.Web.UI.Page
             e.IsValid = (process >= 0);
         }
         catch
-        { }
+        { e.IsValid = false; }
     }
 
     //Ensure that man hours is not negative
@@ -190,7 +190,7 @@ public partial class BioDieselInputForm : System.Web.UI.Page
             e.IsValid = (process >= 0);
         }
         catch
-        { }
+        { e.IsValid = false; }
     }
 
     //Ensure that man hours is not negative
@@ -205,7 +205,7 @@ public partial class BioDieselInputForm : System.Web.UI.Page
             e.IsValid = (process >= 0);
         }
         catch
-        { }
+        { e.IsValid = false; }
     }
 
     protected void buttonSubmit_Click(object sender, EventArgs e)

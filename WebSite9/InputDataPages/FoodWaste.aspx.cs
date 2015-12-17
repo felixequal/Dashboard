@@ -28,7 +28,7 @@ public partial class FoodWaste : System.Web.UI.Page
         }
         catch
         {
-
+            e.IsValid = false;
         }
     }
 
@@ -44,7 +44,7 @@ public partial class FoodWaste : System.Web.UI.Page
             e.IsValid = (weight >= 0);
         }
         catch
-        { }
+        { e.IsValid = false; }
     }
 
     //When the submit button is commeted should do the following
