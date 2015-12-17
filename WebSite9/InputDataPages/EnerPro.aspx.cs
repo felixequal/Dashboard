@@ -52,6 +52,7 @@ public partial class EnerPro : System.Web.UI.Page
             try
             {
                 db.SubmitChanges();
+                Response.Redirect("../Widgets.aspx");
             }
             //If not throw error
             catch

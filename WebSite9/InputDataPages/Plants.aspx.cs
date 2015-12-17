@@ -85,6 +85,7 @@ public partial class Plants : System.Web.UI.Page
             try
             {
                 db.SubmitChanges();
+                Response.Redirect("~/Default.aspx");
             }
             //If not throw error
             catch

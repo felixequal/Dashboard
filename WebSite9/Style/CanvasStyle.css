@@ -11,3 +11,6 @@
 .chart-legend ul {
     list-style: none;
 }
+.widgetLabel{
+    display: inline-block;
+}

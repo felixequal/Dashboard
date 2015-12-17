@@ -67,6 +67,7 @@ function widgetElementCreator(type, count, slNumber, labels) {
         var Label = document.createElement("label");
         Label.id = "LabelCanvas-" + count;
         Label.innerHTML = labels;
+        Label.className = "widgetLabel";
 
         var canvasDiv = document.createElement("div");
         canvasDiv.style.width = "530px";
@@ -83,6 +84,7 @@ function widgetElementCreator(type, count, slNumber, labels) {
         var Label = document.createElement("label");
         Label.id = "Label" + slNumber + "-" + count;
         Label.innerHTML = labels;
+        Label.className = "widgetLabel";
         divHold.appendChild(Label);
     
 
