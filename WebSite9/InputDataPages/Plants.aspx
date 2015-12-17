@@ -2,7 +2,7 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder4" Runat="Server">
      <style type="text/css">
-        .auto-style1 {
+         .auto-style1 {
             position: relative;
             float: left;
         }
@@ -16,18 +16,26 @@
         #Submit1 {
             text-align: right;
         }
+        #plantProduction{
+            background: rgba(255, 255, 255, 0.5);
+            margin:auto;
+            width:30%;
+        }
+         br {
+             line-height:22px;
+         }
     </style>
     <!-- need this for date picker to do the calander drop down-->
      <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
 
-    <br />
-    <br />
+    <br/>
+    <br/>
      <!--Food waste from-->
     <div id="plantProduction">
         <!--Validation summary location if something is wrong will appear in this div that is of type food validationgroup-->
-        <div>
+        <div class = "center">
             <asp:ValidationSummary ID="ValidationSummary1" runat="server" HeaderText="There were errors on the page: " ForeColor="Red" ValidationGroup="pp"/>
         </div>
 

@@ -110,7 +110,8 @@ h5, h6 {
 #body {
   min-height: 100%;
   background-color: #efeeef;
-  background: url("../Images/Broadway-Grass3.jpg") no-repeat center center;
+  background: url("../Images/grass2.jpg") no-repeat center center;
+  background-repeat: repeat;
 }
 
 #footer {
@@ -254,7 +255,7 @@ ul#mainmenu {
         .submenu li{
         display: inline;
         list-style: none;
-        vertical-align: middle;
+        vertical-align: top;
         
     }
 
@@ -263,7 +264,7 @@ ul#mainmenu {
             background: none;
             color:#248860;
             text-decoration: none;
-            vertical-align: middle;
+            vertical-align: top;
         }
             .submenu li a img {
             vertical-align: middle;
@@ -289,7 +290,7 @@ ul#mainmenu {
        .subsubmenu li{
         display: inline;
         list-style: none;
-        vertical-align: middle;
+        vertical-align: top;
         
     }
 
@@ -298,7 +299,7 @@ ul#mainmenu {
             background: none;
             color:white;
             text-decoration: none;
-            vertical-align: middle;
+            vertical-align: top;
         }
             .subsubmenu li a img {
             vertical-align: middle;

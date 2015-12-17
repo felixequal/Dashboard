@@ -199,6 +199,7 @@ public class Service : WebService
         if (param1 == "Foodwaste - By Vendor")
         {
             var vendReturn = (from vends in db.Composts where (vends.date.ToString() == dateBeg) && (vends.Vendor == param2) select vends).ToList();
+
             var firstVendor = vendReturn[0];
             // Add Coffee Grounds
             PieDonutGraph p = new PieDonutGraph();

@@ -82,7 +82,8 @@ public partial class FoodWaste : System.Web.UI.Page
             try
             {
                 db.SubmitChanges();
-                Response.Redirect("../Widgets.aspx");
+                clearControls();
+                //Response.Redirect("");
             }
             //If not throw error
             catch
@@ -92,5 +93,23 @@ public partial class FoodWaste : System.Web.UI.Page
             }
             
         }
+    }
+    protected void Reset1_Click(object sender, EventArgs e)
+    {
+        clearControls();
+    }
+    private void clearControls()
+    {
+        Trash.ClearSelection();
+        Location.ClearSelection();
+        Percent_CG.Text = string.Empty;
+        Percent_Paper.Text = string.Empty;
+        Percent_Dairy.Text = string.Empty;
+        Percent_Veg.Text = string.Empty;
+        Percent_Fruit.Text = string.Empty;
+        Percent_Grains.Text = string.Empty;
+        Weight.Text = string.Empty;
+        datepicker.Text = string.Empty;
+        Notes1.Text = string.Empty;
     }
 }

@@ -1,7 +1,6 @@
 ﻿<%@ Page Title="Home Page" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeFile="Default.aspx.cs" Inherits="_Default" %>
 <asp:Content runat="server" ID="BodyContent" ContentPlaceHolderID="MainContent">
                 <div>
-                    <br/>
                     <div class="gridster">
                         <ul style = "width: 100%; position: relative; height: auto;">
                         </ul>
@@ -13,25 +12,16 @@
                 <script>
                     var count = 0;
                     var gridster;
-
-                    $(function () {
+                    $(window).on('beforeunload', function () {
+                        socket.close();
+                    });
+                    window.onload = (function () {
                         initPopUp();
+
                         gridster = $(".gridster ul").gridster({
                             widget_base_dimensions: [260, 160],
                             widget_margins: [5, 5],
                             helper: 'clone',
-                            /*resize: {
-                                enabled: true,
-                                max_size: [3, 2],
-                                min_size: [2, 1],
-                                stop: function (e, ui, $widget) {
-                                    var liParent = ($widget.closest("li").attr("id"));
-                                    window.alert(liParent);
-                                    var splits = liParent.split("Li");
-                                    var countHold = splits[1];
-                                    redrawChart(countHold);
-                                } 
-                            },*/
                             draggable: {
                                 handle: '.dragDiv'
                             }
@@ -72,9 +62,6 @@
                         $(document).on("click", ".deleteWidgetDiv", function () {
                             $(this).closest("li").addClass("activ");
                             gridster.remove_widget($('.activ'));
-                        });
-                        $(window).on('beforeunload', function () {
-                            socket.close();
                         });
 
                         /* Popup Window */

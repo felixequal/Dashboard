@@ -34,6 +34,8 @@
         <SortedDescendingCellStyle BackColor="#D4DFE1" />
         <SortedDescendingHeaderStyle BackColor="#15524A" />
     </asp:GridView>
+    <asp:LinqDataSource ID="LinqDataSource2" runat="server" EntityTypeName="">
+    </asp:LinqDataSource>
     <asp:LinqDataSource ID="LinqDataSource1" runat="server" ContextTypeName="DataClassesDataContext" EnableDelete="True" EnableInsert="True" EnableUpdate="True" EntityTypeName="" OrderBy="datapointID desc" TableName="Composts">
     </asp:LinqDataSource>
     
